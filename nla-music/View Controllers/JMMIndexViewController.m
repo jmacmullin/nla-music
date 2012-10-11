@@ -25,11 +25,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setDataController:[MUSDataController sharedController]];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
 }
+
+#pragma mark - UICollectionView Data Source Methods
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return [self.dataController numberOfScores];
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ScoreCell" forIndexPath:indexPath];
+    Score *score = [self.dataController scoreAtIndex:indexPath];
+    NSLog(@"%@", score.title);
+    return cell;
+}
+
 
 @end

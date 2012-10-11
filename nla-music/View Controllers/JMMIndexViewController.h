@@ -24,7 +24,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MUSDataController.h"
 
-@interface JMMIndexViewController : UIViewController
+@interface JMMIndexViewController : UIViewController <UICollectionViewDataSource>
+
+@property (nonatomic, strong) MUSDataController *dataController;
 
 @end

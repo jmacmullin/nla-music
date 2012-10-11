@@ -1,41 +1,41 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
-// Make changes to MUSPage.m instead.
+// Make changes to Page.m instead.
 
-#import "_MUSPage.h"
+#import "_Page.h"
 
-const struct MUSPageAttributes MUSPageAttributes = {
+const struct PageAttributes PageAttributes = {
 	.identifier = @"identifier",
 	.number = @"number",
 };
 
-const struct MUSPageRelationships MUSPageRelationships = {
+const struct PageRelationships PageRelationships = {
 	.score = @"score",
 };
 
-const struct MUSPageFetchedProperties MUSPageFetchedProperties = {
+const struct PageFetchedProperties PageFetchedProperties = {
 };
 
-@implementation MUSPageID
+@implementation PageID
 @end
 
-@implementation _MUSPage
+@implementation _Page
 
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
 	NSParameterAssert(moc_);
-	return [NSEntityDescription insertNewObjectForEntityForName:@"MUSPage" inManagedObjectContext:moc_];
+	return [NSEntityDescription insertNewObjectForEntityForName:@"Page" inManagedObjectContext:moc_];
 }
 
 + (NSString*)entityName {
-	return @"MUSPage";
+	return @"Page";
 }
 
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_ {
 	NSParameterAssert(moc_);
-	return [NSEntityDescription entityForName:@"MUSPage" inManagedObjectContext:moc_];
+	return [NSEntityDescription entityForName:@"Page" inManagedObjectContext:moc_];
 }
 
-- (MUSPageID*)objectID {
-	return (MUSPageID*)[super objectID];
+- (PageID*)objectID {
+	return (PageID*)[super objectID];
 }
 
 + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {

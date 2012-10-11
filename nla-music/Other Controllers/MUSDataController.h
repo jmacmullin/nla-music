@@ -1,5 +1,5 @@
 //
-//  MusicAppDelegate.m
+//  MUSDataController.h
 //  nla-music
 //
 //  Copyright © 2012 Jake MacMullin
@@ -23,39 +23,27 @@
 //  SOFTWARE.
 //
 
-#import "MusicAppDelegate.h"
-#import "MUSDataController.h"
-#import "JMMIndexViewController.h"
+#import <Foundation/Foundation.h>
+#import "Score.h"
 
-@interface MusicAppDelegate()
+/**
+ Provides access to the sheet music collection.
+ */
+@interface MUSDataController : NSObject
 
-@end
+/**
+ Returns the shared data controller.
+ */
++ (MUSDataController *)sharedController;
 
-@implementation MusicAppDelegate
+/**
+ Returns the number of scores in the collection.
+ */
+- (int)numberOfScores;
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    return YES;
-}
-							
-- (void)applicationWillResignActive:(UIApplication *)application
-{
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-}
+/**
+ Returns the score for the given index path.
+ */
+- (Score *)scoreAtIndex:(NSIndexPath *)indexPath;
 
 @end

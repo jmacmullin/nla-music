@@ -1,41 +1,41 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
-// Make changes to MUSScore.h instead.
+// Make changes to Score.h instead.
 
 #import <CoreData/CoreData.h>
 
 
-extern const struct MUSScoreAttributes {
+extern const struct ScoreAttributes {
 	__unsafe_unretained NSString *creator;
 	__unsafe_unretained NSString *date;
 	__unsafe_unretained NSString *identifier;
 	__unsafe_unretained NSString *publisher;
 	__unsafe_unretained NSString *title;
-} MUSScoreAttributes;
+} ScoreAttributes;
 
-extern const struct MUSScoreRelationships {
+extern const struct ScoreRelationships {
 	__unsafe_unretained NSString *pages;
-} MUSScoreRelationships;
+} ScoreRelationships;
 
-extern const struct MUSScoreFetchedProperties {
+extern const struct ScoreFetchedProperties {
 	__unsafe_unretained NSString *orderedPages;
-} MUSScoreFetchedProperties;
+} ScoreFetchedProperties;
 
-@class MUSPage;
-
-
+@class Page;
 
 
 
 
 
-@interface MUSScoreID : NSManagedObjectID {}
+
+
+@interface ScoreID : NSManagedObjectID {}
 @end
 
-@interface _MUSScore : NSManagedObject {}
+@interface _Score : NSManagedObject {}
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-- (MUSScoreID*)objectID;
+- (ScoreID*)objectID;
 
 
 
@@ -93,16 +93,16 @@ extern const struct MUSScoreFetchedProperties {
 
 @end
 
-@interface _MUSScore (CoreDataGeneratedAccessors)
+@interface _Score (CoreDataGeneratedAccessors)
 
 - (void)addPages:(NSSet*)value_;
 - (void)removePages:(NSSet*)value_;
-- (void)addPagesObject:(MUSPage*)value_;
-- (void)removePagesObject:(MUSPage*)value_;
+- (void)addPagesObject:(Page*)value_;
+- (void)removePagesObject:(Page*)value_;
 
 @end
 
-@interface _MUSScore (CoreDataGeneratedPrimitiveAccessors)
+@interface _Score (CoreDataGeneratedPrimitiveAccessors)
 
 
 - (NSString*)primitiveCreator;

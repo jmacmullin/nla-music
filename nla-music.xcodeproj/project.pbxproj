@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		239D044F16267FFC0065BDEF /* data.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 239D044E16267FFC0065BDEF /* data.sqlite */; };
+		239D0453162690CD0065BDEF /* MUSDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 239D0452162690CD0065BDEF /* MUSDataController.m */; };
+		239D046216277B5D0065BDEF /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 239D045D16277B5D0065BDEF /* Page.m */; };
+		239D046316277B5D0065BDEF /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = 239D045F16277B5D0065BDEF /* Score.m */; };
+		239D046816277B9D0065BDEF /* _Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 239D046516277B9D0065BDEF /* _Page.m */; };
+		239D046916277B9D0065BDEF /* _Score.m in Sources */ = {isa = PBXBuildFile; fileRef = 239D046716277B9D0065BDEF /* _Score.m */; };
 		23E1759F16265F1300B5E7A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23E1759E16265F1300B5E7A3 /* UIKit.framework */; };
 		23E175A116265F1300B5E7A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23E175A016265F1300B5E7A3 /* Foundation.framework */; };
 		23E175A316265F1300B5E7A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23E175A216265F1300B5E7A3 /* CoreGraphics.framework */; };
@@ -15,9 +21,35 @@
 		23E175AF16265F1300B5E7A3 /* MusicAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 23E175AE16265F1300B5E7A3 /* MusicAppDelegate.m */; };
 		23E175B816265F1300B5E7A3 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23E175B616265F1300B5E7A3 /* MainStoryboard.storyboard */; };
 		23E175CF1626700800B5E7A3 /* JMMIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23E175CE1626700800B5E7A3 /* JMMIndexViewController.m */; };
+		23E175D21626744D00B5E7A3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23E175D01626744200B5E7A3 /* CoreData.framework */; };
+		23E175D5162674A300B5E7A3 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 23E175D3162674A300B5E7A3 /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		239D043F162679D30065BDEF /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = wrapper.xcdatamodeld;
+			isEditable = 1;
+			outputFiles = (
+				"$(DERIVED_FILES_DIR)/$(INPUT_FILE_BASE).momd",
+			);
+			script = "# Generate the code for the entities in the core data model\ncurVer=`/usr/libexec/PlistBuddy \"${INPUT_FILE_PATH}/.xccurrentversion\" -c 'print _XCCurrentVersionName'`\n\necho \"${PROJECT_DIR}/nla-music/Scripts/mogenerator\" --template-var arc=true --model \\\"${INPUT_FILE_PATH}/$curVer\\\" --output-dir \\\"${INPUT_FILE_DIR}/\\\"\n\"${PROJECT_DIR}/nla-music/Scripts/mogenerator\" --template-var arc=true --model \"${INPUT_FILE_PATH}/$curVer\" --output-dir \"${INPUT_FILE_DIR}/\"\n\n# momc\necho ${DEVELOPER_BIN_DIR}/momc -XD_MOMC_IOS_TARGET_VERSION=6.0 -MOMC_PLATFORMS iphonesimulator -MOMC_PLATFORMS iphoneos -XD_MOMC_TARGET_VERSION=10.6 \\\"${INPUT_FILE_PATH}\\\" \\\"${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}/${INPUT_FILE_BASE}.momd\\\"\n${DEVELOPER_BIN_DIR}/momc -XD_MOMC_IOS_TARGET_VERSION=6.0 -MOMC_PLATFORMS iphonesimulator -MOMC_PLATFORMS iphoneos -XD_MOMC_TARGET_VERSION=10.6 \"${INPUT_FILE_PATH}\" \"${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}/${INPUT_FILE_BASE}.momd\"\n\necho \"Finished generating core data model files.\"";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXFileReference section */
+		239D044E16267FFC0065BDEF /* data.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = data.sqlite; path = Data/data.sqlite; sourceTree = "<group>"; };
+		239D0451162690CD0065BDEF /* MUSDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUSDataController.h; path = "Other Controllers/MUSDataController.h"; sourceTree = "<group>"; };
+		239D0452162690CD0065BDEF /* MUSDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUSDataController.m; path = "Other Controllers/MUSDataController.m"; sourceTree = "<group>"; };
+		239D045C16277B5D0065BDEF /* Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Page.h; path = Model/Page.h; sourceTree = "<group>"; };
+		239D045D16277B5D0065BDEF /* Page.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Page.m; path = Model/Page.m; sourceTree = "<group>"; };
+		239D045E16277B5D0065BDEF /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Score.h; path = Model/Score.h; sourceTree = "<group>"; };
+		239D045F16277B5D0065BDEF /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Score.m; path = Model/Score.m; sourceTree = "<group>"; };
+		239D046416277B9D0065BDEF /* _Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _Page.h; path = Model/_Page.h; sourceTree = "<group>"; };
+		239D046516277B9D0065BDEF /* _Page.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _Page.m; path = Model/_Page.m; sourceTree = "<group>"; };
+		239D046616277B9D0065BDEF /* _Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _Score.h; path = Model/_Score.h; sourceTree = "<group>"; };
+		239D046716277B9D0065BDEF /* _Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _Score.m; path = Model/_Score.m; sourceTree = "<group>"; };
 		23E1759A16265F1300B5E7A3 /* nla-music.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nla-music.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		23E1759E16265F1300B5E7A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		23E175A016265F1300B5E7A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -31,6 +63,8 @@
 		23E175B716265F1300B5E7A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		23E175CD1626700800B5E7A3 /* JMMIndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JMMIndexViewController.h; path = "View Controllers/JMMIndexViewController.h"; sourceTree = "<group>"; };
 		23E175CE1626700800B5E7A3 /* JMMIndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JMMIndexViewController.m; path = "View Controllers/JMMIndexViewController.m"; sourceTree = "<group>"; };
+		23E175D01626744200B5E7A3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		23E175D4162674A300B5E7A3 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,12 +75,30 @@
 				23E1759F16265F1300B5E7A3 /* UIKit.framework in Frameworks */,
 				23E175A116265F1300B5E7A3 /* Foundation.framework in Frameworks */,
 				23E175A316265F1300B5E7A3 /* CoreGraphics.framework in Frameworks */,
+				23E175D21626744D00B5E7A3 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		239D044D16267FE50065BDEF /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				239D044E16267FFC0065BDEF /* data.sqlite */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		239D0450162690AA0065BDEF /* Other Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				239D0451162690CD0065BDEF /* MUSDataController.h */,
+				239D0452162690CD0065BDEF /* MUSDataController.m */,
+			);
+			name = "Other Controllers";
+			sourceTree = "<group>";
+		};
 		23E1758F16265F1300B5E7A3 = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +122,7 @@
 				23E1759E16265F1300B5E7A3 /* UIKit.framework */,
 				23E175A016265F1300B5E7A3 /* Foundation.framework */,
 				23E175A216265F1300B5E7A3 /* CoreGraphics.framework */,
+				23E175D01626744200B5E7A3 /* CoreData.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -82,6 +135,7 @@
 				23E175C816266DDC00B5E7A3 /* Storyboards */,
 				23E175C716266DD100B5E7A3 /* Model */,
 				23E175C616266DC900B5E7A3 /* View Controllers */,
+				239D0450162690AA0065BDEF /* Other Controllers */,
 				23E175A516265F1300B5E7A3 /* Supporting Files */,
 			);
 			path = "nla-music";
@@ -90,6 +144,7 @@
 		23E175A516265F1300B5E7A3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				239D044D16267FE50065BDEF /* Data */,
 				23E175A616265F1300B5E7A3 /* nla-music-Info.plist */,
 				23E175A716265F1300B5E7A3 /* InfoPlist.strings */,
 				23E175AA16265F1300B5E7A3 /* main.m */,
@@ -110,6 +165,15 @@
 		23E175C716266DD100B5E7A3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				239D046416277B9D0065BDEF /* _Page.h */,
+				239D046516277B9D0065BDEF /* _Page.m */,
+				239D046616277B9D0065BDEF /* _Score.h */,
+				239D046716277B9D0065BDEF /* _Score.m */,
+				239D045C16277B5D0065BDEF /* Page.h */,
+				239D045D16277B5D0065BDEF /* Page.m */,
+				239D045E16277B5D0065BDEF /* Score.h */,
+				239D045F16277B5D0065BDEF /* Score.m */,
+				23E175D3162674A300B5E7A3 /* Model.xcdatamodeld */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -134,6 +198,7 @@
 				23E1759816265F1300B5E7A3 /* Resources */,
 			);
 			buildRules = (
+				239D043F162679D30065BDEF /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -176,6 +241,7 @@
 			files = (
 				23E175A916265F1300B5E7A3 /* InfoPlist.strings in Resources */,
 				23E175B816265F1300B5E7A3 /* MainStoryboard.storyboard in Resources */,
+				239D044F16267FFC0065BDEF /* data.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,6 +255,12 @@
 				23E175AB16265F1300B5E7A3 /* main.m in Sources */,
 				23E175AF16265F1300B5E7A3 /* MusicAppDelegate.m in Sources */,
 				23E175CF1626700800B5E7A3 /* JMMIndexViewController.m in Sources */,
+				23E175D5162674A300B5E7A3 /* Model.xcdatamodeld in Sources */,
+				239D0453162690CD0065BDEF /* MUSDataController.m in Sources */,
+				239D046216277B5D0065BDEF /* Page.m in Sources */,
+				239D046316277B5D0065BDEF /* Score.m in Sources */,
+				239D046816277B9D0065BDEF /* _Page.m in Sources */,
+				239D046916277B9D0065BDEF /* _Score.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,7 +307,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_PEDANTIC = YES;
+				GCC_WARN_PEDANTIC = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -258,7 +330,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_PEDANTIC = YES;
+				GCC_WARN_PEDANTIC = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -313,6 +385,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		23E175D3162674A300B5E7A3 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				23E175D4162674A300B5E7A3 /* Model.xcdatamodel */,
+			);
+			currentVersion = 23E175D4162674A300B5E7A3 /* Model.xcdatamodel */;
+			name = Model.xcdatamodeld;
+			path = Model/Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 23E1759116265F1300B5E7A3 /* Project object */;
 }

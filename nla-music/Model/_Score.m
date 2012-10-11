@@ -1,9 +1,9 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
-// Make changes to MUSScore.m instead.
+// Make changes to Score.m instead.
 
-#import "_MUSScore.h"
+#import "_Score.h"
 
-const struct MUSScoreAttributes MUSScoreAttributes = {
+const struct ScoreAttributes ScoreAttributes = {
 	.creator = @"creator",
 	.date = @"date",
 	.identifier = @"identifier",
@@ -11,35 +11,35 @@ const struct MUSScoreAttributes MUSScoreAttributes = {
 	.title = @"title",
 };
 
-const struct MUSScoreRelationships MUSScoreRelationships = {
+const struct ScoreRelationships ScoreRelationships = {
 	.pages = @"pages",
 };
 
-const struct MUSScoreFetchedProperties MUSScoreFetchedProperties = {
+const struct ScoreFetchedProperties ScoreFetchedProperties = {
 	.orderedPages = @"orderedPages",
 };
 
-@implementation MUSScoreID
+@implementation ScoreID
 @end
 
-@implementation _MUSScore
+@implementation _Score
 
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
 	NSParameterAssert(moc_);
-	return [NSEntityDescription insertNewObjectForEntityForName:@"MUSScore" inManagedObjectContext:moc_];
+	return [NSEntityDescription insertNewObjectForEntityForName:@"Score" inManagedObjectContext:moc_];
 }
 
 + (NSString*)entityName {
-	return @"MUSScore";
+	return @"Score";
 }
 
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_ {
 	NSParameterAssert(moc_);
-	return [NSEntityDescription entityForName:@"MUSScore" inManagedObjectContext:moc_];
+	return [NSEntityDescription entityForName:@"Score" inManagedObjectContext:moc_];
 }
 
-- (MUSScoreID*)objectID {
-	return (MUSScoreID*)[super objectID];
+- (ScoreID*)objectID {
+	return (ScoreID*)[super objectID];
 }
 
 + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {

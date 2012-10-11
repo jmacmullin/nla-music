@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1810" systemVersion="12C54" minimumToolsVersion="Xcode 4.1" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="MUSPage" representedClassName="MUSPage" syncable="YES">
+        <attribute name="identifier" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="number" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="score" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="MUSScore" inverseName="pages" inverseEntity="MUSScore" syncable="YES"/>
+    </entity>
+    <entity name="MUSScore" representedClassName="MUSScore" syncable="YES">
+        <attribute name="creator" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="publisher" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="pages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="MUSPage" inverseName="score" inverseEntity="MUSPage" syncable="YES"/>
+        <fetchedProperty name="orderedPages" optional="YES" syncable="YES">
+            <fetchRequest name="fetchedPropertyFetchRequest" entity="MUSPage" predicateString="score = $FETCH_SOURCE"/>
+        </fetchedProperty>
+    </entity>
+    <elements>
+        <element name="MUSPage" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="MUSScore" positionX="160" positionY="192" width="128" height="164"/>
+    </elements>
+</model>

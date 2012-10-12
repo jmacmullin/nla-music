@@ -52,6 +52,8 @@
 - (int)numberOfScores {
     if (self.scores == nil) {
         NSFetchRequest *allScoresFetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Score"];
+        NSSortDescriptor *titleSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
+        [allScoresFetchRequest setSortDescriptors:@[titleSortDescriptor]];
         NSArray *allScores = [self.context executeFetchRequest:allScoresFetchRequest error:NULL]; //TODO: Error handling
         [self setScores:allScores];
     }

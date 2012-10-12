@@ -7,6 +7,7 @@
 //
 
 #import "JMMIndexViewController.h"
+#import "ScoreCell.h"
 
 @interface JMMIndexViewController ()
 
@@ -42,9 +43,9 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ScoreCell" forIndexPath:indexPath];
+    ScoreCell *cell = (ScoreCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"ScoreCell" forIndexPath:indexPath];
     Score *score = [self.dataController scoreAtIndex:indexPath];
-    NSLog(@"%@", score.title);
+    [cell setScore:score];
     return cell;
 }
 

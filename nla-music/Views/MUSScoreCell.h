@@ -1,5 +1,5 @@
 //
-//  ScoreCell.h
+//  MUSScoreCell.h
 //  nla-music
 //
 //  Copyright © 2012 Jake MacMullin
@@ -27,7 +27,7 @@
 #import "Score.h"
 #import "NINetworkImageView.h"
 
-@interface ScoreCell : UICollectionViewCell
+@interface MUSScoreCell : UICollectionViewCell
 
 @property (nonatomic, strong) Score *score;
 

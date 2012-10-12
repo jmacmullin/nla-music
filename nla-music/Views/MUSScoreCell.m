@@ -1,5 +1,5 @@
 //
-//  ScoreCell.m
+//  MUSScoreCell.m
 //  nla-music
 //
 //  Copyright © 2012 Jake MacMullin
@@ -23,13 +23,13 @@
 //  SOFTWARE.
 //
 
-#import "ScoreCell.h"
+#import "MUSScoreCell.h"
 
-@interface ScoreCell()
+@interface MUSScoreCell()
 - (void)initialise;
 @end
 
-@implementation ScoreCell
+@implementation MUSScoreCell
 
 - (id)initWithFrame:(CGRect)frame
 {

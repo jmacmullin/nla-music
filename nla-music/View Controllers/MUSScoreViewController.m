@@ -1,5 +1,5 @@
 //
-//  MUSIndexViewController.h
+//  MUSScoreViewController.m
 //  nla-music
 //
 //  Copyright © 2012 Jake MacMullin
@@ -23,12 +23,46 @@
 //  SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
-#import "MUSDataController.h"
+#import "MUSScoreViewController.h"
 
-@interface MUSIndexViewController : UIViewController <UICollectionViewDataSource>
+@interface MUSScoreViewController ()
+@end
 
-@property (nonatomic, strong) IBOutlet UICollectionView *collectionView;
-@property (nonatomic, strong) MUSDataController *dataController;
+@implementation MUSScoreViewController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self!=nil) {
+    }
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self!=nil) {
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    if (self.score!=nil) {
+        [self.imageView setInitialImage:self.initialImage];
+        [self.imageView setPathToNetworkImage:[self.score.coverURL absoluteString]];
+    }
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
+- (IBAction)dismiss:(id)sender
+{
+    [self.presentingViewController dismissViewControllerAnimated:NO completion:NULL];
+}
 
 @end

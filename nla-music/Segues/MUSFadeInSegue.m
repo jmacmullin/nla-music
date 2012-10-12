@@ -1,5 +1,5 @@
 //
-//  MUSIndexViewController.h
+//  MUSFadeInSegue.m
 //  nla-music
 //
 //  Copyright © 2012 Jake MacMullin
@@ -23,12 +23,33 @@
 //  SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
-#import "MUSDataController.h"
+#import <QuartzCore/QuartzCore.h>
+#import "MUSFadeInSegue.h"
 
-@interface MUSIndexViewController : UIViewController <UICollectionViewDataSource>
+@implementation MUSFadeInSegue
 
-@property (nonatomic, strong) IBOutlet UICollectionView *collectionView;
-@property (nonatomic, strong) MUSDataController *dataController;
+- (void)perform {
+    UIViewController *source = self.sourceViewController;
+    UIViewController *destination = self.destinationViewController;
+    
+    // grab an image of the source view
+    UIGraphicsBeginImageContext(source.view.bounds.size);
+    [source.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *sourceImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIImageView *sourceImageView = [[UIImageView alloc] initWithImage:sourceImage];
+    UIGraphicsEndImageContext();
+    
+    [source presentViewController:destination animated:NO completion:NULL];
+    [destination.view addSubview:sourceImageView];
+    
+    [UIView animateWithDuration:0.25
+                     animations:^{
+                         [sourceImageView setAlpha:0.0];
+                     }
+                     completion:^(BOOL finished) {
+                         [sourceImageView removeFromSuperview];
+                     }
+     ];
+}
 
 @end

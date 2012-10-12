@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2394E94E1627C1CD00E5851E /* MUSFadeInSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2394E94D1627C1CD00E5851E /* MUSFadeInSegue.m */; };
+		2394E9511627C36800E5851E /* MUSScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2394E9501627C36800E5851E /* MUSScoreViewController.m */; };
 		239D044F16267FFC0065BDEF /* data.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 239D044E16267FFC0065BDEF /* data.sqlite */; };
 		239D0453162690CD0065BDEF /* MUSDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 239D0452162690CD0065BDEF /* MUSDataController.m */; };
 		239D046216277B5D0065BDEF /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 239D045D16277B5D0065BDEF /* Page.m */; };
@@ -72,6 +74,10 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXFileReference section */
+		2394E94C1627C1CD00E5851E /* MUSFadeInSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUSFadeInSegue.h; path = Segues/MUSFadeInSegue.h; sourceTree = "<group>"; };
+		2394E94D1627C1CD00E5851E /* MUSFadeInSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUSFadeInSegue.m; path = Segues/MUSFadeInSegue.m; sourceTree = "<group>"; };
+		2394E94F1627C36800E5851E /* MUSScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUSScoreViewController.h; path = "View Controllers/MUSScoreViewController.h"; sourceTree = "<group>"; };
+		2394E9501627C36800E5851E /* MUSScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUSScoreViewController.m; path = "View Controllers/MUSScoreViewController.m"; sourceTree = "<group>"; };
 		239D044E16267FFC0065BDEF /* data.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = data.sqlite; path = Data/data.sqlite; sourceTree = "<group>"; };
 		239D0451162690CD0065BDEF /* MUSDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUSDataController.h; path = "Other Controllers/MUSDataController.h"; sourceTree = "<group>"; };
 		239D0452162690CD0065BDEF /* MUSDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUSDataController.m; path = "Other Controllers/MUSDataController.m"; sourceTree = "<group>"; };
@@ -187,6 +193,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2394E94A1627C1AC00E5851E /* Segues */ = {
+			isa = PBXGroup;
+			children = (
+				2394E94C1627C1CD00E5851E /* MUSFadeInSegue.h */,
+				2394E94D1627C1CD00E5851E /* MUSFadeInSegue.m */,
+			);
+			name = Segues;
+			sourceTree = "<group>";
+		};
 		239D044D16267FE50065BDEF /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -390,6 +405,7 @@
 				23F837611627B0BB0002126E /* MUSAppDelegate.h */,
 				23F837621627B0BB0002126E /* MUSAppDelegate.m */,
 				23E175C816266DDC00B5E7A3 /* Storyboards */,
+				2394E94A1627C1AC00E5851E /* Segues */,
 				23E175C716266DD100B5E7A3 /* Model */,
 				239D058016279BAE0065BDEF /* Views */,
 				23E175C616266DC900B5E7A3 /* View Controllers */,
@@ -418,6 +434,8 @@
 			children = (
 				23F837641627B1450002126E /* MUSIndexViewController.h */,
 				23F837651627B1450002126E /* MUSIndexViewController.m */,
+				2394E94F1627C36800E5851E /* MUSScoreViewController.h */,
+				2394E9501627C36800E5851E /* MUSScoreViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -554,6 +572,8 @@
 				23F837631627B0BB0002126E /* MUSAppDelegate.m in Sources */,
 				23F837661627B1450002126E /* MUSIndexViewController.m in Sources */,
 				23F837691627B1C40002126E /* MUSScoreCell.m in Sources */,
+				2394E94E1627C1CD00E5851E /* MUSFadeInSegue.m in Sources */,
+				2394E9511627C36800E5851E /* MUSScoreViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

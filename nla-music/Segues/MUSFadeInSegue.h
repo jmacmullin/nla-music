@@ -1,5 +1,5 @@
 //
-//  MUSIndexViewController.h
+//  MUSFadeInSegue.h
 //  nla-music
 //
 //  Copyright © 2012 Jake MacMullin
@@ -24,11 +24,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MUSDataController.h"
 
-@interface MUSIndexViewController : UIViewController <UICollectionViewDataSource>
-
-@property (nonatomic, strong) IBOutlet UICollectionView *collectionView;
-@property (nonatomic, strong) MUSDataController *dataController;
+@interface MUSFadeInSegue : UIStoryboardSegue
 
 @end

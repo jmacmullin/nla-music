@@ -1,5 +1,5 @@
 //
-//  MUSIndexViewController.h
+//  MUSScoreViewController.h
 //  nla-music
 //
 //  Copyright © 2012 Jake MacMullin
@@ -24,11 +24,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MUSDataController.h"
+#import "NINetworkImageView.h"
+#import "Score.h"
 
-@interface MUSIndexViewController : UIViewController <UICollectionViewDataSource>
+@interface MUSScoreViewController : UIViewController
 
-@property (nonatomic, strong) IBOutlet UICollectionView *collectionView;
-@property (nonatomic, strong) MUSDataController *dataController;
+@property (nonatomic, strong) UIImage *initialImage;
+@property (nonatomic, strong) IBOutlet NINetworkImageView *imageView;
+@property (nonatomic, strong) Score *score;
+
+- (IBAction)dismiss:(id)sender;
 
 @end

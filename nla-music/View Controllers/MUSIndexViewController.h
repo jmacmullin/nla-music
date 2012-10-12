@@ -1,5 +1,5 @@
 //
-//  JMMIndexViewController.h
+//  MUSIndexViewController.h
 //  nla-music
 //
 //  Copyright © 2012 Jake MacMullin
@@ -26,7 +26,7 @@
 #import <UIKit/UIKit.h>
 #import "MUSDataController.h"
 
-@interface JMMIndexViewController : UIViewController <UICollectionViewDataSource>
+@interface MUSIndexViewController : UIViewController <UICollectionViewDataSource>
 
 @property (nonatomic, strong) MUSDataController *dataController;
 

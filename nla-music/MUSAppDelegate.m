@@ -1,5 +1,5 @@
 //
-//  MusicAppDelegate.m
+//  MUSAppDelegate.m
 //  nla-music
 //
 //  Copyright © 2012 Jake MacMullin
@@ -23,15 +23,13 @@
 //  SOFTWARE.
 //
 
-#import "MusicAppDelegate.h"
-#import "MUSDataController.h"
-#import "JMMIndexViewController.h"
+#import "MUSAppDelegate.h"
 
-@interface MusicAppDelegate()
+@interface MUSAppDelegate()
 
 @end
 
-@implementation MusicAppDelegate
+@implementation MUSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

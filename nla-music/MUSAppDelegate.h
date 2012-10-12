@@ -1,5 +1,5 @@
 //
-//  MusicAppDelegate.h
+//  MUSAppDelegate.h
 //  nla-music
 //
 //  Copyright © 2012 Jake MacMullin
@@ -25,7 +25,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MusicAppDelegate : UIResponder <UIApplicationDelegate>
+@interface MUSAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

@@ -43,7 +43,6 @@
 		239D057D16279B790065BDEF /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 239D057216279B790065BDEF /* AFURLConnectionOperation.m */; };
 		239D057E16279B790065BDEF /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 239D057416279B790065BDEF /* AFXMLRequestOperation.m */; };
 		239D057F16279B790065BDEF /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 239D057616279B790065BDEF /* UIImageView+AFNetworking.m */; };
-		239D058316279BE50065BDEF /* ScoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 239D058216279BE50065BDEF /* ScoreCell.m */; };
 		239D05871627A4240065BDEF /* thumbnail_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 239D05851627A4240065BDEF /* thumbnail_placeholder.png */; };
 		239D05881627A4240065BDEF /* thumbnail_placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 239D05861627A4240065BDEF /* thumbnail_placeholder@2x.png */; };
 		23E1759F16265F1300B5E7A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23E1759E16265F1300B5E7A3 /* UIKit.framework */; };
@@ -51,11 +50,12 @@
 		23E175A316265F1300B5E7A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23E175A216265F1300B5E7A3 /* CoreGraphics.framework */; };
 		23E175A916265F1300B5E7A3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23E175A716265F1300B5E7A3 /* InfoPlist.strings */; };
 		23E175AB16265F1300B5E7A3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 23E175AA16265F1300B5E7A3 /* main.m */; };
-		23E175AF16265F1300B5E7A3 /* MusicAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 23E175AE16265F1300B5E7A3 /* MusicAppDelegate.m */; };
 		23E175B816265F1300B5E7A3 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23E175B616265F1300B5E7A3 /* MainStoryboard.storyboard */; };
-		23E175CF1626700800B5E7A3 /* JMMIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23E175CE1626700800B5E7A3 /* JMMIndexViewController.m */; };
 		23E175D21626744D00B5E7A3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23E175D01626744200B5E7A3 /* CoreData.framework */; };
 		23E175D5162674A300B5E7A3 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 23E175D3162674A300B5E7A3 /* Model.xcdatamodeld */; };
+		23F837631627B0BB0002126E /* MUSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F837621627B0BB0002126E /* MUSAppDelegate.m */; };
+		23F837661627B1450002126E /* MUSIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F837651627B1450002126E /* MUSIndexViewController.m */; };
+		23F837691627B1C40002126E /* MUSScoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F837681627B1C40002126E /* MUSScoreCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -151,8 +151,6 @@
 		239D057416279B790065BDEF /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		239D057516279B790065BDEF /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		239D057616279B790065BDEF /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
-		239D058116279BE50065BDEF /* ScoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScoreCell.h; path = Views/ScoreCell.h; sourceTree = "<group>"; };
-		239D058216279BE50065BDEF /* ScoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScoreCell.m; path = Views/ScoreCell.m; sourceTree = "<group>"; };
 		239D05851627A4240065BDEF /* thumbnail_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbnail_placeholder.png; sourceTree = "<group>"; };
 		239D05861627A4240065BDEF /* thumbnail_placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbnail_placeholder@2x.png"; sourceTree = "<group>"; };
 		23E1759A16265F1300B5E7A3 /* nla-music.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nla-music.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,13 +161,15 @@
 		23E175A816265F1300B5E7A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		23E175AA16265F1300B5E7A3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		23E175AC16265F1300B5E7A3 /* nla-music-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "nla-music-Prefix.pch"; sourceTree = "<group>"; };
-		23E175AD16265F1300B5E7A3 /* MusicAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicAppDelegate.h; sourceTree = "<group>"; };
-		23E175AE16265F1300B5E7A3 /* MusicAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicAppDelegate.m; sourceTree = "<group>"; };
 		23E175B716265F1300B5E7A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		23E175CD1626700800B5E7A3 /* JMMIndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JMMIndexViewController.h; path = "View Controllers/JMMIndexViewController.h"; sourceTree = "<group>"; };
-		23E175CE1626700800B5E7A3 /* JMMIndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JMMIndexViewController.m; path = "View Controllers/JMMIndexViewController.m"; sourceTree = "<group>"; };
 		23E175D01626744200B5E7A3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		23E175D4162674A300B5E7A3 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		23F837611627B0BB0002126E /* MUSAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUSAppDelegate.h; sourceTree = "<group>"; };
+		23F837621627B0BB0002126E /* MUSAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUSAppDelegate.m; sourceTree = "<group>"; };
+		23F837641627B1450002126E /* MUSIndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUSIndexViewController.h; path = "View Controllers/MUSIndexViewController.h"; sourceTree = "<group>"; };
+		23F837651627B1450002126E /* MUSIndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUSIndexViewController.m; path = "View Controllers/MUSIndexViewController.m"; sourceTree = "<group>"; };
+		23F837671627B1C40002126E /* MUSScoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUSScoreCell.h; path = Views/MUSScoreCell.h; sourceTree = "<group>"; };
+		23F837681627B1C40002126E /* MUSScoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUSScoreCell.m; path = Views/MUSScoreCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -341,8 +341,8 @@
 		239D058016279BAE0065BDEF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				239D058116279BE50065BDEF /* ScoreCell.h */,
-				239D058216279BE50065BDEF /* ScoreCell.m */,
+				23F837671627B1C40002126E /* MUSScoreCell.h */,
+				23F837681627B1C40002126E /* MUSScoreCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -387,8 +387,8 @@
 		23E175A416265F1300B5E7A3 /* nla-music */ = {
 			isa = PBXGroup;
 			children = (
-				23E175AD16265F1300B5E7A3 /* MusicAppDelegate.h */,
-				23E175AE16265F1300B5E7A3 /* MusicAppDelegate.m */,
+				23F837611627B0BB0002126E /* MUSAppDelegate.h */,
+				23F837621627B0BB0002126E /* MUSAppDelegate.m */,
 				23E175C816266DDC00B5E7A3 /* Storyboards */,
 				23E175C716266DD100B5E7A3 /* Model */,
 				239D058016279BAE0065BDEF /* Views */,
@@ -416,8 +416,8 @@
 		23E175C616266DC900B5E7A3 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				23E175CD1626700800B5E7A3 /* JMMIndexViewController.h */,
-				23E175CE1626700800B5E7A3 /* JMMIndexViewController.m */,
+				23F837641627B1450002126E /* MUSIndexViewController.h */,
+				23F837651627B1450002126E /* MUSIndexViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -515,8 +515,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				23E175AB16265F1300B5E7A3 /* main.m in Sources */,
-				23E175AF16265F1300B5E7A3 /* MusicAppDelegate.m in Sources */,
-				23E175CF1626700800B5E7A3 /* JMMIndexViewController.m in Sources */,
 				23E175D5162674A300B5E7A3 /* Model.xcdatamodeld in Sources */,
 				239D0453162690CD0065BDEF /* MUSDataController.m in Sources */,
 				239D046216277B5D0065BDEF /* Page.m in Sources */,
@@ -553,7 +551,9 @@
 				239D057D16279B790065BDEF /* AFURLConnectionOperation.m in Sources */,
 				239D057E16279B790065BDEF /* AFXMLRequestOperation.m in Sources */,
 				239D057F16279B790065BDEF /* UIImageView+AFNetworking.m in Sources */,
-				239D058316279BE50065BDEF /* ScoreCell.m in Sources */,
+				23F837631627B0BB0002126E /* MUSAppDelegate.m in Sources */,
+				23F837661627B1450002126E /* MUSIndexViewController.m in Sources */,
+				23F837691627B1C40002126E /* MUSScoreCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

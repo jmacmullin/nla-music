@@ -25,11 +25,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "MusicAppDelegate.h"
+#import "MUSAppDelegate.h"
 
 int main(int argc, char *argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([MusicAppDelegate class]));
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([MUSAppDelegate class]));
     }
 }

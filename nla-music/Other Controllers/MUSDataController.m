@@ -80,7 +80,7 @@
         
         // Create the persistent store itself (if it is not already there)
         
-        // copy the core-data database to a temporary directory if it isn't already there
+        // copy the core-data database to the documents directory if it isn't already there
         BOOL expandTilde = YES;
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, expandTilde);
         NSString *documentPath = [paths objectAtIndex:0];

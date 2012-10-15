@@ -25,12 +25,14 @@
 
 #import <UIKit/UIKit.h>
 #import "NINetworkImageView.h"
+#import "NIPhotoAlbumScrollView.h"
 #import "Score.h"
 
-@interface MUSScoreViewController : UIViewController
+@interface MUSScoreViewController : UIViewController <NIPhotoAlbumScrollViewDataSource, NIPhotoAlbumScrollViewDelegate>
 
 @property (nonatomic, strong) UIImage *initialImage;
-@property (nonatomic, strong) IBOutlet NINetworkImageView *imageView;
+@property (nonatomic, strong) IBOutlet UIToolbar *toolBar;
+@property (nonatomic, strong) IBOutlet NIPhotoAlbumScrollView *scorePageScrollView;
 @property (nonatomic, strong) Score *score;
 
 - (IBAction)dismiss:(id)sender;

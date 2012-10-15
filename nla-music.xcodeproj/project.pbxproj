@@ -10,8 +10,6 @@
 		2394E94E1627C1CD00E5851E /* MUSFadeInSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2394E94D1627C1CD00E5851E /* MUSFadeInSegue.m */; };
 		2394E9511627C36800E5851E /* MUSScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2394E9501627C36800E5851E /* MUSScoreViewController.m */; };
 		2394E95E162824C000E5851E /* MUSTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2394E95D162824C000E5851E /* MUSTimelineViewController.m */; };
-		2394E961162BB94F00E5851E /* icon72.png in Resources */ = {isa = PBXBuildFile; fileRef = 2394E960162BB94F00E5851E /* icon72.png */; };
-		2394E963162BB95200E5851E /* icon144.png in Resources */ = {isa = PBXBuildFile; fileRef = 2394E962162BB95200E5851E /* icon144.png */; };
 		2394E97F162BBD6E00E5851E /* NimbusPhotos.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2394E96B162BBD6E00E5851E /* NimbusPhotos.bundle */; };
 		2394E980162BBD6E00E5851E /* NIPhotoAlbumScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2394E970162BBD6E00E5851E /* NIPhotoAlbumScrollView.m */; };
 		2394E981162BBD6E00E5851E /* NIPhotoScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2394E974162BBD6E00E5851E /* NIPhotoScrollView.m */; };
@@ -19,6 +17,8 @@
 		2394E983162BBD6E00E5851E /* NIToolbarPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2394E97A162BBD6E00E5851E /* NIToolbarPhotoViewController.m */; };
 		2394E997162BBD8C00E5851E /* NIPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2394E98D162BBD8C00E5851E /* NIPageView.m */; };
 		2394E998162BBD8C00E5851E /* NIPagingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2394E98F162BBD8C00E5851E /* NIPagingScrollView.m */; };
+		2394E99D162BC05D00E5851E /* icon72.png in Resources */ = {isa = PBXBuildFile; fileRef = 2394E99B162BC05D00E5851E /* icon72.png */; };
+		2394E99E162BC05D00E5851E /* icon144.png in Resources */ = {isa = PBXBuildFile; fileRef = 2394E99C162BC05D00E5851E /* icon144.png */; };
 		239D044F16267FFC0065BDEF /* data.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 239D044E16267FFC0065BDEF /* data.sqlite */; };
 		239D0453162690CD0065BDEF /* MUSDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 239D0452162690CD0065BDEF /* MUSDataController.m */; };
 		239D046216277B5D0065BDEF /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 239D045D16277B5D0065BDEF /* Page.m */; };
@@ -90,8 +90,6 @@
 		2394E9501627C36800E5851E /* MUSScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUSScoreViewController.m; path = "View Controllers/MUSScoreViewController.m"; sourceTree = "<group>"; };
 		2394E95C162824C000E5851E /* MUSTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUSTimelineViewController.h; path = "View Controllers/MUSTimelineViewController.h"; sourceTree = "<group>"; };
 		2394E95D162824C000E5851E /* MUSTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUSTimelineViewController.m; path = "View Controllers/MUSTimelineViewController.m"; sourceTree = "<group>"; };
-		2394E960162BB94F00E5851E /* icon72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon72.png; sourceTree = "<group>"; };
-		2394E962162BB95200E5851E /* icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144.png; sourceTree = "<group>"; };
 		2394E96B162BBD6E00E5851E /* NimbusPhotos.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NimbusPhotos.bundle; sourceTree = "<group>"; };
 		2394E96D162BBD6E00E5851E /* NimbusPhotos+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NimbusPhotos+Namespace.h"; sourceTree = "<group>"; };
 		2394E96E162BBD6E00E5851E /* NimbusPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusPhotos.h; sourceTree = "<group>"; };
@@ -116,6 +114,8 @@
 		2394E990162BBD8C00E5851E /* NIPagingScrollViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPagingScrollViewDataSource.h; sourceTree = "<group>"; };
 		2394E991162BBD8C00E5851E /* NIPagingScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPagingScrollViewDelegate.h; sourceTree = "<group>"; };
 		2394E992162BBD8C00E5851E /* NIPagingScrollViewPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPagingScrollViewPage.h; sourceTree = "<group>"; };
+		2394E99B162BC05D00E5851E /* icon72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon72.png; sourceTree = "<group>"; };
+		2394E99C162BC05D00E5851E /* icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144.png; sourceTree = "<group>"; };
 		239D044E16267FFC0065BDEF /* data.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = data.sqlite; path = Data/data.sqlite; sourceTree = "<group>"; };
 		239D0451162690CD0065BDEF /* MUSDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUSDataController.h; path = "Other Controllers/MUSDataController.h"; sourceTree = "<group>"; };
 		239D0452162690CD0065BDEF /* MUSDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUSDataController.m; path = "Other Controllers/MUSDataController.m"; sourceTree = "<group>"; };
@@ -469,6 +469,8 @@
 		239D05841627A4240065BDEF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				2394E99B162BC05D00E5851E /* icon72.png */,
+				2394E99C162BC05D00E5851E /* icon144.png */,
 				239D05851627A4240065BDEF /* thumbnail_placeholder.png */,
 				239D05861627A4240065BDEF /* thumbnail_placeholder@2x.png */,
 			);
@@ -478,8 +480,6 @@
 		23E1758F16265F1300B5E7A3 = {
 			isa = PBXGroup;
 			children = (
-				2394E962162BB95200E5851E /* icon144.png */,
-				2394E960162BB94F00E5851E /* icon72.png */,
 				23E175A416265F1300B5E7A3 /* nla-music */,
 				23E1759D16265F1300B5E7A3 /* Frameworks */,
 				23E1759B16265F1300B5E7A3 /* Products */,
@@ -630,9 +630,9 @@
 				239D044F16267FFC0065BDEF /* data.sqlite in Resources */,
 				239D05871627A4240065BDEF /* thumbnail_placeholder.png in Resources */,
 				239D05881627A4240065BDEF /* thumbnail_placeholder@2x.png in Resources */,
-				2394E961162BB94F00E5851E /* icon72.png in Resources */,
-				2394E963162BB95200E5851E /* icon144.png in Resources */,
 				2394E97F162BBD6E00E5851E /* NimbusPhotos.bundle in Resources */,
+				2394E99D162BC05D00E5851E /* icon72.png in Resources */,
+				2394E99E162BC05D00E5851E /* icon144.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

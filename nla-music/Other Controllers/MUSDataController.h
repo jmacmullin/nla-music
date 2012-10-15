@@ -37,13 +37,22 @@
 + (MUSDataController *)sharedController;
 
 /**
- Returns the number of scores in the collection.
+ Returns the score for the given index path in the given decade.
  */
-- (int)numberOfScores;
+- (Score *)scoreAtIndex:(NSIndexPath *)indexPath inDecade:(NSString *)decade;
 
 /**
- Returns the score for the given index path.
+ Returns an array of dictionaries with information
+ about the music that was published in each decade.
+ The dictionaries contain two keys:
+ - decade (a String with the decade in which the music was published)
+ - count (the number of scores in the collection for the given decade).
  */
-- (Score *)scoreAtIndex:(NSIndexPath *)indexPath;
+- (NSArray *)decadesInWhichMusicWasPublished;
+
+/**
+ Returns the number of scores published in the given decade.
+ */
+- (int)numberOfScoresInDecade:(NSString *)decade;
 
 @end

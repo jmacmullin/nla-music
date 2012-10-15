@@ -32,8 +32,12 @@
 @property (nonatomic, strong) NSPersistentStoreCoordinator *coordinator;
 @property (nonatomic, strong) NSManagedObjectContext *context;
 
-//TODO: Consider lazily loading the scores
-@property (nonatomic, strong) NSArray *scores;
+@property (nonatomic, strong) NSArray *cachedDecades;
+
+@property (nonatomic, strong) NSString *decadeOfCachedScores;
+@property (nonatomic, strong) NSArray *cachedScores;
+
+- (NSArray *)fetchDecades;
 
 @end
 
@@ -49,21 +53,27 @@
     return sharedInstance;
 }
 
-- (int)numberOfScores {
-    if (self.scores == nil) {
-        NSFetchRequest *allScoresFetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Score"];
-        NSSortDescriptor *titleSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
-        [allScoresFetchRequest setSortDescriptors:@[titleSortDescriptor]];
-        NSArray *allScores = [self.context executeFetchRequest:allScoresFetchRequest error:NULL]; //TODO: Error handling
-        [self setScores:allScores];
-    }
-    return self.scores.count;
-}
-
-- (Score *)scoreAtIndex:(NSIndexPath *)indexPath
+- (Score *)scoreAtIndex:(NSIndexPath *)indexPath inDecade:(NSString *)decade
 {
-    Score *score = [self.scores objectAtIndex:indexPath.row];
-    return score;
+    if ([self.decadeOfCachedScores isEqualToString:decade] && self.cachedScores!=nil) {
+        return [self.cachedScores objectAtIndex:indexPath.row];
+    }
+    
+    NSFetchRequest *scoresFetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Score"];
+    
+    // Sort order
+    NSSortDescriptor *titleSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
+    [scoresFetchRequest setSortDescriptors:@[titleSortDescriptor]];
+    
+    // Only get scores for the given decade
+    NSPredicate *decadePredicate = [NSPredicate predicateWithFormat:@"%K == %@", @"date", decade, nil];
+    [scoresFetchRequest setPredicate:decadePredicate];
+    
+    NSArray *scores = [self.context executeFetchRequest:scoresFetchRequest error:NULL]; // TODO: Error handling
+    [self setCachedScores:scores];
+    [self setDecadeOfCachedScores:decade];
+    
+    return [self.cachedScores objectAtIndex:indexPath.row];
 }
 
 #pragma mark - Core Data Stack
@@ -119,6 +129,59 @@
         [self setContext:context];
     }
     return _context;
+}
+
+- (NSArray *)fetchDecades
+{
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Score"];
+    
+    NSEntityDescription *scoreEntityDescription = [NSEntityDescription entityForName:@"Score" inManagedObjectContext:self.context];
+    NSAttributeDescription *dateAttributeDescription = [scoreEntityDescription.attributesByName valueForKey:@"date"];
+    NSExpression *keyPathExpression = [NSExpression expressionForKeyPath:@"title"];
+    NSExpression *countExpression = [NSExpression expressionForFunction:@"count:" arguments:@[keyPathExpression]];
+    NSExpressionDescription *expressionDescription = [[NSExpressionDescription alloc] init];
+    [expressionDescription setName:@"count"];
+    [expressionDescription setExpression:countExpression];
+    [expressionDescription setExpressionResultType:NSInteger32AttributeType];
+    
+    [fetchRequest setPropertiesToFetch:@[dateAttributeDescription, expressionDescription]];
+    [fetchRequest setPropertiesToGroupBy:@[dateAttributeDescription]];
+    [fetchRequest setResultType:NSDictionaryResultType];
+    
+    NSSortDescriptor *dateSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
+    [fetchRequest setSortDescriptors:@[dateSortDescriptor]];
+    
+    NSArray *results = [self.context executeFetchRequest:fetchRequest error:NULL];
+    [self setCachedDecades:results];
+    return results;
+}
+
+- (NSArray *)decadesInWhichMusicWasPublished
+{
+    if (self.cachedDecades != nil) {
+        return self.cachedDecades;
+    }
+    
+    NSArray *results = [self fetchDecades];
+    return results;
+}
+
+- (int)numberOfScoresInDecade:(NSString *)decade
+{
+    NSArray *decades;
+    if (self.cachedDecades!=nil) {
+        decades = self.cachedDecades;
+    } else {
+        decades = [self fetchDecades];
+    }
+    
+    for (NSDictionary *dict in decades) {
+        if ([[dict valueForKey:@"date"] isEqualToString:decade]) {
+            return [[dict valueForKey:@"count"] intValue];
+        }
+    }
+    
+    return 0;
 }
 
 @end

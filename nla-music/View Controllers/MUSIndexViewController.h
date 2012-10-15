@@ -29,6 +29,16 @@
 @interface MUSIndexViewController : UIViewController <UICollectionViewDataSource>
 
 @property (nonatomic, strong) IBOutlet UICollectionView *collectionView;
-@property (nonatomic, strong) MUSDataController *dataController;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *titleItem;
+
+/**
+ The decade whose music you wish to display.
+ */
+@property (nonatomic, strong) NSString *decade;
+
+/**
+ Dismiss the index view.
+ */
+- (IBAction)dismiss:(id)sender;
 
 @end

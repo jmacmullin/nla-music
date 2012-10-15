@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12C54" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12C54" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="aNc-Qh-k0m">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
@@ -18,11 +18,11 @@
                                     <size key="itemSize" width="222" height="282"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                                    <inset key="sectionInset" minX="10" minY="54" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ScoreCell" id="45E-Hz-tS2" customClass="MUSScoreCell">
-                                        <rect key="frame" x="10" y="10" width="222" height="282"/>
+                                        <rect key="frame" x="10" y="54" width="222" height="282"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="222" height="282"/>
@@ -63,23 +63,56 @@
                                     <outlet property="delegate" destination="2" id="CK4-8p-Ieb"/>
                                 </connections>
                             </collectionView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="Dsf-yH-BY7">
+                                <items>
+                                    <barButtonItem title="Done" id="QbP-dH-yAl">
+                                        <connections>
+                                            <action selector="dismiss:" destination="2" id="l9i-l8-fpg"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="uNl-Zq-QOf"/>
+                                    <barButtonItem title="1920 - 1929 (4000 items)" style="plain" id="dN9-ly-uMy"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="t0n-22-c4L"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="eUc-aP-eeM" firstAttribute="top" secondItem="5" secondAttribute="top" type="default" id="PZc-IS-Wa8"/>
+                            <constraint firstItem="eUc-aP-eeM" firstAttribute="top" secondItem="5" secondAttribute="top" type="default" id="BQI-bn-gH9"/>
+                            <constraint firstItem="eUc-aP-eeM" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" type="default" id="DDe-Wa-i3A"/>
+                            <constraint firstItem="Dsf-yH-BY7" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="default" id="DJ1-Nh-fvz"/>
+                            <constraint firstItem="Dsf-yH-BY7" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" type="default" id="EaZ-Sc-240"/>
                             <constraint firstItem="eUc-aP-eeM" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" type="default" id="SNj-6g-yEp"/>
-                            <constraint firstItem="eUc-aP-eeM" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" type="default" id="u0S-LE-9wf"/>
+                            <constraint firstItem="Dsf-yH-BY7" firstAttribute="top" secondItem="5" secondAttribute="top" type="default" id="TTi-T4-bF0"/>
                             <constraint firstItem="eUc-aP-eeM" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="default" id="wbT-tb-vXX"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="eUc-aP-eeM" id="7co-q9-UGv"/>
-                        <segue destination="ZP9-gQ-okS" kind="custom" identifier="openScoreSegue" customClass="MUSFadeInSegue" id="q65-zi-qdO"/>
+                        <outlet property="titleItem" destination="dN9-ly-uMy" id="f7O-B1-V41"/>
+                        <segue destination="ZP9-gQ-okS" kind="custom" identifier="OpenScoreSegue" customClass="MUSFadeInSegue" id="q65-zi-qdO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="79" y="-764"/>
+        </scene>
+        <!--Timeline View Controller - Timeline-->
+        <scene sceneID="PIe-P1-nyF">
+            <objects>
+                <viewController storyboardIdentifier="Timeline" title="Timeline" id="aNc-Qh-k0m" customClass="MUSTimelineViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="z0f-vk-CAl">
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="2" kind="modal" identifier="ShowIndex" id="B0j-HS-8Hg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d2N-Gb-a1D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-911" y="-764"/>
         </scene>
         <!--Score View Controller-->
         <scene sceneID="JaR-eh-efU">
@@ -127,7 +160,9 @@
         <class className="MUSIndexViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MUSIndexViewController.h"/>
             <relationships>
+                <relationship kind="action" name="dismiss:"/>
                 <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="titleItem" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
         <class className="MUSScoreCell" superclassName="UICollectionViewCell">
@@ -143,6 +178,9 @@
                 <relationship kind="action" name="dismiss:"/>
                 <relationship kind="outlet" name="imageView" candidateClass="NINetworkImageView"/>
             </relationships>
+        </class>
+        <class className="MUSTimelineViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MUSTimelineViewController.h"/>
         </class>
         <class className="NINetworkImageView" superclassName="UIImageView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NINetworkImageView.h"/>

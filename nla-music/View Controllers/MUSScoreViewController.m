@@ -30,11 +30,24 @@
 
 @interface MUSScoreViewController ()
 
+/**
+ Toggle the visibility of the chrome.
+ */
 - (void)toggleChrome:(id)sender;
+
+/**
+ Hide the chrome.
+ */
 - (void)hideChrome;
+
+/**
+ Show the chrome and schedule the hiding of the chrome.
+ */
 - (void)showChrome;
 
 @property (nonatomic, strong) NSOperationQueue *imageDownloadQueue;
+@property (nonatomic, strong) UIImage *coverImage;
+@property (nonatomic, strong) UIPopoverController *sharePopover;
 
 @end
 
@@ -75,13 +88,14 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [MUSScoreViewController cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideChrome) object:nil];
-    [self showChrome];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
 }
+
+#pragma mark - UI Actions
 
 - (IBAction)dismiss:(id)sender
 {
@@ -92,8 +106,41 @@
     [self.presentingViewController dismissViewControllerAnimated:NO completion:NULL];
 }
 
-#pragma mark - Private Methods
+- (void)share:(id)sender
+{    
+    UIActivityViewController *activityController;
+    activityController = [[UIActivityViewController alloc] initWithActivityItems:@[self.coverImage]
+                                                           applicationActivities:nil];
+    [activityController setExcludedActivityTypes:@[
+     UIActivityTypeAssignToContact,
+     UIActivityTypeMessage,
+     UIActivityTypePrint,
+     UIActivityTypePostToWeibo]];
+     
+    UIPopoverController *activityPopover = [[UIPopoverController alloc] initWithContentViewController:activityController];
+    [activityPopover setDelegate:self];
+    [self setSharePopover:activityPopover];
+    
+    [activityPopover presentPopoverFromRect:((UIButton *)sender).frame
+                                     inView:self.additionalInformationView
+                   permittedArrowDirections:UIPopoverArrowDirectionDown
+                                   animated:YES];
+    
+    // Cancel the scheduled hiding of the chrome
+    [MUSScoreViewController cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideChrome) object:nil];
 
+}
+
+#pragma mark - Popover Delegate Methods
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    [self setSharePopover:nil];
+    [self hideChrome];
+}
+
+
+#pragma mark - Private Methods
 
 - (void)toggleChrome:(id)sender {
     // cancel any pending requests
@@ -112,6 +159,7 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     [UIView animateWithDuration:0.5 animations:^{
         [self.toolBar setAlpha:0.0];
+        [self.additionalInformationView setAlpha:0.0];
     }];
 }
 
@@ -119,6 +167,9 @@
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [UIView animateWithDuration:0.25 animations:^{
         [self.toolBar setAlpha:1.0];
+        if ([self.scorePageScrollView hasPrevious] == NO) {
+            [self.additionalInformationView setAlpha:1.0];
+        }
     }];
     
     // schedule it to be hidden again after 4 secs
@@ -161,6 +212,11 @@
                            [self.scorePageScrollView didLoadPhoto:image
                                                           atIndex:photoIndex
                                                         photoSize:NIPhotoScrollViewPhotoSizeOriginal];
+                           
+                           if (photoIndex == 0) {
+                               [self setCoverImage:image];
+                           }
+                           
                        });
     };
     
@@ -181,6 +237,6 @@
     } else {
         return nil;
     }
-}
+} 
 
 @end

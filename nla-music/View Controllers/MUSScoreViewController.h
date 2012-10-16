@@ -28,13 +28,15 @@
 #import "NIPhotoAlbumScrollView.h"
 #import "Score.h"
 
-@interface MUSScoreViewController : UIViewController <NIPhotoAlbumScrollViewDataSource, NIPhotoAlbumScrollViewDelegate>
+@interface MUSScoreViewController : UIViewController <NIPhotoAlbumScrollViewDataSource, NIPhotoAlbumScrollViewDelegate, UIPopoverControllerDelegate>
 
 @property (nonatomic, strong) UIImage *initialImage;
 @property (nonatomic, strong) IBOutlet UIToolbar *toolBar;
 @property (nonatomic, strong) IBOutlet NIPhotoAlbumScrollView *scorePageScrollView;
+@property (nonatomic, strong) IBOutlet UIView *additionalInformationView;
 @property (nonatomic, strong) Score *score;
 
 - (IBAction)dismiss:(id)sender;
+- (IBAction)share:(id)sender;
 
 @end

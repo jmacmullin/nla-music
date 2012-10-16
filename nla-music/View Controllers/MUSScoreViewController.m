@@ -107,28 +107,29 @@
 }
 
 - (void)share:(id)sender
-{    
-    UIActivityViewController *activityController;
-    activityController = [[UIActivityViewController alloc] initWithActivityItems:@[self.coverImage]
-                                                           applicationActivities:nil];
-    [activityController setExcludedActivityTypes:@[
-     UIActivityTypeAssignToContact,
-     UIActivityTypeMessage,
-     UIActivityTypePrint,
-     UIActivityTypePostToWeibo]];
-     
-    UIPopoverController *activityPopover = [[UIPopoverController alloc] initWithContentViewController:activityController];
-    [activityPopover setDelegate:self];
-    [self setSharePopover:activityPopover];
-    
-    [activityPopover presentPopoverFromRect:((UIButton *)sender).frame
-                                     inView:self.additionalInformationView
-                   permittedArrowDirections:UIPopoverArrowDirectionDown
-                                   animated:YES];
-    
-    // Cancel the scheduled hiding of the chrome
-    [MUSScoreViewController cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideChrome) object:nil];
-
+{
+    if (self.coverImage!=nil) {
+        UIActivityViewController *activityController;
+        activityController = [[UIActivityViewController alloc] initWithActivityItems:@[self.coverImage]
+                                                               applicationActivities:nil];
+        [activityController setExcludedActivityTypes:@[
+         UIActivityTypeAssignToContact,
+         UIActivityTypeMessage,
+         UIActivityTypePrint,
+         UIActivityTypePostToWeibo]];
+         
+        UIPopoverController *activityPopover = [[UIPopoverController alloc] initWithContentViewController:activityController];
+        [activityPopover setDelegate:self];
+        [self setSharePopover:activityPopover];
+        
+        [activityPopover presentPopoverFromRect:((UIButton *)sender).frame
+                                         inView:self.additionalInformationView
+                       permittedArrowDirections:UIPopoverArrowDirectionDown
+                                       animated:YES];
+        
+        // Cancel the scheduled hiding of the chrome
+        [MUSScoreViewController cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideChrome) object:nil];
+    }
 }
 
 #pragma mark - Popover Delegate Methods

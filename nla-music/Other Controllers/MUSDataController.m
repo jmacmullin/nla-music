@@ -39,6 +39,8 @@ static NSString * kFavouritesKey = @"favourite-scores";
 @property (nonatomic, strong) NSString *decadeOfCachedScores;
 @property (nonatomic, strong) NSArray *cachedScores;
 
+@property (nonatomic, strong) NSArray *favouriteScores;
+
 - (NSArray *)fetchDecades;
 - (NSArray *)fetchIdentifiersOfFavourites;
 
@@ -187,6 +189,35 @@ static NSString * kFavouritesKey = @"favourite-scores";
     return 0;
 }
 
+- (int)numberOfFavouriteScores
+{
+    return [self fetchIdentifiersOfFavourites].count;
+}
+
+- (Score *)scoreAtIndexInFavourites:(int)index
+{
+    if (self.favouriteScores!=nil) {
+        return self.favouriteScores[index];
+    }
+    
+    NSArray *identifiers = [self fetchIdentifiersOfFavourites];
+    
+    NSFetchRequest *scoresFetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Score"];
+    
+    // Sort order
+    NSSortDescriptor *titleSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
+    [scoresFetchRequest setSortDescriptors:@[titleSortDescriptor]];
+    
+    // Only get scores for the given identifiers
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K IN %@", @"identifier", identifiers, nil];
+    [scoresFetchRequest setPredicate:predicate];
+    
+    NSArray *scores = [self.context executeFetchRequest:scoresFetchRequest error:NULL]; // TODO: Error handling
+    [self setFavouriteScores:scores];
+    
+    return [self.favouriteScores objectAtIndex:index];
+}
+
 - (NSArray *)fetchIdentifiersOfFavourites
 {
     // TODO: consider caching the list of favourites instead of querying the user defaults
@@ -216,6 +247,9 @@ static NSString * kFavouritesKey = @"favourite-scores";
 
 - (void)markScore:(Score *)score asFavourite:(BOOL)isFavourite
 {
+    // invalidate the cached favourites
+    [self setFavouriteScores:nil];
+    
     NSMutableArray *modifiedFavourites = [[self fetchIdentifiersOfFavourites] mutableCopy];
     
     if (isFavourite == YES) {

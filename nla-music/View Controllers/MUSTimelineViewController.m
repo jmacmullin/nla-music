@@ -143,7 +143,8 @@ static NSString * kShowIndexSegueIdentifier = @"ShowIndex";
     int indexOfSelectedDecade = gesture.view.tag; // ARGHH, I hate using tags, but not sure this is worth a custom view
     NSDictionary *decadeInfo = [self.dataController decadesInWhichMusicWasPublished][indexOfSelectedDecade];
     [self setSelectedDecade:[decadeInfo valueForKey:@"date"]];
-    [self performSegueWithIdentifier:kShowIndexSegueIdentifier sender:self];
+    //[self performSegueWithIdentifier:kShowIndexSegueIdentifier sender:self];
+    [self performSegueWithIdentifier:@"ShowFavourites" sender:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

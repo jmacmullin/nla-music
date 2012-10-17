@@ -24,7 +24,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MUSScoreCollectionViewController.h"
 
-@interface MUSFavouriteScoreCollectionViewController : NSObject
+@interface MUSFavouriteScoreCollectionViewController : MUSScoreCollectionViewController
 
 @end

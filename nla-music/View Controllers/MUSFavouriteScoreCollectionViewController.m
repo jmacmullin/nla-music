@@ -27,4 +27,21 @@
 
 @implementation MUSFavouriteScoreCollectionViewController
 
+#pragma mark - Overridden Methods
+
+- (NSString *)titleString
+{
+    return @"Favourites";
+}
+
+- (int)numberOfScoresInCollection
+{
+    return [self.dataController numberOfFavouriteScores];
+}
+
+- (Score *)scoreAtIndexPathInCollection:(NSIndexPath *)indexPath
+{
+    return [self.dataController scoreAtIndexInFavourites:indexPath.row];
+}
+
 @end

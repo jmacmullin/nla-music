@@ -56,6 +56,17 @@
 - (int)numberOfScoresInDecade:(NSString *)decade;
 
 /**
+ Returns the number of scores that have been marked as a favourite.
+ */
+- (int)numberOfFavouriteScores;
+
+/**
+ Returns the score for the given index in the collection of 
+ favourite scores.
+ */
+- (Score *)scoreAtIndexInFavourites:(int)index;
+
+/**
  Returns a BOOL to indicate whether the given score
  has been marked as a favourite or not.
  */

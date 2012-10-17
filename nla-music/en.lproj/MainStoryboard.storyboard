@@ -107,11 +107,40 @@
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="favouritesSectionView" destination="HIS-Qd-pVg" id="mew-4w-Fsa"/>
                         <segue destination="2" kind="modal" identifier="ShowIndex" id="B0j-HS-8Hg"/>
                         <segue destination="b0B-zq-Lo6" kind="modal" identifier="ShowFavourites" id="Yec-LS-YHv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d2N-Gb-a1D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="HIS-Qd-pVg">
+                    <rect key="frame" x="0.0" y="0.0" width="768" height="88"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Favourites" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Pg-bF-IJu">
+                            <constraints>
+                                <constraint firstAttribute="width" constant="134" id="IZk-Ow-vOr"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstItem="1Pg-bF-IJu" firstAttribute="top" secondItem="HIS-Qd-pVg" secondAttribute="top" constant="33" id="4pW-hg-cP4"/>
+                        <constraint firstItem="1Pg-bF-IJu" firstAttribute="leading" secondItem="HIS-Qd-pVg" secondAttribute="leading" constant="312" id="LD8-sT-LIs"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="xvF-56-Gdu" appends="YES" id="hjm-qY-TDC"/>
+                    </connections>
+                </view>
+                <tapGestureRecognizer id="xvF-56-Gdu">
+                    <connections>
+                        <action selector="showFavourites:" destination="aNc-Qh-k0m" id="Ndc-P6-Q9r"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-911" y="-764"/>
         </scene>
@@ -341,6 +370,10 @@
         </class>
         <class className="MUSTimelineViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MUSTimelineViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="showFavourites:"/>
+                <relationship kind="outlet" name="favouritesSectionView" candidateClass="UIView"/>
+            </relationships>
         </class>
         <class className="NINetworkImageView" superclassName="UIImageView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NINetworkImageView.h"/>
@@ -362,9 +395,6 @@
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="UICollectionViewLayout" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

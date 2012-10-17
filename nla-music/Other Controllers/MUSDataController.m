@@ -284,7 +284,12 @@ static NSString * kFavouritesKey = @"favourite-scores";
             [identifiersString appendString:@","];
         }
     }
-    [[NSUserDefaults standardUserDefaults] setObject:identifiersString forKey:kFavouritesKey];
+    if (identifiersString.length==0) {
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:kFavouritesKey];
+    } else {
+        [[NSUserDefaults standardUserDefaults] setObject:identifiersString forKey:kFavouritesKey];
+    }
+
 }
 
 

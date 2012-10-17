@@ -27,4 +27,9 @@
 
 @interface MUSTimelineViewController : UIViewController
 
+@property (nonatomic, strong) IBOutlet UIView *favouritesSectionView;
+@property (nonatomic, strong) UIView *timelineScrollview;
+
+- (IBAction)showFavourites:(id)sender;
+
 @end

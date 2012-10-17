@@ -36,6 +36,9 @@ static int kNumberOfPagesInScrollView = 4;
 // with few scores are still tappable.
 static int kMinimumNumberOfScoresPerDecadeForDisplay = 100;
 
+// the height of the favourites section
+static float kFavouritesSectionHeight = 88.0;
+
 static NSString * kShowIndexSegueIdentifier = @"ShowIndex";
 
 @interface MUSTimelineViewController ()
@@ -43,6 +46,7 @@ static NSString * kShowIndexSegueIdentifier = @"ShowIndex";
 @property (nonatomic, strong) MUSDataController *dataController;
 @property (nonatomic, strong) NSString *selectedDecade;
 
+- (void)createTimeline;
 - (void)selectDecade:(UIGestureRecognizer *)gesture;
 
 @end
@@ -61,9 +65,49 @@ static NSString * kShowIndexSegueIdentifier = @"ShowIndex";
 {
     [super viewDidLoad];
     [self setDataController:[MUSDataController sharedController]];
+    [self createTimeline];
+    [self.favouritesSectionView setFrame:CGRectMake(0.0, 0.0, self.view.bounds.size.width, 0.0)];
+    [self.favouritesSectionView setAlpha:0.0];
 }
 
-- (void)viewWillLayoutSubviews
+- (void)viewDidAppear:(BOOL)animated
+{
+    // expand or collapse the favourites section
+    // if there are any favourites, then display a favourites section
+    CGRect favouritesSectionFrame;
+    CGRect timelineFrame;
+    int numberOfFavourites = [self.dataController numberOfFavouriteScores];
+    
+    if (numberOfFavourites > 0 && self.favouritesSectionView.superview == nil) {
+        favouritesSectionFrame = CGRectMake(0.0, 0.0, self.view.frame.size.width, kFavouritesSectionHeight);
+        timelineFrame = CGRectMake(0.0, kFavouritesSectionHeight, self.view.frame.size.width, self.view.frame.size.height - kFavouritesSectionHeight);
+        [self.view addSubview:self.favouritesSectionView];
+        
+        [UIView animateWithDuration:0.25
+                         animations:^{
+                             [self.favouritesSectionView setFrame:favouritesSectionFrame];
+                             [self.timelineScrollview setFrame:timelineFrame];
+                             [self.favouritesSectionView setAlpha:1.0];
+                         }];
+        
+    } else if (numberOfFavourites == 0 && self.favouritesSectionView.superview != nil) {
+        favouritesSectionFrame = CGRectMake(0.0, 0.0, self.view.bounds.size.width, 0.0);
+        timelineFrame = self.view.bounds;
+        
+        [UIView animateWithDuration:0.25
+                         animations:^{
+                             [self.favouritesSectionView setFrame:favouritesSectionFrame];
+                             [self.timelineScrollview setFrame:timelineFrame];
+                             [self.favouritesSectionView setAlpha:0.0];
+                         }
+                         completion:^(BOOL finished) {
+                             [self.favouritesSectionView removeFromSuperview];
+                         }];
+    }
+
+}
+
+- (void)createTimeline
 {
     // draw a view for each decade whose height is relative to
     // the number of items published in that decade
@@ -72,7 +116,8 @@ static NSString * kShowIndexSegueIdentifier = @"ShowIndex";
     float leftMargin = 0.0;
     int totalNumber = 0;
     
-    UIScrollView *scrollview = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    CGRect timelineFrame = self.view.bounds;
+    UIScrollView *scrollview = [[UIScrollView alloc] initWithFrame:timelineFrame];
     [scrollview setContentSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height * kNumberOfPagesInScrollView)];
     
     NSArray *decades = [self.dataController decadesInWhichMusicWasPublished];
@@ -130,6 +175,7 @@ static NSString * kShowIndexSegueIdentifier = @"ShowIndex";
         decadeIndex++;
     }
     
+    [self setTimelineScrollview:scrollview];
     [self.view addSubview:scrollview];
 }
 
@@ -138,13 +184,17 @@ static NSString * kShowIndexSegueIdentifier = @"ShowIndex";
     [super didReceiveMemoryWarning];
 }
 
+- (void)showFavourites:(id)sender
+{
+    [self performSegueWithIdentifier:@"ShowFavourites" sender:self];
+}
+
 - (void)selectDecade:(UIGestureRecognizer *)gesture
 {
     int indexOfSelectedDecade = gesture.view.tag; // ARGHH, I hate using tags, but not sure this is worth a custom view
     NSDictionary *decadeInfo = [self.dataController decadesInWhichMusicWasPublished][indexOfSelectedDecade];
     [self setSelectedDecade:[decadeInfo valueForKey:@"date"]];
-    //[self performSegueWithIdentifier:kShowIndexSegueIdentifier sender:self];
-    [self performSegueWithIdentifier:@"ShowFavourites" sender:self];
+    [self performSegueWithIdentifier:kShowIndexSegueIdentifier sender:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

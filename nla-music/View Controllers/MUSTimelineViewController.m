@@ -24,7 +24,7 @@
 //
 
 #import "MUSTimelineViewController.h"
-#import "MUSIndexViewController.h"
+#import "MUSDecadeScoreCollectionViewController.h"
 #import "MUSDataController.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -149,7 +149,7 @@ static NSString * kShowIndexSegueIdentifier = @"ShowIndex";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:kShowIndexSegueIdentifier]) {
-        MUSIndexViewController *indexController = (MUSIndexViewController *)segue.destinationViewController;
+        MUSDecadeScoreCollectionViewController *indexController = (MUSDecadeScoreCollectionViewController *)segue.destinationViewController;
         [indexController setDecade:self.selectedDecade];
     }
 }

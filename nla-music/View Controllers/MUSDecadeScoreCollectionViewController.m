@@ -1,5 +1,5 @@
 //
-//  MUSIndexViewController.m
+//  MUSDecadeScoreCollectionViewController.m
 //  nla-music
 //
 //  Copyright © 2012 Jake MacMullin
@@ -23,16 +23,16 @@
 //  SOFTWARE.
 //
 
-#import "MUSIndexViewController.h"
+#import "MUSDecadeScoreCollectionViewController.h"
 #import "MUSScoreCell.h"
 #import "NINetworkImageView.h"
 #import "MUSScoreViewController.h"
 #import "MUSTimelineViewController.h"
 
-@interface MUSIndexViewController ()
+@interface MUSDecadeScoreCollectionViewController ()
 @end
 
-@implementation MUSIndexViewController
+@implementation MUSDecadeScoreCollectionViewController
 
 #pragma mark - Overridden Methods
 

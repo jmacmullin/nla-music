@@ -1,5 +1,5 @@
 //
-//  MUSIndexViewController.h
+//  MUSDecadeScoreCollectionViewController.h
 //  nla-music
 //
 //  Copyright © 2012 Jake MacMullin
@@ -26,7 +26,7 @@
 #import <UIKit/UIKit.h>
 #import "MUSScoreCollectionViewController.h"
 
-@interface MUSIndexViewController : MUSScoreCollectionViewController
+@interface MUSDecadeScoreCollectionViewController : MUSScoreCollectionViewController
 
 /**
  The decade whose music you wish to display.

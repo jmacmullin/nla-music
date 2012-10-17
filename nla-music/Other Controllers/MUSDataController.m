@@ -26,6 +26,8 @@
 #import "MUSDataController.h"
 #import <CoreData/CoreData.h>
 
+static NSString * kFavouritesKey = @"favourite-scores";
+
 @interface MUSDataController()
 
 @property (nonatomic, strong) NSManagedObjectModel *model;
@@ -38,6 +40,7 @@
 @property (nonatomic, strong) NSArray *cachedScores;
 
 - (NSArray *)fetchDecades;
+- (NSArray *)fetchIdentifiersOfFavourites;
 
 @end
 
@@ -183,5 +186,72 @@
     
     return 0;
 }
+
+- (NSArray *)fetchIdentifiersOfFavourites
+{
+    // TODO: consider caching the list of favourites instead of querying the user defaults
+    // each time.
+
+    NSArray *favourites;
+    NSString *identifiersOfFavouriteScores = [[NSUserDefaults standardUserDefaults] stringForKey:kFavouritesKey];
+    if (identifiersOfFavouriteScores!=nil) {
+        favourites = [identifiersOfFavouriteScores componentsSeparatedByString:@","];
+    } else {
+        favourites = @[];
+    }
+    return favourites;
+}
+
+
+- (BOOL)isScoreMarkedAsFavourite:(Score *)score
+{
+    for (NSString *identifier in [self fetchIdentifiersOfFavourites]) {
+        if ([identifier isEqualToString:score.identifier]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+
+- (void)markScore:(Score *)score asFavourite:(BOOL)isFavourite
+{
+    NSMutableArray *modifiedFavourites = [[self fetchIdentifiersOfFavourites] mutableCopy];
+    
+    if (isFavourite == YES) {
+        // if we're marking the score as a favourite, we'll need to add its
+        // identifier to the list of identifiers.
+        if ([self isScoreMarkedAsFavourite:score] == NO) {
+            [modifiedFavourites addObject:score.identifier];
+        }
+    } else {
+        // otherwise, we'll need to remove its identifier from the list
+        if ([self isScoreMarkedAsFavourite:score] == YES) {
+            
+            NSString *identifierToRemove = nil;
+            
+            for (NSString *identifier in modifiedFavourites) {
+                if ([identifier isEqualToString:score.identifier]) {
+                    identifierToRemove = identifier;
+                }
+            }
+            
+            if (identifierToRemove!=nil) {
+                [modifiedFavourites removeObject:identifierToRemove];
+            }
+        }
+    }
+    
+    // Save the modified list of favourites
+    NSMutableString *identifiersString = [[NSMutableString alloc] init];
+    for (NSString *identifier in modifiedFavourites) {
+        [identifiersString appendString:identifier];
+        if (modifiedFavourites.lastObject!=identifier) {
+            [identifiersString appendString:@","];
+        }
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:identifiersString forKey:kFavouritesKey];
+}
+
 
 @end

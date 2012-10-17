@@ -27,6 +27,7 @@
 #import "NIPhotoScrollView.h"
 #import "Page.h"
 #import "AFNetworking.h"
+#import "MUSDataController.h"
 
 @interface MUSScoreViewController ()
 
@@ -48,6 +49,7 @@
 @property (nonatomic, strong) NSOperationQueue *imageDownloadQueue;
 @property (nonatomic, strong) UIImage *coverImage;
 @property (nonatomic, strong) UIPopoverController *sharePopover;
+@property (nonatomic, strong) MUSDataController *dataController;
 
 @end
 
@@ -73,6 +75,8 @@
 {
     [super viewDidLoad];
     
+    [self setDataController:[MUSDataController sharedController]];
+    
     NSOperationQueue *imageDownloadQueue = [[NSOperationQueue alloc] init];
     [self setImageDownloadQueue:imageDownloadQueue];
     
@@ -83,6 +87,15 @@
     [self.scorePageScrollView setDataSource:self];
     [self.scorePageScrollView setDelegate:self];
     [self.scorePageScrollView reloadData];
+    
+    [self.favouriteButton setImage:[UIImage imageNamed:@"fav_icon_selected.png"] forState:UIControlStateSelected];
+    BOOL isFavourite = [self.dataController isScoreMarkedAsFavourite:self.score];
+    if (isFavourite == YES) {
+        [self.favouriteButton setSelected:YES];
+    } else {
+        [self.favouriteButton setSelected:NO];
+    }
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -129,6 +142,16 @@
         
         // Cancel the scheduled hiding of the chrome
         [MUSScoreViewController cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideChrome) object:nil];
+    }
+}
+
+- (IBAction)toggleFavourite:(id)sender
+{
+    [self.favouriteButton setSelected:!self.favouriteButton.selected];
+    if (self.favouriteButton.selected == YES) {
+        [self.dataController markScore:self.score asFavourite:YES];
+    } else {
+        [self.dataController markScore:self.score asFavourite:NO];
     }
 }
 

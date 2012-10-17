@@ -55,4 +55,15 @@
  */
 - (int)numberOfScoresInDecade:(NSString *)decade;
 
+/**
+ Returns a BOOL to indicate whether the given score
+ has been marked as a favourite or not.
+ */
+- (BOOL)isScoreMarkedAsFavourite:(Score *)score;
+
+/**
+ Marks the given score as a favourite or not.
+ */
+- (void)markScore:(Score *)score asFavourite:(BOOL)isFavourite;
+
 @end

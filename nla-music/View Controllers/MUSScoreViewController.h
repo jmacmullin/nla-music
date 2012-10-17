@@ -34,9 +34,11 @@
 @property (nonatomic, strong) IBOutlet UIToolbar *toolBar;
 @property (nonatomic, strong) IBOutlet NIPhotoAlbumScrollView *scorePageScrollView;
 @property (nonatomic, strong) IBOutlet UIView *additionalInformationView;
+@property (nonatomic, strong) IBOutlet UIButton *favouriteButton;
 @property (nonatomic, strong) Score *score;
 
 - (IBAction)dismiss:(id)sender;
 - (IBAction)share:(id)sender;
+- (IBAction)toggleFavourite:(id)sender;
 
 @end

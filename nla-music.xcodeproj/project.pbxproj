@@ -14,6 +14,8 @@
 		2304156A162D5FDC001CC73B /* fav_icon_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23041566162D5FDC001CC73B /* fav_icon_selected@2x.png */; };
 		2304156B162D5FDC001CC73B /* fav_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 23041567162D5FDC001CC73B /* fav_icon.png */; };
 		2304156C162D5FDC001CC73B /* fav_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23041568162D5FDC001CC73B /* fav_icon@2x.png */; };
+		235F3B1F162EA8530067B5AD /* MUSFavouriteScoreCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235F3B1E162EA8530067B5AD /* MUSFavouriteScoreCollectionViewController.m */; };
+		235F3B23162EA8850067B5AD /* MUSScoreCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235F3B22162EA8850067B5AD /* MUSScoreCollectionViewController.m */; };
 		2394E94E1627C1CD00E5851E /* MUSFadeInSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2394E94D1627C1CD00E5851E /* MUSFadeInSegue.m */; };
 		2394E9511627C36800E5851E /* MUSScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2394E9501627C36800E5851E /* MUSScoreViewController.m */; };
 		2394E95E162824C000E5851E /* MUSTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2394E95D162824C000E5851E /* MUSTimelineViewController.m */; };
@@ -98,6 +100,10 @@
 		23041566162D5FDC001CC73B /* fav_icon_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fav_icon_selected@2x.png"; sourceTree = "<group>"; };
 		23041567162D5FDC001CC73B /* fav_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fav_icon.png; sourceTree = "<group>"; };
 		23041568162D5FDC001CC73B /* fav_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fav_icon@2x.png"; sourceTree = "<group>"; };
+		235F3B1D162EA8530067B5AD /* MUSFavouriteScoreCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUSFavouriteScoreCollectionViewController.h; path = "View Controllers/MUSFavouriteScoreCollectionViewController.h"; sourceTree = "<group>"; };
+		235F3B1E162EA8530067B5AD /* MUSFavouriteScoreCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUSFavouriteScoreCollectionViewController.m; path = "View Controllers/MUSFavouriteScoreCollectionViewController.m"; sourceTree = "<group>"; };
+		235F3B21162EA8850067B5AD /* MUSScoreCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUSScoreCollectionViewController.h; path = "View Controllers/MUSScoreCollectionViewController.h"; sourceTree = "<group>"; };
+		235F3B22162EA8850067B5AD /* MUSScoreCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUSScoreCollectionViewController.m; path = "View Controllers/MUSScoreCollectionViewController.m"; sourceTree = "<group>"; };
 		2394E94C1627C1CD00E5851E /* MUSFadeInSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUSFadeInSegue.h; path = Segues/MUSFadeInSegue.h; sourceTree = "<group>"; };
 		2394E94D1627C1CD00E5851E /* MUSFadeInSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUSFadeInSegue.m; path = Segues/MUSFadeInSegue.m; sourceTree = "<group>"; };
 		2394E94F1627C36800E5851E /* MUSScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUSScoreViewController.h; path = "View Controllers/MUSScoreViewController.h"; sourceTree = "<group>"; };
@@ -560,12 +566,16 @@
 		23E175C616266DC900B5E7A3 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				23F837641627B1450002126E /* MUSIndexViewController.h */,
-				23F837651627B1450002126E /* MUSIndexViewController.m */,
-				2394E94F1627C36800E5851E /* MUSScoreViewController.h */,
-				2394E9501627C36800E5851E /* MUSScoreViewController.m */,
 				2394E95C162824C000E5851E /* MUSTimelineViewController.h */,
 				2394E95D162824C000E5851E /* MUSTimelineViewController.m */,
+				23F837641627B1450002126E /* MUSIndexViewController.h */,
+				23F837651627B1450002126E /* MUSIndexViewController.m */,
+				235F3B21162EA8850067B5AD /* MUSScoreCollectionViewController.h */,
+				235F3B22162EA8850067B5AD /* MUSScoreCollectionViewController.m */,
+				235F3B1D162EA8530067B5AD /* MUSFavouriteScoreCollectionViewController.h */,
+				235F3B1E162EA8530067B5AD /* MUSFavouriteScoreCollectionViewController.m */,
+				2394E94F1627C36800E5851E /* MUSScoreViewController.h */,
+				2394E9501627C36800E5851E /* MUSScoreViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -720,6 +730,8 @@
 				2394E983162BBD6E00E5851E /* NIToolbarPhotoViewController.m in Sources */,
 				2394E997162BBD8C00E5851E /* NIPageView.m in Sources */,
 				2394E998162BBD8C00E5851E /* NIPagingScrollView.m in Sources */,
+				235F3B1F162EA8530067B5AD /* MUSFavouriteScoreCollectionViewController.m in Sources */,
+				235F3B23162EA8850067B5AD /* MUSScoreCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

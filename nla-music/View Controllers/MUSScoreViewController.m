@@ -28,6 +28,8 @@
 #import "Page.h"
 #import "AFNetworking.h"
 #import "MUSDataController.h"
+#import "NLAOpenArchiveController.h"
+#import "NLAItemInformation.h"
 
 @interface MUSScoreViewController ()
 
@@ -50,6 +52,7 @@
 @property (nonatomic, strong) UIImage *coverImage;
 @property (nonatomic, strong) UIPopoverController *sharePopover;
 @property (nonatomic, strong) MUSDataController *dataController;
+@property (nonatomic, strong) NLAItemInformation *itemInformation;
 
 @end
 
@@ -96,6 +99,14 @@
         [self.favouriteButton setSelected:NO];
     }
     
+    [self addObserver:self forKeyPath:@"itemInformation" options:NSKeyValueObservingOptionNew context:NULL];
+    
+    // Request the additional information
+    [[NLAOpenArchiveController sharedController] requestDetailsForItemWithIdentifier:self.score.identifier
+                                                                             success:^(NLAItemInformation *itemInfo) {
+                                                                                 [self setItemInformation:itemInfo];
+                                                                             }];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -107,6 +118,7 @@
 {
     [super didReceiveMemoryWarning];
 }
+
 
 #pragma mark - UI Actions
 
@@ -261,6 +273,37 @@
     } else {
         return nil;
     }
-} 
+}
+
+
+#pragma mark - KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"itemInformation"]) {
+        [self.titleLabel setText:self.itemInformation.title];
+        [self.titleLabel setNumberOfLines:0];
+        [self.titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
+        [self.titleLabel sizeToFit];
+
+        [self.creatorLabel setFrame:CGRectMake(self.creatorLabel.frame.origin.x, self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height + 10.0, self.creatorLabel.frame.size.width, self.creatorLabel.frame.size.height)];
+        [self.creatorLabel setText:self.itemInformation.creator];
+        [self.creatorLabel setNumberOfLines:0];
+        [self.creatorLabel setLineBreakMode:NSLineBreakByWordWrapping];
+        [self.creatorLabel sizeToFit];
+
+        [self.descriptionLabel setFrame:CGRectMake(self.descriptionLabel.frame.origin.x, self.creatorLabel.frame.origin.y + self.creatorLabel.frame.size.height + 10.0, self.descriptionLabel.frame.size.width, self.descriptionLabel.frame.size.height)];
+        [self.descriptionLabel setText:self.itemInformation.description];
+        [self.descriptionLabel setNumberOfLines:0];
+        [self.descriptionLabel setLineBreakMode:NSLineBreakByWordWrapping];
+        [self.descriptionLabel sizeToFit];
+    }
+}
+
+
+- (void)dealloc
+{
+    [self removeObserver:self forKeyPath:@"itemInformation"];
+}
 
 @end

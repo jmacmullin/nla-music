@@ -1,5 +1,5 @@
 //
-//  MUSScoreViewController.h
+//  NLAOpenArchiveController.h
 //  nla-music
 //
 //  Copyright © 2012 Jake MacMullin
@@ -23,26 +23,29 @@
 //  SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
-#import "NINetworkImageView.h"
-#import "NIPhotoAlbumScrollView.h"
-#import "Score.h"
+#import <Foundation/Foundation.h>
+#import "NLAItemInformation.h"
 
-@interface MUSScoreViewController : UIViewController <NIPhotoAlbumScrollViewDataSource, NIPhotoAlbumScrollViewDelegate, UIPopoverControllerDelegate>
+typedef void (^ SuccessBlock)(NLAItemInformation *itemInfo);
 
-@property (nonatomic, strong) UIImage *initialImage;
-@property (nonatomic, strong) IBOutlet UIToolbar *toolBar;
-@property (nonatomic, strong) IBOutlet NIPhotoAlbumScrollView *scorePageScrollView;
+/**
+ A class to manage the interactions with the National Library's
+ Open Archive Interface.
+ */
+@interface NLAOpenArchiveController : NSObject <NSXMLParserDelegate>
 
-@property (nonatomic, strong) IBOutlet UIView *additionalInformationView;
-@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
-@property (nonatomic, strong) IBOutlet UILabel *creatorLabel;
-@property (nonatomic, strong) IBOutlet UILabel *descriptionLabel;
-@property (nonatomic, strong) IBOutlet UIButton *favouriteButton;
-@property (nonatomic, strong) Score *score;
 
-- (IBAction)dismiss:(id)sender;
-- (IBAction)share:(id)sender;
-- (IBAction)toggleFavourite:(id)sender;
+/**
+ Obtain a reference to the shared controller.
+ */
++ (NLAOpenArchiveController *)sharedController;
+
+
+/**
+ Request the details for the item with the given identifier. The success callback will
+ be called with the resulting NLAItemInformation object or nil if there was an error
+ retreiving the information.
+ */
+- (void)requestDetailsForItemWithIdentifier:(NSString *)itemIdentifier success:(SuccessBlock)successBlock;
 
 @end

@@ -171,7 +171,7 @@
                                             <constraint firstAttribute="width" constant="44" id="xnt-do-ewn"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Button" image="share_icon.png">
+                                        <state key="normal" image="share_icon.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -184,11 +184,11 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZO-9c-qBi">
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="9Kb-fK-vtS"/>
                                             <constraint firstAttribute="width" constant="44" id="HPp-il-OA9"/>
-                                            <constraint firstAttribute="height" constant="44" id="fVF-t0-PSQ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Favourite Button" image="fav_icon.png">
+                                        <state key="normal" image="fav_icon.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -199,12 +199,45 @@
                                             <action selector="toggleFavourite:" destination="ZP9-gQ-okS" eventType="touchUpInside" id="qmi-fq-4ua"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fn-Bn-WNf">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="569" id="cu6-b0-L2L"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Creator" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SWX-xf-nYH">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="X6B-8v-IVX"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kbr-Lb-aRM">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="667" id="6nS-Nd-MvW"/>
+                                            <constraint firstAttribute="height" constant="21" id="sIy-xf-NGS"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="SZO-9c-qBi" secondAttribute="trailing" constant="95" id="JEZ-Hk-Vnq"/>
+                                    <constraint firstItem="SWX-xf-nYH" firstAttribute="top" secondItem="ska-ED-TIC" secondAttribute="top" constant="73" id="2yh-AU-30W"/>
+                                    <constraint firstItem="SZO-9c-qBi" firstAttribute="baseline" secondItem="agB-A9-Eg5" secondAttribute="baseline" type="default" id="4kt-Lq-Qw8"/>
+                                    <constraint firstItem="agB-A9-Eg5" firstAttribute="trailing" secondItem="Kbr-Lb-aRM" secondAttribute="trailing" type="default" id="F8Q-f4-TvC"/>
+                                    <constraint firstItem="SZO-9c-qBi" firstAttribute="leading" secondItem="4fn-Bn-WNf" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Fxh-xM-JPO"/>
+                                    <constraint firstItem="Kbr-Lb-aRM" firstAttribute="leading" secondItem="SWX-xf-nYH" secondAttribute="leading" type="default" id="Igg-XA-YL7"/>
+                                    <constraint firstItem="SWX-xf-nYH" firstAttribute="trailing" secondItem="4fn-Bn-WNf" secondAttribute="trailing" type="default" id="JiO-Kv-1LB"/>
+                                    <constraint firstItem="SWX-xf-nYH" firstAttribute="leading" secondItem="4fn-Bn-WNf" secondAttribute="leading" type="default" id="Moc-cG-J3c"/>
+                                    <constraint firstItem="4fn-Bn-WNf" firstAttribute="baseline" secondItem="agB-A9-Eg5" secondAttribute="baseline" type="default" id="SSe-sw-tTU"/>
                                     <constraint firstItem="SZO-9c-qBi" firstAttribute="bottom" secondItem="agB-A9-Eg5" secondAttribute="bottom" type="default" id="XUb-NM-Rll"/>
-                                    <constraint firstAttribute="trailing" secondItem="agB-A9-Eg5" secondAttribute="trailing" constant="49" id="evp-Qf-DeH"/>
+                                    <constraint firstItem="4fn-Bn-WNf" firstAttribute="leading" secondItem="ska-ED-TIC" secondAttribute="leading" constant="52" id="eqR-o8-1FO"/>
+                                    <constraint firstItem="Kbr-Lb-aRM" firstAttribute="top" secondItem="ska-ED-TIC" secondAttribute="top" constant="108" id="spu-ZR-JVE"/>
                                     <constraint firstItem="agB-A9-Eg5" firstAttribute="top" secondItem="ska-ED-TIC" secondAttribute="top" constant="20" symbolic="YES" type="default" id="tEn-ie-7t3"/>
                                     <constraint firstItem="SZO-9c-qBi" firstAttribute="top" secondItem="ska-ED-TIC" secondAttribute="top" constant="20" symbolic="YES" type="default" id="zj1-3P-g9M"/>
                                 </constraints>
@@ -227,8 +260,11 @@
                     </view>
                     <connections>
                         <outlet property="additionalInformationView" destination="ska-ED-TIC" id="GpB-Li-hU2"/>
+                        <outlet property="creatorLabel" destination="SWX-xf-nYH" id="xZC-Bp-2iU"/>
+                        <outlet property="descriptionLabel" destination="Kbr-Lb-aRM" id="7q3-qJ-SCb"/>
                         <outlet property="favouriteButton" destination="SZO-9c-qBi" id="oKC-qm-wn7"/>
                         <outlet property="scorePageScrollView" destination="xiF-fe-9Cg" id="zy6-Xi-4BM"/>
+                        <outlet property="titleLabel" destination="4fn-Bn-WNf" id="pE4-Rq-9Dx"/>
                         <outlet property="toolBar" destination="EAW-TB-6fy" id="nMg-rc-nCV"/>
                     </connections>
                 </viewController>
@@ -363,8 +399,11 @@
                 <relationship kind="action" name="share:"/>
                 <relationship kind="action" name="toggleFavourite:"/>
                 <relationship kind="outlet" name="additionalInformationView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="creatorLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="favouriteButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="scorePageScrollView" candidateClass="NIPhotoAlbumScrollView"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="toolBar" candidateClass="UIToolbar"/>
             </relationships>
         </class>

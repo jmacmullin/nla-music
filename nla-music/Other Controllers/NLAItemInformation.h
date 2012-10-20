@@ -1,5 +1,5 @@
 //
-//  MUSScoreViewController.h
+//  NLAItemInformation.h
 //  nla-music
 //
 //  Copyright © 2012 Jake MacMullin
@@ -23,26 +23,12 @@
 //  SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
-#import "NINetworkImageView.h"
-#import "NIPhotoAlbumScrollView.h"
-#import "Score.h"
+#import <Foundation/Foundation.h>
 
-@interface MUSScoreViewController : UIViewController <NIPhotoAlbumScrollViewDataSource, NIPhotoAlbumScrollViewDelegate, UIPopoverControllerDelegate>
+@interface NLAItemInformation : NSObject
 
-@property (nonatomic, strong) UIImage *initialImage;
-@property (nonatomic, strong) IBOutlet UIToolbar *toolBar;
-@property (nonatomic, strong) IBOutlet NIPhotoAlbumScrollView *scorePageScrollView;
-
-@property (nonatomic, strong) IBOutlet UIView *additionalInformationView;
-@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
-@property (nonatomic, strong) IBOutlet UILabel *creatorLabel;
-@property (nonatomic, strong) IBOutlet UILabel *descriptionLabel;
-@property (nonatomic, strong) IBOutlet UIButton *favouriteButton;
-@property (nonatomic, strong) Score *score;
-
-- (IBAction)dismiss:(id)sender;
-- (IBAction)share:(id)sender;
-- (IBAction)toggleFavourite:(id)sender;
+@property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) NSString *creator;
+@property (nonatomic, retain) NSString *description;
 
 @end

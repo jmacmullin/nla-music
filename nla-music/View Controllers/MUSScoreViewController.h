@@ -35,6 +35,7 @@
 @property (nonatomic, strong) IBOutlet NIPhotoAlbumScrollView *scorePageScrollView;
 
 @property (nonatomic, strong) IBOutlet UIView *additionalInformationView;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *spinny;
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) IBOutlet UILabel *creatorLabel;
 @property (nonatomic, strong) IBOutlet UILabel *descriptionLabel;

@@ -250,6 +250,7 @@
                                             <outletCollection property="gestureRecognizers" destination="b1E-Ja-it4" appends="YES" id="9Ut-rF-BeM"/>
                                         </connections>
                                     </label>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="h6r-Xf-vfw"/>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -260,6 +261,7 @@
                                     <constraint firstItem="hWx-v9-CaT" firstAttribute="top" secondItem="ska-ED-TIC" secondAttribute="top" constant="10" id="7dA-OW-oxR"/>
                                     <constraint firstItem="vir-xR-tek" firstAttribute="top" secondItem="7Wt-DZ-CwL" secondAttribute="top" priority="1" type="user" id="A1F-5t-3PK"/>
                                     <constraint firstItem="7Wt-DZ-CwL" firstAttribute="trailing" secondItem="TsF-SP-49L" secondAttribute="trailing" type="default" id="BuB-Af-ngI"/>
+                                    <constraint firstItem="h6r-Xf-vfw" firstAttribute="centerY" secondItem="ska-ED-TIC" secondAttribute="centerY" type="default" id="Bz2-OR-Jkh"/>
                                     <constraint firstItem="Yit-un-qc3" firstAttribute="leading" secondItem="ska-ED-TIC" secondAttribute="leading" constant="44" id="Fpz-Wl-isR"/>
                                     <constraint firstItem="7Wt-DZ-CwL" firstAttribute="top" secondItem="TsF-SP-49L" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="Hza-pn-fMw"/>
                                     <constraint firstItem="80n-rD-vrl" firstAttribute="bottom" secondItem="hWx-v9-CaT" secondAttribute="bottom" type="default" id="K4L-5E-baV"/>
@@ -270,6 +272,7 @@
                                     <constraint firstItem="7Wt-DZ-CwL" firstAttribute="leading" secondItem="TsF-SP-49L" secondAttribute="leading" type="default" id="POv-jg-Xse"/>
                                     <constraint firstItem="gbx-uL-K6c" firstAttribute="top" secondItem="ska-ED-TIC" secondAttribute="top" constant="57" type="user" id="RGf-r6-M5e"/>
                                     <constraint firstItem="vir-xR-tek" firstAttribute="baseline" secondItem="7Wt-DZ-CwL" secondAttribute="baseline" priority="1" type="user" id="RQo-aP-99c"/>
+                                    <constraint firstItem="h6r-Xf-vfw" firstAttribute="leading" secondItem="ska-ED-TIC" secondAttribute="leading" constant="365" id="Rtd-ku-gww"/>
                                     <constraint firstItem="gbx-uL-K6c" firstAttribute="baseline" secondItem="TsF-SP-49L" secondAttribute="baseline" priority="1" type="user" id="UCV-Fy-4Et"/>
                                     <constraint firstItem="vir-xR-tek" firstAttribute="top" secondItem="ska-ED-TIC" secondAttribute="top" constant="86" type="user" id="WWY-3f-nCE"/>
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7Wt-DZ-CwL" secondAttribute="bottom" priority="965" constant="20" type="user" id="ehu-WU-UjB"/>
@@ -305,6 +308,7 @@
                         <outlet property="favouriteButton" destination="hWx-v9-CaT" id="2Ke-jI-aR7"/>
                         <outlet property="publisherLabel" destination="vir-xR-tek" id="6cX-Py-y4U"/>
                         <outlet property="scorePageScrollView" destination="xiF-fe-9Cg" id="zy6-Xi-4BM"/>
+                        <outlet property="spinny" destination="h6r-Xf-vfw" id="Fvf-vJ-w7c"/>
                         <outlet property="titleLabel" destination="Yit-un-qc3" id="hAc-qr-8f8"/>
                         <outlet property="toolBar" destination="EAW-TB-6fy" id="nMg-rc-nCV"/>
                     </connections>
@@ -452,6 +456,7 @@
                 <relationship kind="outlet" name="favouriteButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="publisherLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="scorePageScrollView" candidateClass="NIPhotoAlbumScrollView"/>
+                <relationship kind="outlet" name="spinny" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="toolBar" candidateClass="UIToolbar"/>
             </relationships>
@@ -483,9 +488,6 @@
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="UICollectionViewLayout" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -26,6 +26,12 @@
 #import "NLAOpenArchiveController.h"
 #import "AFNetworking.h"
 
+static NSString * kTitleKey = @"dc:title";
+static NSString * kCreattorKey = @"dc:creator";
+static NSString * kDescriptionKey = @"dc:description";
+static NSString * kPublisherKey = @"dc:publisher";
+static NSString * kDateKey = @"dc:date";
+
 @interface NLAOpenArchiveController()
 
 @property (nonatomic, copy) SuccessBlock successBlock;
@@ -90,7 +96,11 @@
 {
     [self setCharacters:[NSMutableString string]];
     
-    if ([elementName isEqualToString:@"dc:title"] || [elementName isEqualToString:@"dc:creator"] || [elementName isEqualToString:@"dc:description"]) {
+    if ([elementName isEqualToString:kTitleKey] ||
+        [elementName isEqualToString:kCreattorKey] ||
+        [elementName isEqualToString:kDescriptionKey] ||
+        [elementName isEqualToString:kPublisherKey] ||
+        [elementName isEqualToString:kDateKey]) {
         [self setCurrentElement:elementName];
     } else {
         [self setCurrentElement:nil];
@@ -106,12 +116,16 @@
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
-    if ([elementName isEqualToString:@"dc:title"]) {
+    if ([elementName isEqualToString:kTitleKey]) {
         [self.itemInformation setTitle:self.characters];
-    } else if ([elementName isEqualToString:@"dc:creator"]) {
+    } else if ([elementName isEqualToString:kCreattorKey]) {
         [self.itemInformation setCreator:self.characters];
-    } else if ([elementName isEqualToString:@"dc:description"]) {
+    } else if ([elementName isEqualToString:kDescriptionKey]) {
         [self.itemInformation setDescription:self.characters];
+    } else if ([elementName isEqualToString:kPublisherKey]) {
+        [self.itemInformation setPublisher:self.characters];
+    } else if ([elementName isEqualToString:kDateKey]) {
+        [self.itemInformation setDate:self.characters];
     }
 }
 

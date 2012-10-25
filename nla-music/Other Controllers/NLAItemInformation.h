@@ -30,5 +30,7 @@
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *creator;
 @property (nonatomic, retain) NSString *description;
+@property (nonatomic, retain) NSString *publisher;
+@property (nonatomic, retain) NSString *date;
 
 @end

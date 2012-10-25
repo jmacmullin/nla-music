@@ -5,5 +5,6 @@
 @property (nonatomic, readonly) NSString *firstLetterOfTitle;
 @property (nonatomic, readonly) NSURL *thumbnailURL;
 @property (nonatomic, readonly) NSURL *coverURL;
+@property (nonatomic, readonly) NSURL *webURL;
 
 @end

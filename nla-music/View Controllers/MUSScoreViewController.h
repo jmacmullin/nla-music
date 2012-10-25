@@ -39,10 +39,13 @@
 @property (nonatomic, strong) IBOutlet UILabel *creatorLabel;
 @property (nonatomic, strong) IBOutlet UILabel *descriptionLabel;
 @property (nonatomic, strong) IBOutlet UIButton *favouriteButton;
+@property (nonatomic, strong) IBOutlet UILabel *dateLabel;
+@property (nonatomic, strong) IBOutlet UILabel *publisherLabel;
 @property (nonatomic, strong) Score *score;
 
 - (IBAction)dismiss:(id)sender;
 - (IBAction)share:(id)sender;
 - (IBAction)toggleFavourite:(id)sender;
+- (IBAction)viewOnTheWeb:(id)sender;
 
 @end

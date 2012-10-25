@@ -18,4 +18,10 @@
     return [NSURL URLWithString:[NSString stringWithFormat:@"http://nla.gov.au/%@-e", [self identifier]]];
 }
 
+- (NSURL *)webURL {
+    NSString *webURLString = [NSString stringWithFormat:@"http://nla.gov.au/%@", self.identifier];
+    return [NSURL URLWithString:webURLString];
+}
+
+
 @end

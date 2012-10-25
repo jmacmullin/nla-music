@@ -167,6 +167,11 @@
     }
 }
 
+- (IBAction)viewOnTheWeb:(id)sender
+{
+    [[UIApplication sharedApplication] openURL:self.score.webURL];
+}
+
 #pragma mark - Popover Delegate Methods
 
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
@@ -282,21 +287,10 @@
 {
     if ([keyPath isEqualToString:@"itemInformation"]) {
         [self.titleLabel setText:self.itemInformation.title];
-        [self.titleLabel setNumberOfLines:0];
-        [self.titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
-        [self.titleLabel sizeToFit];
-
-        [self.creatorLabel setFrame:CGRectMake(self.creatorLabel.frame.origin.x, self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height + 10.0, self.creatorLabel.frame.size.width, self.creatorLabel.frame.size.height)];
         [self.creatorLabel setText:self.itemInformation.creator];
-        [self.creatorLabel setNumberOfLines:0];
-        [self.creatorLabel setLineBreakMode:NSLineBreakByWordWrapping];
-        [self.creatorLabel sizeToFit];
-
-        [self.descriptionLabel setFrame:CGRectMake(self.descriptionLabel.frame.origin.x, self.creatorLabel.frame.origin.y + self.creatorLabel.frame.size.height + 10.0, self.descriptionLabel.frame.size.width, self.descriptionLabel.frame.size.height)];
         [self.descriptionLabel setText:self.itemInformation.description];
-        [self.descriptionLabel setNumberOfLines:0];
-        [self.descriptionLabel setLineBreakMode:NSLineBreakByWordWrapping];
-        [self.descriptionLabel sizeToFit];
+        [self.dateLabel setText:self.itemInformation.date];
+        [self.publisherLabel setText:self.itemInformation.publisher];
     }
 }
 

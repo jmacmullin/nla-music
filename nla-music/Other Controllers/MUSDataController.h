@@ -56,6 +56,17 @@
 - (int)numberOfScoresInDecade:(NSString *)decade;
 
 /**
+ Returns an array of dictionaries with information
+ about the composers who wrote music in the given
+ decade.
+ The dictionaries contain two keys:
+ - composer (a String with the composer's name)
+ - count (the number of scores in the collection for
+   the given decade for that composer)
+ */
+- (NSArray *)composersWithMusicPublishedIn:(NSString *)decade;
+
+/**
  Returns the number of scores that have been marked as a favourite.
  */
 - (int)numberOfFavouriteScores;

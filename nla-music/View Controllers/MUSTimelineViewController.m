@@ -34,7 +34,7 @@ static int kNumberOfPagesInScrollView = 4;
 // as the height of each decade is based on the number of scores
 // published in that decade, we need a minimum number so that decades
 // with few scores are still tappable.
-static int kMinimumNumberOfScoresPerDecadeForDisplay = 100;
+static int kMinimumNumberOfScoresPerDecadeForDisplay = 200;
 
 // the height of the favourites section
 static float kFavouritesSectionHeight = 88.0;

@@ -26,7 +26,7 @@
 #import <UIKit/UIKit.h>
 #import "MUSScoreCollectionViewController.h"
 
-@interface MUSDecadeScoreCollectionViewController : MUSScoreCollectionViewController
+@interface MUSDecadeScoreCollectionViewController : MUSScoreCollectionViewController <UIPopoverControllerDelegate>
 
 /**
  The decade whose music you wish to display.

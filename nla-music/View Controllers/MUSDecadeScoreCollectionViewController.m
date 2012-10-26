@@ -28,8 +28,14 @@
 #import "NINetworkImageView.h"
 #import "MUSScoreViewController.h"
 #import "MUSTimelineViewController.h"
+#import "MUSComposersTableViewController.h"
+
+static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
 
 @interface MUSDecadeScoreCollectionViewController ()
+
+@property (nonatomic, strong) UIPopoverController *composersPopover;
+
 @end
 
 @implementation MUSDecadeScoreCollectionViewController
@@ -54,5 +60,39 @@
     return [self.dataController scoreAtIndex:indexPath inDecade:self.decade];
 }
 
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if ([identifier isEqualToString:kShowComposersSegueIdentifier] && self.composersPopover!=nil) {
+        // Don't show the composers popover if it is already visible,
+        // but dismiss it instead
+        [self.composersPopover dismissPopoverAnimated:YES];
+        [self setComposersPopover:nil];
+        return NO;
+    }
+    
+    return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    [super prepareForSegue:segue sender:sender];
+    
+    if ([segue.identifier isEqualToString:kShowComposersSegueIdentifier]) {
+        MUSComposersTableViewController *composersTableViewController = (MUSComposersTableViewController *)segue.destinationViewController;
+        [composersTableViewController setDecade:self.decade];
+        [composersTableViewController setDataController:self.dataController];
+        UIPopoverController *popoverController = ((UIStoryboardPopoverSegue *)segue).popoverController;
+        [self setComposersPopover:popoverController];
+        [popoverController setDelegate:self];
+    }
+
+}
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    if (popoverController==self.composersPopover) {
+        [self setComposersPopover:nil];
+    }
+}
 
 @end

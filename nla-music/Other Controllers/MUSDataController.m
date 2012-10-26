@@ -136,6 +136,9 @@ static NSString * kFavouritesKey = @"favourite-scores";
     return _context;
 }
 
+
+#pragma mark - Decades
+
 - (NSArray *)fetchDecades
 {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Score"];
@@ -188,6 +191,39 @@ static NSString * kFavouritesKey = @"favourite-scores";
     
     return 0;
 }
+
+
+#pragma mark - Composers
+
+- (NSArray *)composersWithMusicPublishedIn:(NSString *)decade
+{
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Score"];
+    
+    NSEntityDescription *scoreEntityDescription = [NSEntityDescription entityForName:@"Score" inManagedObjectContext:self.context];
+    NSAttributeDescription *composerAttributeDescription = [scoreEntityDescription.attributesByName valueForKey:@"creator"];
+    NSExpression *keyPathExpression = [NSExpression expressionForKeyPath:@"title"];
+    NSExpression *countExpression = [NSExpression expressionForFunction:@"count:" arguments:@[keyPathExpression]];
+    NSExpressionDescription *expressionDescription = [[NSExpressionDescription alloc] init];
+    [expressionDescription setName:@"count"];
+    [expressionDescription setExpression:countExpression];
+    [expressionDescription setExpressionResultType:NSInteger32AttributeType];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"creator.length > 0 AND date == %@", decade];
+    
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setPropertiesToFetch:@[composerAttributeDescription, expressionDescription]];
+    [fetchRequest setPropertiesToGroupBy:@[composerAttributeDescription]];
+    [fetchRequest setResultType:NSDictionaryResultType];
+    
+    NSSortDescriptor *composerSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"creator" ascending:YES];
+    [fetchRequest setSortDescriptors:@[composerSortDescriptor]];
+    
+    NSArray *results = [self.context executeFetchRequest:fetchRequest error:NULL];
+    return results;
+}
+
+
+#pragma mark - Favourites
 
 - (int)numberOfFavouriteScores
 {

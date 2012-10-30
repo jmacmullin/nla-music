@@ -78,7 +78,8 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
     [super prepareForSegue:segue sender:sender];
     
     if ([segue.identifier isEqualToString:kShowComposersSegueIdentifier]) {
-        MUSComposersTableViewController *composersTableViewController = (MUSComposersTableViewController *)segue.destinationViewController;
+        UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
+        MUSComposersTableViewController *composersTableViewController = (MUSComposersTableViewController *)navigationController.viewControllers[0];
         [composersTableViewController setDecade:self.decade];
         [composersTableViewController setDataController:self.dataController];
         UIPopoverController *popoverController = ((UIStoryboardPopoverSegue *)segue).popoverController;
@@ -87,6 +88,20 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
     }
 
 }
+
+- (void)dismiss:(id)sender
+{
+    // dismiss the popover if it is visible
+    if (self.composersPopover!=nil) {
+        [self.composersPopover dismissPopoverAnimated:YES];
+        [self setComposersPopover:nil];
+    }
+    
+    [super dismiss:sender];
+}
+
+
+#pragma mark - Popover Methods
 
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {

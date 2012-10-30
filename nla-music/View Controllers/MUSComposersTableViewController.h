@@ -35,4 +35,8 @@
 
 @property (nonatomic, strong) MUSDataController *dataController;
 
+@property (nonatomic, strong) IBOutlet UISegmentedControl *orderSwitcher;
+
+- (IBAction)switchSortOrder:(id)sender;
+
 @end

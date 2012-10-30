@@ -75,7 +75,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="t0n-22-c4L"/>
                                     <barButtonItem title="Composers" id="LsK-Qr-qS4">
                                         <connections>
-                                            <segue destination="L9s-NO-vch" kind="popover" identifier="ShowComposers" popoverAnchorBarButtonItem="LsK-Qr-qS4" id="GNd-0J-KyO">
+                                            <segue destination="DvS-8r-Mvf" kind="popover" identifier="ShowComposers" popoverAnchorBarButtonItem="LsK-Qr-qS4" id="GNd-0J-KyO">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                             </segue>
                                         </connections>
@@ -431,14 +431,73 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ComposerCell" id="V3R-QR-0Qu">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="AllCell" id="hAM-wG-KBh">
                                 <rect key="frame" x="0.0" y="22" width="360" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="360" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="All" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BUT-UJ-wG7">
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="BUT-UJ-wG7" firstAttribute="leading" secondItem="hAM-wG-KBh" secondAttribute="leading" constant="20" type="default" id="26B-E0-Lbo"/>
+                                    <constraint firstItem="BUT-UJ-wG7" firstAttribute="top" secondItem="hAM-wG-KBh" secondAttribute="top" constant="11" id="xHx-77-Roy"/>
+                                </constraints>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ComposerCell" id="V3R-QR-0Qu" customClass="MUSComposerCell">
+                                <rect key="frame" x="0.0" y="66" width="360" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="360" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Composer Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ovz-5d-my3">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="262" id="EPO-Fb-DXi"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <view tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QTd-qL-ITZ">
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" text="999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2j-2q-GnP">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="29" type="user" id="zzr-Bj-4IQ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.43464684730000003" green="0.43825038430000002" blue="0.59466677300000004" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="e2j-2q-GnP" firstAttribute="top" secondItem="QTd-qL-ITZ" secondAttribute="top" constant="11" id="XqF-tE-qBy"/>
+                                                <constraint firstAttribute="trailing" secondItem="e2j-2q-GnP" secondAttribute="trailing" constant="6" type="user" id="hS7-1o-f8F"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="QTd-qL-ITZ" firstAttribute="leading" secondItem="V3R-QR-0Qu" secondAttribute="leading" type="default" id="7FE-Ud-xen"/>
+                                    <constraint firstItem="QTd-qL-ITZ" firstAttribute="centerY" secondItem="Ovz-5d-my3" secondAttribute="centerY" type="default" id="Abr-aN-DnF"/>
+                                    <constraint firstItem="QTd-qL-ITZ" firstAttribute="top" secondItem="V3R-QR-0Qu" secondAttribute="top" type="default" id="Gv9-ip-7Li"/>
+                                    <constraint firstItem="Ovz-5d-my3" firstAttribute="leading" secondItem="V3R-QR-0Qu" secondAttribute="leading" constant="52" id="Hms-O3-Xjc"/>
+                                    <constraint firstItem="Ovz-5d-my3" firstAttribute="leading" secondItem="QTd-qL-ITZ" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="ICY-Qe-nD9"/>
+                                    <constraint firstItem="QTd-qL-ITZ" firstAttribute="bottom" secondItem="V3R-QR-0Qu" secondAttribute="bottom" type="default" id="nhT-hL-Rq8"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="composerLabel" destination="Ovz-5d-my3" id="KUG-qw-zBx"/>
+                                    <outlet property="countLabel" destination="e2j-2q-GnP" id="Dix-4s-Ocx"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -446,9 +505,43 @@
                             <outlet property="delegate" destination="L9s-NO-vch" id="Axv-Z5-JSY"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="xcf-wZ-Ags"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="orderSwitcher" destination="hcD-Ji-6me" id="Bjx-aV-zNp"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qsd-m5-gCV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="hcD-Ji-6me">
+                    <rect key="frame" x="0.0" y="0.0" width="161" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <segments>
+                        <segment title="Sort by name"/>
+                        <segment title="Sort by number"/>
+                    </segments>
+                    <connections>
+                        <action selector="switchSortOrder:" destination="L9s-NO-vch" eventType="valueChanged" id="dw2-bW-eDG"/>
+                    </connections>
+                </segmentedControl>
+            </objects>
+            <point key="canvasLocation" x="2098" y="-1766"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="nOx-C3-Ksz">
+            <objects>
+                <navigationController id="DvS-8r-Mvf" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mSR-4G-HUL">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="L9s-NO-vch" kind="relationship" relationship="rootViewController" id="Sah-kn-wfd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2qD-Cm-lcw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1124" y="-1766"/>
         </scene>
@@ -458,8 +551,19 @@
         <image name="share_icon.png" width="23" height="18"/>
     </resources>
     <classes>
+        <class className="MUSComposerCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MUSComposerCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="composerLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="countLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
         <class className="MUSComposersTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MUSComposersTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="switchSortOrder:"/>
+                <relationship kind="outlet" name="orderSwitcher" candidateClass="UISegmentedControl"/>
+            </relationships>
         </class>
         <class className="MUSDecadeScoreCollectionViewController" superclassName="MUSScoreCollectionViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MUSDecadeScoreCollectionViewController.h"/>

@@ -42,6 +42,11 @@
 - (Score *)scoreAtIndex:(NSIndexPath *)indexPath inDecade:(NSString *)decade;
 
 /**
+ Returns the score for the given index path in the given decade by the given composer.
+ */
+- (Score *)scoreAtIndex:(NSIndexPath *)indexPath inDecade:(NSString *)decade byComposer:(NSString *)composer;
+
+/**
  Returns an array of dictionaries with information
  about the music that was published in each decade.
  The dictionaries contain two keys:
@@ -54,6 +59,12 @@
  Returns the number of scores published in the given decade.
  */
 - (int)numberOfScoresInDecade:(NSString *)decade;
+
+/**
+ Returns the number of scores published in the given decade by the given
+ composer.
+ */
+- (int)numberOfScoresInDecade:(NSString *)decade byComposer:(NSString *)composer;
 
 /**
  Returns an array of dictionaries with information

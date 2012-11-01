@@ -79,7 +79,4 @@
     [self removeObserver:self forKeyPath:@"composerInfo"];
 }
 
-
-
-
 @end

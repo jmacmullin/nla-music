@@ -38,6 +38,8 @@ static NSString * kFavouritesKey = @"favourite-scores";
 
 @property (nonatomic, strong) NSString *decadeOfCachedScores;
 @property (nonatomic, strong) NSArray *cachedScores;
+@property (nonatomic, strong) NSString *composerOfCachedScores;
+@property (nonatomic, strong) NSArray *cachedScoresByComposer;
 
 @property (nonatomic, strong) NSArray *favouriteScores;
 
@@ -74,11 +76,48 @@ static NSString * kFavouritesKey = @"favourite-scores";
     NSPredicate *decadePredicate = [NSPredicate predicateWithFormat:@"%K == %@", @"date", decade, nil];
     [scoresFetchRequest setPredicate:decadePredicate];
     
-    NSArray *scores = [self.context executeFetchRequest:scoresFetchRequest error:NULL]; // TODO: Error handling
+    NSArray *scores = [self.context executeFetchRequest:scoresFetchRequest error:NULL];
+    
+    // we're caching scores for a given decade (with no composer)
+    // so forget the previously cached scores with a given composer
+    [self setComposerOfCachedScores:nil];
+    [self setCachedScoresByComposer:nil];
+    
     [self setCachedScores:scores];
     [self setDecadeOfCachedScores:decade];
     
     return [self.cachedScores objectAtIndex:indexPath.row];
+}
+
+- (Score *)scoreAtIndex:(NSIndexPath *)indexPath inDecade:(NSString *)decade byComposer:(NSString *)composer
+{
+    if ([self.decadeOfCachedScores isEqualToString:decade] &&
+        [self.composerOfCachedScores isEqualToString:composer] &&
+        self.cachedScoresByComposer!=nil) {
+        return [self.cachedScoresByComposer objectAtIndex:indexPath.row];
+    }
+
+    NSFetchRequest *scoresFetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Score"];
+    
+    // Sort order
+    NSSortDescriptor *titleSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
+    [scoresFetchRequest setSortDescriptors:@[titleSortDescriptor]];
+    
+    // Only get scores for the given decade and composer
+    NSPredicate *decadePredicate = [NSPredicate predicateWithFormat:@"date == %@ AND creator == %@", decade, composer, nil];
+    [scoresFetchRequest setPredicate:decadePredicate];
+    
+    NSArray *scores = [self.context executeFetchRequest:scoresFetchRequest error:NULL];
+    
+    // we're caching scores for a given decade (with a given composer)
+    // so forget the previously cached scores without a given composer
+    [self setCachedScores:nil];
+    
+    [self setCachedScoresByComposer:scores];
+    [self setDecadeOfCachedScores:decade];
+    [self setComposerOfCachedScores:composer];
+    
+    return [self.cachedScoresByComposer objectAtIndex:indexPath.row];
 }
 
 #pragma mark - Core Data Stack
@@ -192,6 +231,41 @@ static NSString * kFavouritesKey = @"favourite-scores";
     return 0;
 }
 
+- (int)numberOfScoresInDecade:(NSString *)decade byComposer:(NSString *)composer
+{
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Score"];
+    
+    NSEntityDescription *scoreEntityDescription = [NSEntityDescription entityForName:@"Score" inManagedObjectContext:self.context];
+    NSAttributeDescription *dateAttributeDescription = [scoreEntityDescription.attributesByName valueForKey:@"date"];
+    NSAttributeDescription *composerAttributeDescription = [scoreEntityDescription.attributesByName valueForKey:@"creator"];
+    NSExpression *keyPathExpression = [NSExpression expressionForKeyPath:@"title"];
+    NSExpression *countExpression = [NSExpression expressionForFunction:@"count:" arguments:@[keyPathExpression]];
+    NSExpressionDescription *expressionDescription = [[NSExpressionDescription alloc] init];
+    [expressionDescription setName:@"count"];
+    [expressionDescription setExpression:countExpression];
+    [expressionDescription setExpressionResultType:NSInteger32AttributeType];
+    
+    NSPredicate *decadeAndComposerPredicate = [NSPredicate predicateWithFormat:@"date == %@ AND creator == %@", decade, composer];
+    
+    [fetchRequest setPropertiesToFetch:@[dateAttributeDescription, expressionDescription, composerAttributeDescription]];
+    [fetchRequest setPropertiesToGroupBy:@[dateAttributeDescription, composerAttributeDescription]];
+    [fetchRequest setResultType:NSDictionaryResultType];
+    [fetchRequest setPredicate:decadeAndComposerPredicate];
+    
+    NSSortDescriptor *dateSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
+    [fetchRequest setSortDescriptors:@[dateSortDescriptor]];
+    
+    NSArray *results = [self.context executeFetchRequest:fetchRequest error:NULL];
+    
+    // There should be a single row
+    assert(results.count == 1); // TODO: error handling
+    
+    NSDictionary *resultDict = (NSDictionary *)results.lastObject;
+    
+    int count = [[resultDict valueForKey:@"count"] intValue];
+    
+    return count;
+}
 
 #pragma mark - Composers
 

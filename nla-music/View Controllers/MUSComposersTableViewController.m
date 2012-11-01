@@ -32,6 +32,7 @@
 @property NSArray *composersByName;
 @property NSArray *composersByCount;
 @property int maximumNumberByOneComposer;
+@property NSIndexPath *selectedIndexPath;
 
 @end
 
@@ -72,6 +73,7 @@
     }]];
     [self setMaximumNumberByOneComposer:[[self.composersByCount[0] valueForKey:@"count"] intValue]];
     [self setComposers:self.composersByName];
+    [super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -109,7 +111,11 @@
     if (indexPath.section == 0) {
         static NSString *CellIdentifier = @"AllCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+        if ([self.selectedIndexPath isEqual:indexPath]) {
+            [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+        } else {
+            [cell setAccessoryType:UITableViewCellAccessoryNone];
+        }
         return cell;
     } else {
         static NSString *CellIdentifier = @"ComposerCell";
@@ -119,6 +125,12 @@
         [cell setMaximumNumberOfScores:self.maximumNumberByOneComposer];
         [cell setComposerInfo:composerInformation];
         
+        if ([self.selectedIndexPath isEqual:indexPath]) {
+            [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+        } else {
+            [cell setAccessoryType:UITableViewCellAccessoryNone];
+        }
+        
         return cell;
     }
 }
@@ -127,6 +139,28 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // update the accessory views
+    if (self.selectedIndexPath!=nil) {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:self.selectedIndexPath];
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+    }
+    
+    // update the selected index path
+    [self setSelectedIndexPath:indexPath];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:self.selectedIndexPath];
+    [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+    
+    // inform the delegate
+    if (self.delegate!=nil && [self.delegate conformsToProtocol:@protocol(MUSComposersTableViewControllerDelegate)]) {
+        if (indexPath.section == 0) {
+            [self.delegate composersTableViewControllerDidSelectAllComposers:self];
+        } else {
+            NSDictionary *composerInfo = self.composers[indexPath.row];
+            [self.delegate composersTableViewController:self didSelectComposerWithInfo:composerInfo];
+        }
+    }
+    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - UI Actions
@@ -206,6 +240,13 @@
     
     [self setComposers:toOrder];
     
+    
+    // update the selected index to account for the reordering of the rows
+    if (self.selectedIndexPath.section == 1) {
+        int selectedRowInNewOrder = [toOrder indexOfObject:fromOrder[self.selectedIndexPath.row]];
+        NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:selectedRowInNewOrder inSection:1];
+        [self setSelectedIndexPath:newIndexPath];
+    }
     
     // now actually move the rows
     [self.tableView beginUpdates];

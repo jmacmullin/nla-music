@@ -28,13 +28,13 @@
 #import "NINetworkImageView.h"
 #import "MUSScoreViewController.h"
 #import "MUSTimelineViewController.h"
-#import "MUSComposersTableViewController.h"
 
 static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
 
 @interface MUSDecadeScoreCollectionViewController ()
 
 @property (nonatomic, strong) UIPopoverController *composersPopover;
+@property (nonatomic, strong) NSString *composer;
 
 @end
 
@@ -52,12 +52,20 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
 
 - (int)numberOfScoresInCollection
 {
-    return [self.dataController numberOfScoresInDecade:self.decade];
+    if (self.composer == nil) {
+        return [self.dataController numberOfScoresInDecade:self.decade];
+    } else {
+        return [self.dataController numberOfScoresInDecade:self.decade byComposer:self.composer];
+    }
 }
 
 - (Score *)scoreAtIndexPathInCollection:(NSIndexPath *)indexPath
 {
-    return [self.dataController scoreAtIndex:indexPath inDecade:self.decade];
+    if (self.composer == nil) {
+        return [self.dataController scoreAtIndex:indexPath inDecade:self.decade];
+    } else {
+        return [self.dataController scoreAtIndex:indexPath inDecade:self.decade byComposer:self.composer];
+    }
 }
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
@@ -82,6 +90,7 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
         MUSComposersTableViewController *composersTableViewController = (MUSComposersTableViewController *)navigationController.viewControllers[0];
         [composersTableViewController setDecade:self.decade];
         [composersTableViewController setDataController:self.dataController];
+        [composersTableViewController setDelegate:self];
         UIPopoverController *popoverController = ((UIStoryboardPopoverSegue *)segue).popoverController;
         [self setComposersPopover:popoverController];
         [popoverController setDelegate:self];
@@ -108,6 +117,21 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
     if (popoverController==self.composersPopover) {
         [self setComposersPopover:nil];
     }
+}
+
+
+#pragma mark - Composers Table View Controller Delegate Methods
+
+- (void)composersTableViewControllerDidSelectAllComposers:(MUSComposersTableViewController *)controller
+{
+    [self setComposer:nil];
+    [self.collectionView reloadData];
+}
+
+- (void)composersTableViewController:(MUSComposersTableViewController *)controller didSelectComposerWithInfo:(NSDictionary *)composerInfo
+{
+    [self setComposer:composerInfo[@"creator"]];
+    [self.collectionView reloadData];
 }
 
 @end

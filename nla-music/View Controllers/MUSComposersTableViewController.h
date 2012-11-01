@@ -26,6 +26,20 @@
 #import <UIKit/UIKit.h>
 #import "MUSDataController.h"
 
+@class MUSComposersTableViewController;
+
+/**
+ Classes that wish to be informed when a composer
+ is selected should implement this delegate protocol.
+ */
+@protocol MUSComposersTableViewControllerDelegate <NSObject>
+
+- (void)composersTableViewControllerDidSelectAllComposers:(MUSComposersTableViewController *)controller;
+
+- (void)composersTableViewController:(MUSComposersTableViewController *)controller didSelectComposerWithInfo:(NSDictionary *)composerInfo;
+
+@end
+
 @interface MUSComposersTableViewController : UITableViewController
 
 /**
@@ -34,6 +48,8 @@
 @property (nonatomic, strong) NSString *decade;
 
 @property (nonatomic, strong) MUSDataController *dataController;
+
+@property (nonatomic, assign) id<MUSComposersTableViewControllerDelegate> delegate;
 
 @property (nonatomic, strong) IBOutlet UISegmentedControl *orderSwitcher;
 

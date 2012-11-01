@@ -44,10 +44,14 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
 
 - (NSString *)titleString
 {
-    NSString *endOfDecade = [NSString stringWithFormat:@"%i", [self.decade intValue] + 9];
-    int count = [self.dataController numberOfScoresInDecade:self.decade];
-    NSString *title = [NSString stringWithFormat:@"%@ - %@ (%i items)", self.decade, endOfDecade, count];
-    return title;
+    if (self.composer!=nil) {
+        return [NSString stringWithFormat:@"%@ (%i items)", self.composer, [self numberOfScoresInCollection]];
+    } else {
+        NSString *endOfDecade = [NSString stringWithFormat:@"%i", [self.decade intValue] + 9];
+        int count = [self.dataController numberOfScoresInDecade:self.decade];
+        NSString *title = [NSString stringWithFormat:@"%@ - %@ (%i items)", self.decade, endOfDecade, count];
+        return title;
+    }
 }
 
 - (int)numberOfScoresInCollection
@@ -131,6 +135,7 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
 - (void)composersTableViewController:(MUSComposersTableViewController *)controller didSelectComposerWithInfo:(NSDictionary *)composerInfo
 {
     [self setComposer:composerInfo[@"creator"]];
+    [self.titleItem setTitle:[NSString stringWithFormat:@"%@ (%i items)", self.composer, [self numberOfScoresInCollection]]];
     [self.collectionView reloadData];
 }
 

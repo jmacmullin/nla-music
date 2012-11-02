@@ -44,4 +44,10 @@
     return [self.dataController scoreAtIndexInFavourites:indexPath.row];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.collectionView reloadData];
+}
+
 @end

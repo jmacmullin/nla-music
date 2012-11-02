@@ -34,6 +34,7 @@ static NSString * kScoreCellIdentifier = @"ScoreCell";
 static NSString * kOpenScoreSegueIdentifier = @"OpenScoreSegue";
 
 static float kThumbnailHorizontalInset = 51.0;
+static float kThumbnailVerticalInset = 20.0;
 static float kThumbnailHeight = 150.0;
 static float kThumbnailWidth = 121.0;
 
@@ -63,12 +64,12 @@ static float kThumbnailZoomDuration = 0.25;
     if (self.selectedScore!=nil && self.selectedCoverImageView!=nil) {
         
         UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:self.selectedScoreIndex];
-        UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-        CGPoint convertedPoint = [self.collectionView convertPoint:cell.frame.origin toView:window];
+        CGPoint convertedPoint = CGPointMake(cell.frame.origin.x, cell.frame.origin.y - self.collectionView.contentOffset.y);
+
         // allow for the space that the thumbnail is inset from the cell
-        convertedPoint = CGPointMake(convertedPoint.x + 51.0, convertedPoint.y); //TODO: lose these magic numbers!
+        convertedPoint = CGPointMake(convertedPoint.x + kThumbnailHorizontalInset, convertedPoint.y + kThumbnailVerticalInset);
         
-        [UIView animateWithDuration:0.25
+        [UIView animateWithDuration:kThumbnailZoomDuration
                          animations:^{
                              [self.selectedCoverImageView setFrame:CGRectMake(convertedPoint.x, convertedPoint.y, 121.0, 150.0)];
                          }
@@ -142,10 +143,11 @@ static float kThumbnailZoomDuration = 0.25;
     
     // convert the origin of the selected cell to window coordinates
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-    CGPoint convertedPoint = [collectionView convertPoint:cell.frame.origin toView:window];
+    CGPoint convertedPoint = CGPointMake(cell.frame.origin.x, cell.frame.origin.y - self.collectionView.contentOffset.y);
+    //[collectionView convertPoint:cell.frame.origin toView:window];
     
     // allow for the space that the thumbnail is inset from the cell
-    convertedPoint = CGPointMake(convertedPoint.x + kThumbnailHorizontalInset, convertedPoint.y);
+    convertedPoint = CGPointMake(convertedPoint.x + kThumbnailHorizontalInset, convertedPoint.y + kThumbnailVerticalInset);
     
     // create a new image view to scale to fill the view
     CGRect thumbnailFrame = CGRectMake(convertedPoint.x, convertedPoint.y, kThumbnailWidth, kThumbnailHeight);
@@ -157,7 +159,9 @@ static float kThumbnailZoomDuration = 0.25;
     // animate the image to fill the view
     [UIView animateWithDuration:kThumbnailZoomDuration
                      animations:^{
-                         [coverImageView setFrame:self.view.bounds];
+                         CGRect windowFrame = window.frame;
+                         windowFrame = [window convertRect:windowFrame toView:self.view];
+                         [coverImageView setFrame:windowFrame];
                      }
                      completion:^(BOOL finished) {
                          [coverImageView setPathToNetworkImage:[self.selectedScore.coverURL absoluteString]];

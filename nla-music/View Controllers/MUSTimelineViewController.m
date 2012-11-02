@@ -35,6 +35,7 @@ static int kNumberOfPagesInScrollView = 4;
 // published in that decade, we need a minimum number so that decades
 // with few scores are still tappable.
 static int kMinimumNumberOfScoresPerDecadeForDisplay = 200;
+static int kMaximumNumberOfScoresPerDecadeForDisplay = 1200;
 
 // the height of the favourites section
 static float kFavouritesSectionHeight = 88.0;
@@ -45,6 +46,7 @@ static NSString * kShowIndexSegueIdentifier = @"ShowIndex";
 
 @property (nonatomic, strong) MUSDataController *dataController;
 @property (nonatomic, strong) NSString *selectedDecade;
+@property (nonatomic, strong) UIScrollView *scrollview;
 
 - (void)createTimeline;
 - (void)selectDecade:(UIGestureRecognizer *)gesture;
@@ -65,10 +67,12 @@ static NSString * kShowIndexSegueIdentifier = @"ShowIndex";
 {
     [super viewDidLoad];
     [self setDataController:[MUSDataController sharedController]];
-    [self createTimeline];
     [self.favouritesSectionView setFrame:CGRectMake(0.0, 0.0, self.view.bounds.size.width, 0.0)];
     [self.favouritesSectionView setAlpha:0.0];
+    [self.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    [self createTimeline];
 }
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -107,6 +111,11 @@ static NSString * kShowIndexSegueIdentifier = @"ShowIndex";
 
 }
 
+- (void)viewWillLayoutSubviews
+{
+    [self.scrollview setContentSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height * kNumberOfPagesInScrollView)];
+}
+
 - (void)createTimeline
 {
     // draw a view for each decade whose height is relative to
@@ -118,14 +127,17 @@ static NSString * kShowIndexSegueIdentifier = @"ShowIndex";
     
     CGRect timelineFrame = self.view.bounds;
     UIScrollView *scrollview = [[UIScrollView alloc] initWithFrame:timelineFrame];
-    [scrollview setContentSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height * kNumberOfPagesInScrollView)];
+    [self setScrollview:scrollview];
+    [scrollview setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     
     NSArray *decades = [self.dataController decadesInWhichMusicWasPublished];
     for (NSDictionary *dict in decades) {
         
         if ([dict valueForKey:@"date"]!=nil) {
             int count = [[dict valueForKey:@"count"] intValue];
-            if (count > kMinimumNumberOfScoresPerDecadeForDisplay) {
+            if (count > kMaximumNumberOfScoresPerDecadeForDisplay) {
+                totalNumber += kMaximumNumberOfScoresPerDecadeForDisplay;
+            } else if (count > kMinimumNumberOfScoresPerDecadeForDisplay) {
                 totalNumber += count;
             } else {
                 totalNumber += kMinimumNumberOfScoresPerDecadeForDisplay;
@@ -143,7 +155,9 @@ static NSString * kShowIndexSegueIdentifier = @"ShowIndex";
         if (decade!=nil) {
             
             int numberInDecade = [[dict valueForKey:@"count"] intValue];
-            if (numberInDecade < kMinimumNumberOfScoresPerDecadeForDisplay) {
+            if (numberInDecade > kMaximumNumberOfScoresPerDecadeForDisplay) {
+                numberInDecade = kMaximumNumberOfScoresPerDecadeForDisplay;
+            } else if (numberInDecade < kMinimumNumberOfScoresPerDecadeForDisplay) {
                 numberInDecade = kMinimumNumberOfScoresPerDecadeForDisplay;
             }
             
@@ -152,8 +166,10 @@ static NSString * kShowIndexSegueIdentifier = @"ShowIndex";
             CGRect frame = CGRectMake(leftMargin, topMargin,  self.view.frame.size.width, height);
             
             UIView *view = [[UIView alloc] initWithFrame:frame];
+            [view setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
             
             UILabel *label = [[UILabel alloc] initWithFrame:view.bounds];
+            [label setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
             [label setTextAlignment:NSTextAlignmentCenter];
             [label setTextColor:[UIColor whiteColor]];
             [label setText:decade];
@@ -186,7 +202,9 @@ static NSString * kShowIndexSegueIdentifier = @"ShowIndex";
 
 - (void)showFavourites:(id)sender
 {
-    [self performSegueWithIdentifier:@"ShowFavourites" sender:self];
+    if (self.delegate!=nil && [self.delegate conformsToProtocol:@protocol(MUSTimelineViewControllerDelegate)]) {
+        [self.delegate timelineControllerDidSelectFavourites:self];
+    }
 }
 
 - (void)selectDecade:(UIGestureRecognizer *)gesture
@@ -194,14 +212,8 @@ static NSString * kShowIndexSegueIdentifier = @"ShowIndex";
     int indexOfSelectedDecade = gesture.view.tag; // ARGHH, I hate using tags, but not sure this is worth a custom view
     NSDictionary *decadeInfo = [self.dataController decadesInWhichMusicWasPublished][indexOfSelectedDecade];
     [self setSelectedDecade:[decadeInfo valueForKey:@"date"]];
-    [self performSegueWithIdentifier:kShowIndexSegueIdentifier sender:self];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:kShowIndexSegueIdentifier]) {
-        MUSDecadeScoreCollectionViewController *indexController = (MUSDecadeScoreCollectionViewController *)segue.destinationViewController;
-        [indexController setDecade:self.selectedDecade];
+    if (self.delegate!=nil && [self.delegate conformsToProtocol:@protocol(MUSTimelineViewControllerDelegate)]) {
+        [self.delegate timelineController:self didSelectDecade:self.selectedDecade];
     }
 }
 

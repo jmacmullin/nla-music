@@ -1,5 +1,5 @@
 //
-//  MUSTimelineViewController.h
+//  MUSSplitViewController.h
 //  nla-music
 //
 //  Copyright © 2012 Jake MacMullin
@@ -24,22 +24,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MUSTimelineViewController.h"
+#import "MUSDecadeScoreCollectionViewController.h"
 
-@class MUSTimelineViewController;
+@interface MUSSplitViewController : UIViewController <MUSTimelineViewControllerDelegate>
 
-@protocol MUSTimelineViewControllerDelegate <NSObject>
+@property (nonatomic, strong) MUSTimelineViewController *timelineController;
+@property (nonatomic, strong) MUSDecadeScoreCollectionViewController *decadeScoreCollectionController;
 
-- (void)timelineController:(MUSTimelineViewController *)controller didSelectDecade:(NSString *)decade;
-- (void)timelineControllerDidSelectFavourites:(MUSTimelineViewController *)controller;
-
-@end
-
-@interface MUSTimelineViewController : UIViewController
-
-@property (nonatomic, strong) IBOutlet UIView *favouritesSectionView;
-@property (nonatomic, strong) UIView *timelineScrollview;
-@property (nonatomic, assign) id<MUSTimelineViewControllerDelegate> delegate;
-
-- (IBAction)showFavourites:(id)sender;
+@property (nonatomic, strong) IBOutlet UIView *timelinePlaceholder;
+@property (nonatomic, strong) IBOutlet UIView *scoreCollectionPlaceholder;
 
 @end

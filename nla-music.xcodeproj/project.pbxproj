@@ -19,6 +19,7 @@
 		235F3B26162EB42C0067B5AD /* MUSDecadeScoreCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235F3B25162EB42C0067B5AD /* MUSDecadeScoreCollectionViewController.m */; };
 		237428FE163A18CE005368CC /* MUSComposersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 237428FD163A18CE005368CC /* MUSComposersTableViewController.m */; };
 		23742902163BE7EE005368CC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23742900163BE7DF005368CC /* QuartzCore.framework */; };
+		23788CE216437E3800519C8B /* MUSSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23788CE116437E3800519C8B /* MUSSplitViewController.m */; };
 		2380F797163DFBEB001286EC /* MUSComposerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2380F796163DFBEB001286EC /* MUSComposerCell.m */; };
 		23828EF41632AD5D008D6166 /* NLAOpenArchiveController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23828EF31632AD5D008D6166 /* NLAOpenArchiveController.m */; };
 		23828EFB1632AF8F008D6166 /* NLAItemInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 23828EFA1632AF8F008D6166 /* NLAItemInformation.m */; };
@@ -114,6 +115,8 @@
 		237428FC163A18CE005368CC /* MUSComposersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUSComposersTableViewController.h; path = "View Controllers/MUSComposersTableViewController.h"; sourceTree = "<group>"; };
 		237428FD163A18CE005368CC /* MUSComposersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUSComposersTableViewController.m; path = "View Controllers/MUSComposersTableViewController.m"; sourceTree = "<group>"; };
 		23742900163BE7DF005368CC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		23788CE016437E3800519C8B /* MUSSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUSSplitViewController.h; path = "View Controllers/MUSSplitViewController.h"; sourceTree = "<group>"; };
+		23788CE116437E3800519C8B /* MUSSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUSSplitViewController.m; path = "View Controllers/MUSSplitViewController.m"; sourceTree = "<group>"; };
 		2380F795163DFBEB001286EC /* MUSComposerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUSComposerCell.h; path = Views/MUSComposerCell.h; sourceTree = "<group>"; };
 		2380F796163DFBEB001286EC /* MUSComposerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUSComposerCell.m; path = Views/MUSComposerCell.m; sourceTree = "<group>"; };
 		23828EF21632AD5D008D6166 /* NLAOpenArchiveController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NLAOpenArchiveController.h; path = "Other Controllers/NLAOpenArchiveController.h"; sourceTree = "<group>"; };
@@ -588,6 +591,8 @@
 		23E175C616266DC900B5E7A3 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				23788CE016437E3800519C8B /* MUSSplitViewController.h */,
+				23788CE116437E3800519C8B /* MUSSplitViewController.m */,
 				2394E95C162824C000E5851E /* MUSTimelineViewController.h */,
 				2394E95D162824C000E5851E /* MUSTimelineViewController.m */,
 				235F3B21162EA8850067B5AD /* MUSScoreCollectionViewController.h */,
@@ -760,6 +765,7 @@
 				23828EFB1632AF8F008D6166 /* NLAItemInformation.m in Sources */,
 				237428FE163A18CE005368CC /* MUSComposersTableViewController.m in Sources */,
 				2380F797163DFBEB001286EC /* MUSComposerCell.m in Sources */,
+				23788CE216437E3800519C8B /* MUSSplitViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

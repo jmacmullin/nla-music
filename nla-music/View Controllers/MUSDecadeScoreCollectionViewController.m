@@ -46,15 +46,32 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
 
 #pragma mark - Overridden Methods
 
+- (void)viewDidLoad
+{
+    [self addObserver:self forKeyPath:@"decade" options:NSKeyValueObservingOptionNew context:NULL];
+    [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    if (self.decade == nil) {
+        [self.composersButtonItem setEnabled:NO];
+    } else {
+        [self.composersButtonItem setEnabled:YES];
+    }
+}
+
 - (NSString *)titleString
 {
     if (self.composer!=nil) {
         return [NSString stringWithFormat:@"%@ (%i items)", self.composer, [self numberOfScoresInCollection]];
-    } else {
+    } else if (self.decade!=nil) {
         NSString *endOfDecade = [NSString stringWithFormat:@"%i", [self.decade intValue] + 9];
         int count = [self.dataController numberOfScoresInDecade:self.decade];
         NSString *title = [NSString stringWithFormat:@"%@ - %@ (%i items)", self.decade, endOfDecade, count];
         return title;
+    } else {
+        return @"";
     }
 }
 
@@ -122,6 +139,10 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
     [super dismiss:sender];
 }
 
+- (void)dealloc
+{
+    [self removeObserver:self forKeyPath:@"decade"];
+}
 
 #pragma mark - Popover Methods
 
@@ -157,6 +178,24 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
     MUSComposersTableViewController *composersTableViewController = (MUSComposersTableViewController *)navigationController.topViewController;
     [self setComposersIndexPath:composersTableViewController.selectedIndexPath];
     [self setComposersSegmentIndex:composersTableViewController.selectedSegmentIndex];
+}
+
+
+#pragma mark - KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"decade"]) {
+        [self setComposer:nil];
+        [self setComposersIndexPath:nil];
+        [self setComposersSegmentIndex:0];
+
+        [self.titleItem setTitle:self.titleString];
+        [self.composersButtonItem setEnabled:YES];
+        [self.collectionView reloadData];
+        NSIndexPath *firstItemPath = [NSIndexPath indexPathForItem:0 inSection:0];
+        [self.collectionView scrollToItemAtIndexPath:firstItemPath atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
+    }
 }
 
 @end

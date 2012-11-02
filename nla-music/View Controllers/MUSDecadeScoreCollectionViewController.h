@@ -34,4 +34,6 @@
  */
 @property (nonatomic, strong) NSString *decade;
 
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *composersButtonItem;
+
 @end

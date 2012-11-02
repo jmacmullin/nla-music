@@ -51,6 +51,10 @@
 
 @property (nonatomic, assign) id<MUSComposersTableViewControllerDelegate> delegate;
 
+@property (nonatomic) NSInteger selectedSegmentIndex;
+@property (nonatomic, strong) NSIndexPath *selectedIndexPath;
+
+
 @property (nonatomic, strong) IBOutlet UISegmentedControl *orderSwitcher;
 
 - (IBAction)switchSortOrder:(id)sender;

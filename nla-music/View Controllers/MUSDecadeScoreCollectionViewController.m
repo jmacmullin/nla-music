@@ -34,7 +34,11 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
 @interface MUSDecadeScoreCollectionViewController ()
 
 @property (nonatomic, strong) UIPopoverController *composersPopover;
+@property (nonatomic) NSInteger composersSegmentIndex;
+@property (nonatomic, strong) NSIndexPath *composersIndexPath;
 @property (nonatomic, strong) NSString *composer;
+
+- (void)saveSelections:(UIPopoverController *)popoverController;
 
 @end
 
@@ -74,11 +78,11 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-    if ([identifier isEqualToString:kShowComposersSegueIdentifier] && self.composersPopover!=nil) {
+    if ([identifier isEqualToString:kShowComposersSegueIdentifier] && self.composersPopover.isPopoverVisible == YES) {
         // Don't show the composers popover if it is already visible,
         // but dismiss it instead
+        [self saveSelections:self.composersPopover];
         [self.composersPopover dismissPopoverAnimated:YES];
-        [self setComposersPopover:nil];
         return NO;
     }
     
@@ -98,6 +102,10 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
         UIPopoverController *popoverController = ((UIStoryboardPopoverSegue *)segue).popoverController;
         [self setComposersPopover:popoverController];
         [popoverController setDelegate:self];
+        
+        // restore the previous selections
+        [composersTableViewController setSelectedSegmentIndex:self.composersSegmentIndex];
+        [composersTableViewController setSelectedIndexPath:self.composersIndexPath];
     }
 
 }
@@ -106,9 +114,10 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
 {
     // dismiss the popover if it is visible
     if (self.composersPopover!=nil) {
+        [self saveSelections:self.composersPopover];
         [self.composersPopover dismissPopoverAnimated:YES];
-        [self setComposersPopover:nil];
     }
+    [self setComposersPopover:nil];
     
     [super dismiss:sender];
 }
@@ -118,9 +127,7 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
 
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
-    if (popoverController==self.composersPopover) {
-        [self setComposersPopover:nil];
-    }
+    [self saveSelections:popoverController];
 }
 
 
@@ -129,14 +136,27 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
 - (void)composersTableViewControllerDidSelectAllComposers:(MUSComposersTableViewController *)controller
 {
     [self setComposer:nil];
+    [self.titleItem setTitle:[self titleString]];
     [self.collectionView reloadData];
 }
 
 - (void)composersTableViewController:(MUSComposersTableViewController *)controller didSelectComposerWithInfo:(NSDictionary *)composerInfo
 {
     [self setComposer:composerInfo[@"creator"]];
-    [self.titleItem setTitle:[NSString stringWithFormat:@"%@ (%i items)", self.composer, [self numberOfScoresInCollection]]];
+    [self.titleItem setTitle:[self titleString]];
     [self.collectionView reloadData];
+}
+
+
+#pragma mark - Private Methods
+
+- (void)saveSelections:(UIPopoverController *)popoverController
+{
+    // remember the selections (so we can restore them)
+    UINavigationController *navigationController = (UINavigationController *)popoverController.contentViewController;
+    MUSComposersTableViewController *composersTableViewController = (MUSComposersTableViewController *)navigationController.topViewController;
+    [self setComposersIndexPath:composersTableViewController.selectedIndexPath];
+    [self setComposersSegmentIndex:composersTableViewController.selectedSegmentIndex];
 }
 
 @end

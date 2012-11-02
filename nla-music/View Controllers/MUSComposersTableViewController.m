@@ -32,7 +32,6 @@
 @property NSArray *composersByName;
 @property NSArray *composersByCount;
 @property int maximumNumberByOneComposer;
-@property NSIndexPath *selectedIndexPath;
 
 @end
 
@@ -49,11 +48,6 @@
 - (void)viewDidLoad
 {
     [self.navigationItem setTitleView:self.orderSwitcher];
-    [super viewDidLoad];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
     [self setComposersByName:[self.dataController composersWithMusicPublishedIn:self.decade]];
     [self setComposersByCount:[self.composersByName
                                sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
@@ -70,17 +64,33 @@
                                    } else {
                                        return NSOrderedDescending;
                                    }
-    }]];
+                               }]];
     [self setMaximumNumberByOneComposer:[[self.composersByCount[0] valueForKey:@"count"] intValue]];
     [self setComposers:self.composersByName];
+    [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
+    
+    // Restore the selections here, before the
+    // table view delegate methods are called
+    
+    [self.orderSwitcher setSelectedSegmentIndex:self.selectedSegmentIndex];
+    if (self.orderSwitcher.selectedSegmentIndex == 0) {
+        [self setComposers:self.composersByName];
+    } else {
+        [self setComposers:self.composersByCount];
+    }
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     if (self.composers.count < 17.0) {
         [self setContentSizeForViewInPopover:CGSizeMake(360.0, (self.composers.count * 44.0) + 44.0)];
-    }   
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -167,6 +177,8 @@
 
 - (IBAction)switchSortOrder:(id)sender
 {
+    [self setSelectedSegmentIndex:self.orderSwitcher.selectedSegmentIndex];
+    
     NSMutableArray *rowsToMove = [NSMutableArray array];
     
     NSArray *fromOrder;

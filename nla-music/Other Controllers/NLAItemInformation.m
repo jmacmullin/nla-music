@@ -27,4 +27,14 @@
 
 @implementation NLAItemInformation
 
+- (NSString *)description {
+    NSString *originalDescription = _description;
+    NSError *error;
+    NSRegularExpression *regExp = [NSRegularExpression regularExpressionWithPattern:@"\\s*Also available in (an electronic|electronic) version via the internet at:* http://nla.gov.au/\\S+[;.]"
+                                                                            options:NSRegularExpressionCaseInsensitive
+                                                                              error:&error];
+    NSString *modifiedDescriptipn = [regExp stringByReplacingMatchesInString:originalDescription options:0 range:NSMakeRange(0, originalDescription.length) withTemplate:@""];
+    return modifiedDescriptipn;
+}
+
 @end

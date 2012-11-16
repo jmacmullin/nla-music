@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="12C60" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="zGs-vs-751">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="zGs-vs-751">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
         <!--Decade Score Collection View Controller-->
@@ -227,7 +227,7 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" text="view on the web" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J3H-ta-exE">
+                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" text="view on the web" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J3H-ta-exE">
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="152" id="FST-q0-th1"/>
@@ -255,6 +255,7 @@
                                     <constraint firstItem="Yit-un-qc3" firstAttribute="leading" secondItem="ska-ED-TIC" secondAttribute="leading" constant="44" id="Fpz-Wl-isR"/>
                                     <constraint firstItem="7Wt-DZ-CwL" firstAttribute="top" secondItem="TsF-SP-49L" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="Hza-pn-fMw"/>
                                     <constraint firstItem="80n-rD-vrl" firstAttribute="bottom" secondItem="hWx-v9-CaT" secondAttribute="bottom" type="default" id="K4L-5E-baV"/>
+                                    <constraint firstItem="J3H-ta-exE" firstAttribute="leading" secondItem="ska-ED-TIC" secondAttribute="leading" constant="45" id="LfQ-gy-DU0"/>
                                     <constraint firstItem="80n-rD-vrl" firstAttribute="top" secondItem="hWx-v9-CaT" secondAttribute="top" type="default" id="Lgr-8x-33R"/>
                                     <constraint firstItem="hWx-v9-CaT" firstAttribute="baseline" secondItem="80n-rD-vrl" secondAttribute="baseline" type="default" id="Lhe-6a-k1e"/>
                                     <constraint firstItem="Yit-un-qc3" firstAttribute="top" secondItem="ska-ED-TIC" secondAttribute="top" constant="20" symbolic="YES" type="user" id="NLE-Lw-WZ4"/>
@@ -263,11 +264,10 @@
                                     <constraint firstItem="gbx-uL-K6c" firstAttribute="top" secondItem="ska-ED-TIC" secondAttribute="top" constant="57" type="user" id="RGf-r6-M5e"/>
                                     <constraint firstItem="vir-xR-tek" firstAttribute="baseline" secondItem="7Wt-DZ-CwL" secondAttribute="baseline" priority="1" type="user" id="RQo-aP-99c"/>
                                     <constraint firstItem="h6r-Xf-vfw" firstAttribute="leading" secondItem="ska-ED-TIC" secondAttribute="leading" constant="365" id="Rtd-ku-gww"/>
+                                    <constraint firstAttribute="trailing" secondItem="gbx-uL-K6c" secondAttribute="trailing" constant="64" id="TAm-Ps-DcX"/>
                                     <constraint firstItem="gbx-uL-K6c" firstAttribute="baseline" secondItem="TsF-SP-49L" secondAttribute="baseline" priority="1" type="user" id="UCV-Fy-4Et"/>
                                     <constraint firstItem="vir-xR-tek" firstAttribute="top" secondItem="ska-ED-TIC" secondAttribute="top" constant="86" type="user" id="WWY-3f-nCE"/>
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7Wt-DZ-CwL" secondAttribute="bottom" priority="965" constant="20" type="user" id="ehu-WU-UjB"/>
-                                    <constraint firstItem="J3H-ta-exE" firstAttribute="leading" secondItem="vir-xR-tek" secondAttribute="leading" type="default" id="fG5-Zf-9ka"/>
-                                    <constraint firstAttribute="trailing" secondItem="J3H-ta-exE" secondAttribute="trailing" constant="56" id="fKF-My-Mac"/>
                                     <constraint firstItem="TsF-SP-49L" firstAttribute="leading" secondItem="Yit-un-qc3" secondAttribute="leading" type="default" id="oL1-04-sRj"/>
                                     <constraint firstItem="TsF-SP-49L" firstAttribute="trailing" secondItem="Yit-un-qc3" secondAttribute="trailing" type="default" id="rqw-h6-2oq"/>
                                     <constraint firstAttribute="trailing" secondItem="hWx-v9-CaT" secondAttribute="trailing" constant="96" id="tYO-Hn-qXy"/>
@@ -283,6 +283,32 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1h0-wv-m4y" userLabel="Light Info Button">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="toggleChrome:" destination="ZP9-gQ-okS" eventType="touchUpInside" id="1o7-va-JcC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Luy-HN-N2L" userLabel="Dark Info Button">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="toggleChrome:" destination="ZP9-gQ-okS" eventType="touchUpInside" id="S3c-SX-LLc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -291,9 +317,13 @@
                             <constraint firstItem="EAW-TB-6fy" firstAttribute="top" secondItem="mDz-8s-Yt4" secondAttribute="top" type="default" id="68H-be-XOA"/>
                             <constraint firstItem="xiF-fe-9Cg" firstAttribute="top" secondItem="mDz-8s-Yt4" secondAttribute="top" type="default" id="DKC-Ex-sSH"/>
                             <constraint firstItem="ska-ED-TIC" firstAttribute="trailing" secondItem="mDz-8s-Yt4" secondAttribute="trailing" type="default" id="GbI-5b-3PB"/>
+                            <constraint firstItem="Luy-HN-N2L" firstAttribute="top" secondItem="1h0-wv-m4y" secondAttribute="top" type="default" id="Gvu-jz-0ZI"/>
                             <constraint firstItem="xiF-fe-9Cg" firstAttribute="leading" secondItem="mDz-8s-Yt4" secondAttribute="leading" type="default" id="Q8R-BR-rf8"/>
+                            <constraint firstItem="1h0-wv-m4y" firstAttribute="leading" secondItem="Luy-HN-N2L" secondAttribute="leading" type="default" id="VqN-Gu-OWl"/>
+                            <constraint firstAttribute="bottom" secondItem="Luy-HN-N2L" secondAttribute="bottom" constant="46" id="cGk-Y1-WFb"/>
                             <constraint firstItem="ska-ED-TIC" firstAttribute="leading" secondItem="mDz-8s-Yt4" secondAttribute="leading" type="default" id="crg-se-cbd"/>
                             <constraint firstItem="EAW-TB-6fy" firstAttribute="trailing" secondItem="mDz-8s-Yt4" secondAttribute="trailing" type="default" id="gWl-hs-3FX"/>
+                            <constraint firstAttribute="trailing" secondItem="1h0-wv-m4y" secondAttribute="trailing" constant="58" id="hs9-OG-bnb"/>
                             <constraint firstItem="xiF-fe-9Cg" firstAttribute="trailing" secondItem="mDz-8s-Yt4" secondAttribute="trailing" type="default" id="iDr-XD-Xj2"/>
                             <constraint firstItem="ska-ED-TIC" firstAttribute="bottom" secondItem="mDz-8s-Yt4" secondAttribute="bottom" type="user" id="rRV-ri-QC1"/>
                             <constraint firstItem="EAW-TB-6fy" firstAttribute="leading" secondItem="mDz-8s-Yt4" secondAttribute="leading" type="default" id="rxD-MW-a0A"/>
@@ -302,9 +332,11 @@
                     <connections>
                         <outlet property="additionalInformationView" destination="ska-ED-TIC" id="GpB-Li-hU2"/>
                         <outlet property="creatorLabel" destination="TsF-SP-49L" id="xq6-7n-vpC"/>
+                        <outlet property="darkInfoButton" destination="Luy-HN-N2L" id="aFk-9r-qgD"/>
                         <outlet property="dateLabel" destination="gbx-uL-K6c" id="6RP-WZ-ELK"/>
                         <outlet property="descriptionLabel" destination="7Wt-DZ-CwL" id="i96-gh-v2f"/>
                         <outlet property="favouriteButton" destination="hWx-v9-CaT" id="2Ke-jI-aR7"/>
+                        <outlet property="lightInfoButton" destination="1h0-wv-m4y" id="RvH-y5-EJv"/>
                         <outlet property="publisherLabel" destination="vir-xR-tek" id="6cX-Py-y4U"/>
                         <outlet property="scorePageScrollView" destination="xiF-fe-9Cg" id="zy6-Xi-4BM"/>
                         <outlet property="spinny" destination="h6r-Xf-vfw" id="Fvf-vJ-w7c"/>
@@ -578,6 +610,103 @@
         <image name="fav_icon.png" width="23" height="23"/>
         <image name="share_icon.png" width="23" height="18"/>
     </resources>
+    <classes>
+        <class className="MUSComposerCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MUSComposerCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="composerLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="countLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="MUSComposersTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MUSComposersTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="switchSortOrder:"/>
+                <relationship kind="outlet" name="orderSwitcher" candidateClass="UISegmentedControl"/>
+            </relationships>
+        </class>
+        <class className="MUSDecadeScoreCollectionViewController" superclassName="MUSScoreCollectionViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MUSDecadeScoreCollectionViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="composersButtonItem" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="MUSFavouriteScoreCollectionViewController" superclassName="MUSScoreCollectionViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MUSFavouriteScoreCollectionViewController.h"/>
+        </class>
+        <class className="MUSScoreCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MUSScoreCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="imageView" candidateClass="NINetworkImageView"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="MUSScoreCollectionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MUSScoreCollectionViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="dismiss:"/>
+                <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="titleItem" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="MUSScoreViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MUSScoreViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="dismiss:"/>
+                <relationship kind="action" name="share:"/>
+                <relationship kind="action" name="toggleChrome:"/>
+                <relationship kind="action" name="toggleFavourite:"/>
+                <relationship kind="action" name="viewOnTheWeb:"/>
+                <relationship kind="outlet" name="additionalInformationView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="creatorLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="darkInfoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="favouriteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="lightInfoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="publisherLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scorePageScrollView" candidateClass="NIPhotoAlbumScrollView"/>
+                <relationship kind="outlet" name="spinny" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="toolBar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="MUSSplitViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MUSSplitViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="scoreCollectionPlaceholder" candidateClass="UIView"/>
+                <relationship kind="outlet" name="timelinePlaceholder" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="MUSTimelineViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MUSTimelineViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="showFavourites:"/>
+                <relationship kind="outlet" name="favouritesSectionView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="NINetworkImageView" superclassName="UIImageView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NINetworkImageView.h"/>
+        </class>
+        <class className="NIPagingScrollView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NIPagingScrollView.h"/>
+        </class>
+        <class className="NIPhotoAlbumScrollView" superclassName="NIPagingScrollView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NIPhotoAlbumScrollView.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

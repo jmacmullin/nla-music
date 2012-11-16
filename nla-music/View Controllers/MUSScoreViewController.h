@@ -32,6 +32,8 @@
 
 @property (nonatomic, strong) UIImage *initialImage;
 @property (nonatomic, strong) IBOutlet UIToolbar *toolBar;
+@property (nonatomic, strong) IBOutlet UIButton *darkInfoButton;
+@property (nonatomic, strong) IBOutlet UIButton *lightInfoButton;
 @property (nonatomic, strong) IBOutlet NIPhotoAlbumScrollView *scorePageScrollView;
 
 @property (nonatomic, strong) IBOutlet UIView *additionalInformationView;
@@ -48,5 +50,10 @@
 - (IBAction)share:(id)sender;
 - (IBAction)toggleFavourite:(id)sender;
 - (IBAction)viewOnTheWeb:(id)sender;
+/**
+ Toggle the visibility of the chrome.
+ */
+- (IBAction)toggleChrome:(id)sender;
+
 
 @end

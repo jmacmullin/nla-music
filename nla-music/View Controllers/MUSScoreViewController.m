@@ -34,11 +34,6 @@
 @interface MUSScoreViewController ()
 
 /**
- Toggle the visibility of the chrome.
- */
-- (void)toggleChrome:(id)sender;
-
-/**
  Hide the chrome.
  */
 - (void)hideChrome;
@@ -208,6 +203,8 @@
     [UIView animateWithDuration:0.5 animations:^{
         [self.toolBar setAlpha:0.0];
         [self.additionalInformationView setAlpha:0.0];
+        [self.darkInfoButton setAlpha:1.0];
+        [self.lightInfoButton setAlpha:0.0];
     }];
 }
 
@@ -215,9 +212,9 @@
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [UIView animateWithDuration:0.25 animations:^{
         [self.toolBar setAlpha:1.0];
-        if ([self.scorePageScrollView hasPrevious] == NO) {
-            [self.additionalInformationView setAlpha:1.0];
-        }
+        [self.darkInfoButton setAlpha:0.0];
+        [self.lightInfoButton setAlpha:1.0];
+        [self.additionalInformationView setAlpha:1.0];
     }];
     
     // schedule it to be hidden again after 4 secs

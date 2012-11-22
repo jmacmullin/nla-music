@@ -14,6 +14,8 @@
 		2304156A162D5FDC001CC73B /* fav_icon_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23041566162D5FDC001CC73B /* fav_icon_selected@2x.png */; };
 		2304156B162D5FDC001CC73B /* fav_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 23041567162D5FDC001CC73B /* fav_icon.png */; };
 		2304156C162D5FDC001CC73B /* fav_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23041568162D5FDC001CC73B /* fav_icon@2x.png */; };
+		230F3E93165ED97800D5BBD3 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 230F3E91165ED95F00D5BBD3 /* MobileCoreServices.framework */; };
+		230F3E94165ED97800D5BBD3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 230F3E8E165ED95900D5BBD3 /* SystemConfiguration.framework */; };
 		235F3B1F162EA8530067B5AD /* MUSFavouriteScoreCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235F3B1E162EA8530067B5AD /* MUSFavouriteScoreCollectionViewController.m */; };
 		235F3B23162EA8850067B5AD /* MUSScoreCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235F3B22162EA8850067B5AD /* MUSScoreCollectionViewController.m */; };
 		235F3B26162EB42C0067B5AD /* MUSDecadeScoreCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235F3B25162EB42C0067B5AD /* MUSDecadeScoreCollectionViewController.m */; };
@@ -106,6 +108,8 @@
 		23041566162D5FDC001CC73B /* fav_icon_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fav_icon_selected@2x.png"; sourceTree = "<group>"; };
 		23041567162D5FDC001CC73B /* fav_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fav_icon.png; sourceTree = "<group>"; };
 		23041568162D5FDC001CC73B /* fav_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fav_icon@2x.png"; sourceTree = "<group>"; };
+		230F3E8E165ED95900D5BBD3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		230F3E91165ED95F00D5BBD3 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		235F3B1D162EA8530067B5AD /* MUSFavouriteScoreCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUSFavouriteScoreCollectionViewController.h; path = "View Controllers/MUSFavouriteScoreCollectionViewController.h"; sourceTree = "<group>"; };
 		235F3B1E162EA8530067B5AD /* MUSFavouriteScoreCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUSFavouriteScoreCollectionViewController.m; path = "View Controllers/MUSFavouriteScoreCollectionViewController.m"; sourceTree = "<group>"; };
 		235F3B21162EA8850067B5AD /* MUSScoreCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUSScoreCollectionViewController.h; path = "View Controllers/MUSScoreCollectionViewController.h"; sourceTree = "<group>"; };
@@ -264,6 +268,8 @@
 				23E175D21626744D00B5E7A3 /* CoreData.framework in Frameworks */,
 				2304155C162D02EF001CC73B /* Twitter.framework in Frameworks */,
 				23742902163BE7EE005368CC /* QuartzCore.framework in Frameworks */,
+				230F3E93165ED97800D5BBD3 /* MobileCoreServices.framework in Frameworks */,
+				230F3E94165ED97800D5BBD3 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,6 +560,8 @@
 				23E175D01626744200B5E7A3 /* CoreData.framework */,
 				23041559162D02E7001CC73B /* Twitter.framework */,
 				23742900163BE7DF005368CC /* QuartzCore.framework */,
+				230F3E91165ED95F00D5BBD3 /* MobileCoreServices.framework */,
+				230F3E8E165ED95900D5BBD3 /* SystemConfiguration.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

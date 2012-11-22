@@ -103,6 +103,10 @@
     [self.dateLabel setText:nil];
     [self.spinny startAnimating];
     
+    [self.scrubberView setDataSource:self];
+    [self.scrubberView setDelegate:self];
+    [self.scrubberView reloadData];
+    
     // Request the additional information
     [[NLAOpenArchiveController sharedController] requestDetailsForItemWithIdentifier:self.score.identifier
                                                                              success:^(NLAItemInformation *itemInfo) {
@@ -284,6 +288,12 @@
     }
 }
 
+- (void)pagingScrollViewDidChangePages:(NIPagingScrollView *)pagingScrollView
+{
+    int indexOfSelectedPage = self.scorePageScrollView.centerPageIndex;
+    [self.scrubberView setSelectedPhotoIndex:indexOfSelectedPage];
+}
+
 
 #pragma mark - KVO
 
@@ -303,6 +313,45 @@
     }
 }
 
+
+#pragma mark - Photo Scrubber View Data Source
+
+- (NSInteger)numberOfPhotosInScrubberView:(NIPhotoScrubberView *)photoScrubberView
+{
+    return self.score.pages.count;
+}
+
+- (UIImage *)photoScrubberView:(NIPhotoScrubberView *)photoScrubberView thumbnailAtIndex:(NSInteger)thumbnailIndex
+{
+    // make an async request for the thumbnail then call didLoadThumbnail:atIndex:
+    
+    // request the high resolution image
+    NSURL *pageUrl = ((Page *)self.score.orderedPages[thumbnailIndex]).thumbnailURL;
+    NSURLRequest *imageRequest = [NSURLRequest requestWithURL:pageUrl];
+    AFImageRequestOperation *imageRequestOperation;
+    
+    void (^successBlock)(UIImage *);
+    successBlock = ^(UIImage *image) {
+        dispatch_async(dispatch_get_main_queue(),
+                       ^{
+                           [self.scrubberView didLoadThumbnail:image atIndex:thumbnailIndex];
+                       });
+    };
+    
+    imageRequestOperation = [AFImageRequestOperation imageRequestOperationWithRequest:imageRequest
+                                                                              success:successBlock];
+    [self.imageDownloadQueue addOperation:imageRequestOperation];
+    
+    return nil;
+}
+
+
+#pragma mark - Photo Scrubber Delegate Methods
+
+- (void)photoScrubberViewDidChangeSelection:(NIPhotoScrubberView *)photoScrubberView
+{
+    [self.scorePageScrollView moveToPageAtIndex:self.scrubberView.selectedPhotoIndex animated:NO];
+}
 
 - (void)dealloc
 {

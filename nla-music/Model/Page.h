@@ -24,6 +24,7 @@
 
 @interface Page : _Page {}
 
+@property (nonatomic, readonly) NSURL *thumbnailURL;
 @property (nonatomic, readonly) NSURL *imageURL;
 
 @end

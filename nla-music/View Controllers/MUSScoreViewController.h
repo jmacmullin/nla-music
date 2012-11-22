@@ -26,9 +26,10 @@
 #import <UIKit/UIKit.h>
 #import "NINetworkImageView.h"
 #import "NIPhotoAlbumScrollView.h"
+#import "NIPhotoScrubberView.h"
 #import "Score.h"
 
-@interface MUSScoreViewController : UIViewController <NIPhotoAlbumScrollViewDataSource, NIPhotoAlbumScrollViewDelegate, UIPopoverControllerDelegate>
+@interface MUSScoreViewController : UIViewController <NIPhotoAlbumScrollViewDataSource, NIPhotoAlbumScrollViewDelegate, UIPopoverControllerDelegate, NIPhotoScrubberViewDataSource, NIPhotoScrubberViewDelegate>
 
 @property (nonatomic, strong) UIImage *initialImage;
 @property (nonatomic, strong) IBOutlet UIToolbar *toolBar;
@@ -44,6 +45,10 @@
 @property (nonatomic, strong) IBOutlet UIButton *favouriteButton;
 @property (nonatomic, strong) IBOutlet UILabel *dateLabel;
 @property (nonatomic, strong) IBOutlet UILabel *publisherLabel;
+
+@property (nonatomic, strong) IBOutlet NIPhotoScrubberView *scrubberView;
+
+
 @property (nonatomic, strong) Score *score;
 
 - (IBAction)dismiss:(id)sender;

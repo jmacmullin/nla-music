@@ -241,6 +241,9 @@
                                         </connections>
                                     </label>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="h6r-Xf-vfw"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZGy-8J-00j" customClass="NIPhotoScrubberView">
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -248,6 +251,7 @@
                                     <constraint firstAttribute="trailing" secondItem="80n-rD-vrl" secondAttribute="trailing" constant="49" id="1eR-uo-U8W"/>
                                     <constraint firstItem="gbx-uL-K6c" firstAttribute="top" secondItem="TsF-SP-49L" secondAttribute="top" priority="1" type="user" id="1r8-7f-sJB"/>
                                     <constraint firstItem="TsF-SP-49L" firstAttribute="top" secondItem="Yit-un-qc3" secondAttribute="bottom" constant="8" type="user" id="2ue-Y7-ab0"/>
+                                    <constraint firstAttribute="bottom" secondItem="J3H-ta-exE" secondAttribute="bottom" constant="85" id="58Q-RE-LRD"/>
                                     <constraint firstItem="hWx-v9-CaT" firstAttribute="top" secondItem="ska-ED-TIC" secondAttribute="top" constant="10" id="7dA-OW-oxR"/>
                                     <constraint firstItem="vir-xR-tek" firstAttribute="top" secondItem="7Wt-DZ-CwL" secondAttribute="top" priority="1" type="user" id="A1F-5t-3PK"/>
                                     <constraint firstItem="7Wt-DZ-CwL" firstAttribute="trailing" secondItem="TsF-SP-49L" secondAttribute="trailing" type="default" id="BuB-Af-ngI"/>
@@ -267,11 +271,14 @@
                                     <constraint firstAttribute="trailing" secondItem="gbx-uL-K6c" secondAttribute="trailing" constant="64" id="TAm-Ps-DcX"/>
                                     <constraint firstItem="gbx-uL-K6c" firstAttribute="baseline" secondItem="TsF-SP-49L" secondAttribute="baseline" priority="1" type="user" id="UCV-Fy-4Et"/>
                                     <constraint firstItem="vir-xR-tek" firstAttribute="top" secondItem="ska-ED-TIC" secondAttribute="top" constant="86" type="user" id="WWY-3f-nCE"/>
-                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7Wt-DZ-CwL" secondAttribute="bottom" priority="965" constant="20" type="user" id="ehu-WU-UjB"/>
+                                    <constraint firstItem="ZGy-8J-00j" firstAttribute="trailing" secondItem="ska-ED-TIC" secondAttribute="trailing" type="default" id="cZv-2E-5u4"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7Wt-DZ-CwL" secondAttribute="bottom" priority="965" constant="100" type="user" id="ehu-WU-UjB"/>
+                                    <constraint firstItem="ZGy-8J-00j" firstAttribute="top" secondItem="ska-ED-TIC" secondAttribute="top" constant="259" id="gMo-Iz-Ol8"/>
+                                    <constraint firstItem="ZGy-8J-00j" firstAttribute="leading" secondItem="ska-ED-TIC" secondAttribute="leading" type="default" id="jg0-3v-Wrf"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZGy-8J-00j" secondAttribute="bottom" constant="-1" id="lYB-2i-HlJ"/>
                                     <constraint firstItem="TsF-SP-49L" firstAttribute="leading" secondItem="Yit-un-qc3" secondAttribute="leading" type="default" id="oL1-04-sRj"/>
                                     <constraint firstItem="TsF-SP-49L" firstAttribute="trailing" secondItem="Yit-un-qc3" secondAttribute="trailing" type="default" id="rqw-h6-2oq"/>
                                     <constraint firstAttribute="trailing" secondItem="hWx-v9-CaT" secondAttribute="trailing" constant="96" id="tYO-Hn-qXy"/>
-                                    <constraint firstAttribute="bottom" secondItem="J3H-ta-exE" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="vjT-GD-aqd"/>
                                 </constraints>
                             </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" alpha="0.0" contentMode="scaleToFill" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="EAW-TB-6fy">
@@ -318,15 +325,15 @@
                             <constraint firstItem="xiF-fe-9Cg" firstAttribute="top" secondItem="mDz-8s-Yt4" secondAttribute="top" type="default" id="DKC-Ex-sSH"/>
                             <constraint firstItem="ska-ED-TIC" firstAttribute="trailing" secondItem="mDz-8s-Yt4" secondAttribute="trailing" type="default" id="GbI-5b-3PB"/>
                             <constraint firstItem="Luy-HN-N2L" firstAttribute="top" secondItem="1h0-wv-m4y" secondAttribute="top" type="default" id="Gvu-jz-0ZI"/>
+                            <constraint firstAttribute="bottom" secondItem="1h0-wv-m4y" secondAttribute="bottom" constant="86" id="IaZ-bN-og7"/>
                             <constraint firstItem="xiF-fe-9Cg" firstAttribute="leading" secondItem="mDz-8s-Yt4" secondAttribute="leading" type="default" id="Q8R-BR-rf8"/>
                             <constraint firstItem="1h0-wv-m4y" firstAttribute="leading" secondItem="Luy-HN-N2L" secondAttribute="leading" type="default" id="VqN-Gu-OWl"/>
-                            <constraint firstAttribute="bottom" secondItem="Luy-HN-N2L" secondAttribute="bottom" constant="46" id="cGk-Y1-WFb"/>
                             <constraint firstItem="ska-ED-TIC" firstAttribute="leading" secondItem="mDz-8s-Yt4" secondAttribute="leading" type="default" id="crg-se-cbd"/>
                             <constraint firstItem="EAW-TB-6fy" firstAttribute="trailing" secondItem="mDz-8s-Yt4" secondAttribute="trailing" type="default" id="gWl-hs-3FX"/>
-                            <constraint firstAttribute="trailing" secondItem="1h0-wv-m4y" secondAttribute="trailing" constant="58" id="hs9-OG-bnb"/>
                             <constraint firstItem="xiF-fe-9Cg" firstAttribute="trailing" secondItem="mDz-8s-Yt4" secondAttribute="trailing" type="default" id="iDr-XD-Xj2"/>
                             <constraint firstItem="ska-ED-TIC" firstAttribute="bottom" secondItem="mDz-8s-Yt4" secondAttribute="bottom" type="user" id="rRV-ri-QC1"/>
                             <constraint firstItem="EAW-TB-6fy" firstAttribute="leading" secondItem="mDz-8s-Yt4" secondAttribute="leading" type="default" id="rxD-MW-a0A"/>
+                            <constraint firstAttribute="trailing" secondItem="Luy-HN-N2L" secondAttribute="trailing" constant="58" id="zzf-6W-T02"/>
                         </constraints>
                     </view>
                     <connections>
@@ -339,6 +346,7 @@
                         <outlet property="lightInfoButton" destination="1h0-wv-m4y" id="RvH-y5-EJv"/>
                         <outlet property="publisherLabel" destination="vir-xR-tek" id="6cX-Py-y4U"/>
                         <outlet property="scorePageScrollView" destination="xiF-fe-9Cg" id="zy6-Xi-4BM"/>
+                        <outlet property="scrubberView" destination="ZGy-8J-00j" id="BUn-aR-u8i"/>
                         <outlet property="spinny" destination="h6r-Xf-vfw" id="Fvf-vJ-w7c"/>
                         <outlet property="titleLabel" destination="Yit-un-qc3" id="hAc-qr-8f8"/>
                         <outlet property="toolBar" destination="EAW-TB-6fy" id="nMg-rc-nCV"/>
@@ -666,6 +674,7 @@
                 <relationship kind="outlet" name="lightInfoButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="publisherLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="scorePageScrollView" candidateClass="NIPhotoAlbumScrollView"/>
+                <relationship kind="outlet" name="scrubberView" candidateClass="NIPhotoScrubberView"/>
                 <relationship kind="outlet" name="spinny" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="toolBar" candidateClass="UIToolbar"/>
@@ -693,6 +702,9 @@
         </class>
         <class className="NIPhotoAlbumScrollView" superclassName="NIPagingScrollView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NIPhotoAlbumScrollView.h"/>
+        </class>
+        <class className="NIPhotoScrubberView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NIPhotoScrubberView.h"/>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>

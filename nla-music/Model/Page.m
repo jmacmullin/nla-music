@@ -29,4 +29,9 @@
     return [NSURL URLWithString:[NSString stringWithFormat:@"http://nla.gov.au/%@-e", [self identifier]]];
 }
 
+- (NSURL *)thumbnailURL {
+    return [NSURL URLWithString:[NSString stringWithFormat:@"http://nla.gov.au/%@-t", [self identifier]]];
+}
+
+
 @end

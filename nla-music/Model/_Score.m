@@ -8,6 +8,7 @@ const struct ScoreAttributes ScoreAttributes = {
 	.date = @"date",
 	.identifier = @"identifier",
 	.publisher = @"publisher",
+	.sortTitle = @"sortTitle",
 	.title = @"title",
 };
 
@@ -74,6 +75,13 @@ const struct ScoreFetchedProperties ScoreFetchedProperties = {
 
 
 @dynamic publisher;
+
+
+
+
+
+
+@dynamic sortTitle;
 
 
 

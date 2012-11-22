@@ -9,6 +9,7 @@ extern const struct ScoreAttributes {
 	__unsafe_unretained NSString *date;
 	__unsafe_unretained NSString *identifier;
 	__unsafe_unretained NSString *publisher;
+	__unsafe_unretained NSString *sortTitle;
 	__unsafe_unretained NSString *title;
 } ScoreAttributes;
 
@@ -21,6 +22,7 @@ extern const struct ScoreFetchedProperties {
 } ScoreFetchedProperties;
 
 @class Page;
+
 
 
 
@@ -68,6 +70,14 @@ extern const struct ScoreFetchedProperties {
 
 
 //- (BOOL)validatePublisher:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, strong) NSString* sortTitle;
+
+
+//- (BOOL)validateSortTitle:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -125,6 +135,12 @@ extern const struct ScoreFetchedProperties {
 
 - (NSString*)primitivePublisher;
 - (void)setPrimitivePublisher:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveSortTitle;
+- (void)setPrimitiveSortTitle:(NSString*)value;
 
 
 

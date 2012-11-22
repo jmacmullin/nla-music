@@ -69,7 +69,7 @@ static NSString * kFavouritesKey = @"favourite-scores";
     NSFetchRequest *scoresFetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Score"];
     
     // Sort order
-    NSSortDescriptor *titleSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
+    NSSortDescriptor *titleSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sortTitle" ascending:YES];
     [scoresFetchRequest setSortDescriptors:@[titleSortDescriptor]];
     
     // Only get scores for the given decade
@@ -100,7 +100,7 @@ static NSString * kFavouritesKey = @"favourite-scores";
     NSFetchRequest *scoresFetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Score"];
     
     // Sort order
-    NSSortDescriptor *titleSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
+    NSSortDescriptor *titleSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sortTitle" ascending:YES];
     [scoresFetchRequest setSortDescriptors:@[titleSortDescriptor]];
     
     // Only get scores for the given decade and composer
@@ -315,7 +315,7 @@ static NSString * kFavouritesKey = @"favourite-scores";
     NSFetchRequest *scoresFetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Score"];
     
     // Sort order
-    NSSortDescriptor *titleSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
+    NSSortDescriptor *titleSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sortTitle" ascending:YES];
     [scoresFetchRequest setSortDescriptors:@[titleSortDescriptor]];
     
     // Only get scores for the given identifiers

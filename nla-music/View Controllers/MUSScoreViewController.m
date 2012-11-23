@@ -30,6 +30,7 @@
 #import "MUSDataController.h"
 #import "NLAOpenArchiveController.h"
 #import "NLAItemInformation.h"
+#import "NIImageProcessing.h"
 
 @interface MUSScoreViewController ()
 
@@ -45,7 +46,9 @@
 
 @property (nonatomic, strong) NSOperationQueue *imageDownloadQueue;
 @property (nonatomic, strong) UIImage *coverImage;
+@property (nonatomic, strong) UIActionSheet *shareSizeSheet;
 @property (nonatomic, strong) UIPopoverController *sharePopover;
+@property (nonatomic) CGRect shareButtonRect;
 @property (nonatomic, strong) MUSDataController *dataController;
 @property (nonatomic, strong) NLAItemInformation *itemInformation;
 
@@ -115,11 +118,6 @@
     
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [MUSScoreViewController cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideChrome) object:nil];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -130,37 +128,24 @@
 
 - (IBAction)dismiss:(id)sender
 {
-    // cancel pending selectors first
-    [MUSScoreViewController cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideChrome) object:nil];
-    [MUSScoreViewController cancelPreviousPerformRequestsWithTarget:self selector:@selector(showChrome) object:nil];
-
     [self.presentingViewController dismissViewControllerAnimated:NO completion:NULL];
 }
 
 - (void)share:(id)sender
-{
-    if (self.coverImage!=nil) {
-        UIActivityViewController *activityController;
-        activityController = [[UIActivityViewController alloc] initWithActivityItems:@[self.coverImage]
-                                                               applicationActivities:nil];
-        [activityController setExcludedActivityTypes:@[
-         UIActivityTypeAssignToContact,
-         UIActivityTypeMessage,
-         UIActivityTypePrint,
-         UIActivityTypePostToWeibo]];
-         
-        UIPopoverController *activityPopover = [[UIPopoverController alloc] initWithContentViewController:activityController];
-        [activityPopover setDelegate:self];
-        [self setSharePopover:activityPopover];
-        
-        [activityPopover presentPopoverFromRect:((UIButton *)sender).frame
-                                         inView:self.additionalInformationView
-                       permittedArrowDirections:UIPopoverArrowDirectionDown
-                                       animated:YES];
-        
-        // Cancel the scheduled hiding of the chrome
-        [MUSScoreViewController cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideChrome) object:nil];
+{    
+    if (self.shareSizeSheet == nil) {
+        UIActionSheet *shareSizeSheet = [[UIActionSheet alloc] initWithTitle:@"What size image would you like to share?"
+                                                                    delegate:self
+                                                           cancelButtonTitle:@"Cancel"
+                                                      destructiveButtonTitle:nil
+                                                           otherButtonTitles:@"Original", @"Small", nil];
+        [self setShareSizeSheet:shareSizeSheet];
     }
+    
+    UIButton *shareButton = (UIButton *)sender;
+    CGRect frame = [self.view convertRect:shareButton.frame fromView:self.additionalInformationView];
+    [self setShareButtonRect:frame];
+    [self.shareSizeSheet showFromRect:self.shareButtonRect inView:self.view animated:YES];
 }
 
 - (IBAction)toggleFavourite:(id)sender
@@ -186,14 +171,56 @@
     [self hideChrome];
 }
 
+#pragma mark - Action Sheet Delegate Methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex!=self.shareSizeSheet.cancelButtonIndex) {
+        
+        // get the image of the current page
+        NIPhotoScrollView *currentPage = (NIPhotoScrollView *)[self.scorePageScrollView centerPageView];
+        UIImage *currentImage = currentPage.image;
+        
+        if (currentImage!=nil) {
+            
+            // scale the image as needed
+            if (buttonIndex == 1) {
+                UIImage *scaledImage = [NIImageProcessing imageFromSource:currentImage
+                                                          withContentMode:UIViewContentModeScaleToFill
+                                                                 cropRect:CGRectNull
+                                                              displaySize:CGSizeMake(currentImage.size.width / 2.0, currentImage.size.height / 2.0)
+                                                             scaleOptions:NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess
+                                                     interpolationQuality:kCGInterpolationDefault];
+                currentImage = scaledImage;
+            }
+            
+            UIActivityViewController *activityController;
+            activityController = [[UIActivityViewController alloc] initWithActivityItems:@[currentImage]
+                                                                   applicationActivities:nil];
+            
+            [activityController setExcludedActivityTypes:@[
+             UIActivityTypeAssignToContact,
+             UIActivityTypeMessage,
+             UIActivityTypePrint,
+             UIActivityTypePostToWeibo]];
+            
+            UIPopoverController *activityPopover = [[UIPopoverController alloc] initWithContentViewController:activityController];
+            [activityPopover setDelegate:self];
+            [self setSharePopover:activityPopover];
+            
+            [activityPopover presentPopoverFromRect:self.shareButtonRect
+                                             inView:self.view
+                           permittedArrowDirections:UIPopoverArrowDirectionDown
+                                           animated:YES];
+        }
+    }
+    
+}
+
 
 #pragma mark - Private Methods
 
 - (void)toggleChrome:(id)sender {
-    // cancel any pending requests
-    [MUSScoreViewController cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideChrome) object:nil];
-    [MUSScoreViewController cancelPreviousPerformRequestsWithTarget:self selector:@selector(showChrome) object:nil];
-    
     // if it is visible, hide it
     if (self.toolBar.alpha==1.0) {
         [self hideChrome];
@@ -220,9 +247,6 @@
         [self.lightInfoButton setAlpha:1.0];
         [self.additionalInformationView setAlpha:1.0];
     }];
-    
-    // schedule it to be hidden again after 4 secs
-    [self performSelector:@selector(hideChrome) withObject:nil afterDelay:4.0];
 }
 
 

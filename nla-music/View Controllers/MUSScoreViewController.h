@@ -29,7 +29,7 @@
 #import "NIPhotoScrubberView.h"
 #import "Score.h"
 
-@interface MUSScoreViewController : UIViewController <NIPhotoAlbumScrollViewDataSource, NIPhotoAlbumScrollViewDelegate, UIPopoverControllerDelegate, NIPhotoScrubberViewDataSource, NIPhotoScrubberViewDelegate>
+@interface MUSScoreViewController : UIViewController <NIPhotoAlbumScrollViewDataSource, NIPhotoAlbumScrollViewDelegate, UIPopoverControllerDelegate, NIPhotoScrubberViewDataSource, NIPhotoScrubberViewDelegate, UIActionSheetDelegate>
 
 @property (nonatomic, strong) UIImage *initialImage;
 @property (nonatomic, strong) IBOutlet UIToolbar *toolBar;

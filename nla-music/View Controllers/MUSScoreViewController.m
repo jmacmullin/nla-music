@@ -188,7 +188,7 @@
                 UIImage *scaledImage = [NIImageProcessing imageFromSource:currentImage
                                                           withContentMode:UIViewContentModeScaleToFill
                                                                  cropRect:CGRectNull
-                                                              displaySize:CGSizeMake(currentImage.size.width / (4.0 * NIScreenScale()), currentImage.size.height / (4.0 * NIScreenScale()))
+                                                              displaySize:CGSizeMake(currentImage.size.width / 2.0, currentImage.size.height / 2.0)
                                                              scaleOptions:NINetworkImageViewScaleToFitLeavesExcessAndScaleToFillCropsExcess
                                                      interpolationQuality:kCGInterpolationDefault];
                 currentImage = scaledImage;

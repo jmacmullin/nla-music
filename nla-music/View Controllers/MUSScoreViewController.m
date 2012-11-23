@@ -99,7 +99,7 @@
     
     [self addObserver:self forKeyPath:@"itemInformation" options:NSKeyValueObservingOptionNew context:NULL];
     
-    [self.titleLabel setText:nil];
+    [self.titleLabel setText:self.score.title];
     [self.creatorLabel setText:nil];
     [self.descriptionLabel setText:nil];
     [self.publisherLabel setText:nil];
@@ -329,7 +329,6 @@
             [self.spinny stopAnimating];
         }
         
-        [self.titleLabel setText:self.itemInformation.title];
         [self.creatorLabel setText:self.itemInformation.creator];
         [self.descriptionLabel setText:self.itemInformation.description];
         [self.dateLabel setText:self.itemInformation.date];

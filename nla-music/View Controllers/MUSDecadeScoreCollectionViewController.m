@@ -49,6 +49,7 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
 - (void)viewDidLoad
 {
     [self addObserver:self forKeyPath:@"decade" options:NSKeyValueObservingOptionNew context:NULL];
+    [self.indexView setDelegate:self];
     [super viewDidLoad];
 }
 
@@ -56,8 +57,10 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
 {
     if (self.decade == nil) {
         [self.composersButtonItem setEnabled:NO];
+        [self.indexView setHidden:YES];
     } else {
         [self.composersButtonItem setEnabled:YES];
+        [self.indexView setHidden:NO];
     }
 }
 
@@ -159,6 +162,9 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
     [self setComposer:nil];
     [self.titleItem setTitle:[self titleString]];
     [self.collectionView reloadData];
+    
+    // show the a - z index
+    [self.indexView setHidden:NO];
 }
 
 - (void)composersTableViewController:(MUSComposersTableViewController *)controller didSelectComposerWithInfo:(NSDictionary *)composerInfo
@@ -166,6 +172,9 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
     [self setComposer:composerInfo[@"creator"]];
     [self.titleItem setTitle:[self titleString]];
     [self.collectionView reloadData];
+    
+    // it doesn't make sense to have an A - Z index for a single composer, so hide it
+    [self.indexView setHidden:YES];
 }
 
 
@@ -195,7 +204,19 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
         [self.collectionView reloadData];
         NSIndexPath *firstItemPath = [NSIndexPath indexPathForItem:0 inSection:0];
         [self.collectionView scrollToItemAtIndexPath:firstItemPath atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
+        [self.indexView setHidden:NO];
     }
+}
+
+#pragma mark - A to Z Index View Delegate Methods
+
+- (void)indexViewDidSelectLetterInIndex:(NSString *)letter
+{
+    // scroll the collection view to the right place
+    NSIndexPath *indexPathOfFirstScoreWithLetter = [self.dataController indexOfFirstScoreWithLetter:letter inDecade:self.decade];
+    [self.collectionView scrollToItemAtIndexPath:indexPathOfFirstScoreWithLetter
+                                atScrollPosition:UICollectionViewScrollPositionTop
+                                        animated:NO];
 }
 
 @end

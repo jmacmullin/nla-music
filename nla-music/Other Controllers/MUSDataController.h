@@ -37,6 +37,12 @@
 + (MUSDataController *)sharedController;
 
 /**
+ Returns the index path of the first score in the collection
+ whose sort title starts with the given letter.
+ */
+- (NSIndexPath *)indexOfFirstScoreWithLetter:(NSString *)letter inDecade:(NSString *)decade;
+
+/**
  Returns the score for the given index path in the given decade.
  */
 - (Score *)scoreAtIndex:(NSIndexPath *)indexPath inDecade:(NSString *)decade;

@@ -60,6 +60,19 @@ static NSString * kFavouritesKey = @"favourite-scores";
     return sharedInstance;
 }
 
+- (NSIndexPath *)indexOfFirstScoreWithLetter:(NSString *)letter inDecade:(NSString *)decade
+{
+    int i=0;
+    for (Score *score in self.cachedScores) {
+        if ([score.sortTitle.lowercaseString hasPrefix:letter.lowercaseString]) {
+            break;
+        }
+        i++;
+    }
+    
+    return [NSIndexPath indexPathForItem:i-1 inSection:0];
+}
+
 - (Score *)scoreAtIndex:(NSIndexPath *)indexPath inDecade:(NSString *)decade
 {
     if ([self.decadeOfCachedScores isEqualToString:decade] && self.cachedScores!=nil) {
@@ -69,7 +82,7 @@ static NSString * kFavouritesKey = @"favourite-scores";
     NSFetchRequest *scoresFetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Score"];
     
     // Sort order
-    NSSortDescriptor *titleSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sortTitle" ascending:YES];
+    NSSortDescriptor *titleSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sortTitle" ascending:YES selector:@selector(caseInsensitiveCompare:)];
     [scoresFetchRequest setSortDescriptors:@[titleSortDescriptor]];
     
     // Only get scores for the given decade
@@ -100,7 +113,7 @@ static NSString * kFavouritesKey = @"favourite-scores";
     NSFetchRequest *scoresFetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Score"];
     
     // Sort order
-    NSSortDescriptor *titleSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sortTitle" ascending:YES];
+    NSSortDescriptor *titleSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sortTitle" ascending:YES selector:@selector(caseInsensitiveCompare:)];
     [scoresFetchRequest setSortDescriptors:@[titleSortDescriptor]];
     
     // Only get scores for the given decade and composer
@@ -315,7 +328,7 @@ static NSString * kFavouritesKey = @"favourite-scores";
     NSFetchRequest *scoresFetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Score"];
     
     // Sort order
-    NSSortDescriptor *titleSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sortTitle" ascending:YES];
+    NSSortDescriptor *titleSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sortTitle" ascending:YES selector:@selector(caseInsensitiveCompare:)];
     [scoresFetchRequest setSortDescriptors:@[titleSortDescriptor]];
     
     // Only get scores for the given identifiers

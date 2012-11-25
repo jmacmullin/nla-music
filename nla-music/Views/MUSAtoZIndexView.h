@@ -1,5 +1,5 @@
 //
-//  MUSDecadeScoreCollectionViewController.h
+//  MUSAtoZIndexView.h
 //  nla-music
 //
 //  Copyright © 2012 Jake MacMullin
@@ -24,18 +24,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MUSScoreCollectionViewController.h"
-#import "MUSComposersTableViewController.h"
-#import "MUSAtoZIndexView.h"
 
-@interface MUSDecadeScoreCollectionViewController : MUSScoreCollectionViewController <UIPopoverControllerDelegate, MUSComposersTableViewControllerDelegate, MUSAtoZIndexDelegate>
+@protocol MUSAtoZIndexDelegate <NSObject>
 
-/**
- The decade whose music you wish to display.
- */
-@property (nonatomic, strong) NSString *decade;
+- (void)indexViewDidSelectLetterInIndex:(NSString *)letter;
 
-@property (nonatomic, strong) IBOutlet UIBarButtonItem *composersButtonItem;
-@property (nonatomic, strong) IBOutlet MUSAtoZIndexView *indexView;
+@end
+
+@interface MUSAtoZIndexView : UIView
+
+@property (nonatomic, weak) id<MUSAtoZIndexDelegate> delegate;
 
 @end

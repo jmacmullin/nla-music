@@ -22,6 +22,7 @@
 
 
 #import "Page.h"
+#import "Score.h"
 
 @implementation Page
 
@@ -33,5 +34,17 @@
     return [NSURL URLWithString:[NSString stringWithFormat:@"http://nla.gov.au/%@-t", [self identifier]]];
 }
 
+- (NSString *)cachedImagePath {
+    NSString *cachedImagePath = [self.score.cacheDirectory stringByAppendingPathComponent:self.identifier];
+    cachedImagePath = [cachedImagePath stringByAppendingPathExtension:@"jpg"];
+    return cachedImagePath;
+}
+
+- (NSString *)cachedThumbnailImagePath {
+    NSString *cachedThumbnailPath = [self.score.cacheDirectory stringByAppendingPathComponent:self.identifier];
+    cachedThumbnailPath = [cachedThumbnailPath stringByAppendingString:@"-t"];
+    cachedThumbnailPath = [cachedThumbnailPath stringByAppendingPathExtension:@"jpg"];
+    return cachedThumbnailPath;
+}
 
 @end

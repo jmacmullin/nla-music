@@ -25,7 +25,8 @@
 
 #import <Foundation/Foundation.h>
 #import "MUSScoreCollectionViewController.h"
+#import "MUSScoreViewController.h"
 
-@interface MUSFavouriteScoreCollectionViewController : MUSScoreCollectionViewController
+@interface MUSFavouriteScoreCollectionViewController : MUSScoreCollectionViewController <MUSScoreViewControllerDelegate>
 
 @end

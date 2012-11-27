@@ -34,6 +34,8 @@
 
 @interface MUSScoreViewController ()
 
+- (void)initialise;
+
 /**
  Hide the chrome.
  */
@@ -60,6 +62,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self!=nil) {
+        [self initialise];
     }
     return self;
 }
@@ -68,8 +71,14 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self!=nil) {
+        [self initialise];
     }
     return self;
+}
+
+- (void)initialise
+{
+    [self setInitialPageNumber:-1];
 }
 
 - (void)viewDidLoad
@@ -118,6 +127,13 @@
     
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (self.initialPageNumber!=-1) {
+        [self.scorePageScrollView moveToPageAtIndex:self.initialPageNumber animated:NO];
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -128,6 +144,13 @@
 
 - (IBAction)dismiss:(id)sender
 {
+    if (self.delegate!=nil && [self.delegate conformsToProtocol:@protocol(MUSScoreViewControllerDelegate)]) {
+        int currentPageNumber = [self.scorePageScrollView centerPageIndex];
+        [self.delegate scoreViewController:self
+                           didDismissScore:self.score
+                              atPageNumber:currentPageNumber];
+    }
+    [self setDelegate:nil];
     [self.presentingViewController dismissViewControllerAnimated:NO completion:NULL];
 }
 
@@ -272,43 +295,51 @@
     Page *page = [[self.score orderedPages] objectAtIndex:photoIndex];
     NSURL *pageUrl = [page imageURL];
     
-    // TODO: cache images
-    
-    // request the high resolution image
-    NSURLRequest *imageRequest = [NSURLRequest requestWithURL:pageUrl];
-    AFImageRequestOperation *imageRequestOperation;
-    
-    void (^successBlock)(UIImage *);
-    successBlock = ^(UIImage *image) {
-        dispatch_async(dispatch_get_main_queue(),
-                       ^{
-                           [self.scorePageScrollView didLoadPhoto:image
-                                                          atIndex:photoIndex
-                                                        photoSize:NIPhotoScrollViewPhotoSizeOriginal];
-                           
-                           if (photoIndex == 0) {
-                               [self setCoverImage:image];
-                           }
-                           
-                       });
-    };
-    
-    imageRequestOperation = [AFImageRequestOperation imageRequestOperationWithRequest:imageRequest
-                                                                              success:successBlock];
-
-    // If we're on a retina display iPad, then we're going to need to stretch the image
-    if ([UIScreen mainScreen].scale == 2.0) {
-        [imageRequestOperation setImageScale:0.5];
-    }
-    [self.imageDownloadQueue addOperation:imageRequestOperation];
-    
-    *photoSize = NIPhotoScrollViewPhotoSizeThumbnail;
-    *isLoading = YES;
-
-    if (photoIndex == 0) {
-        return self.initialImage;
+    // try the local cache first
+    if (![[NSFileManager defaultManager] fileExistsAtPath:page.cachedImagePath]) {
+        
+        // request the high resolution image
+        NSURLRequest *imageRequest = [NSURLRequest requestWithURL:pageUrl];
+        AFImageRequestOperation *imageRequestOperation;
+        
+        void (^successBlock)(UIImage *);
+        successBlock = ^(UIImage *image) {
+            dispatch_async(dispatch_get_main_queue(),
+                           ^{
+                               [self.scorePageScrollView didLoadPhoto:image
+                                                              atIndex:photoIndex
+                                                            photoSize:NIPhotoScrollViewPhotoSizeOriginal];
+                               
+                               if (photoIndex == 0) {
+                                   [self setCoverImage:image];
+                               }
+                               
+                           });
+        };
+        
+        imageRequestOperation = [AFImageRequestOperation imageRequestOperationWithRequest:imageRequest
+                                                                                  success:successBlock];
+        
+        // If we're on a retina display iPad, then we're going to need to stretch the image
+        if ([UIScreen mainScreen].scale == 2.0) {
+            [imageRequestOperation setImageScale:0.5];
+        }
+        [self.imageDownloadQueue addOperation:imageRequestOperation];
+        
+        *photoSize = NIPhotoScrollViewPhotoSizeThumbnail;
+        *isLoading = YES;
+        
+        if (photoIndex == 0) {
+            return self.initialImage;
+        } else {
+            return nil;
+        }
+        
     } else {
-        return nil;
+        *photoSize = NIPhotoScrollViewPhotoSizeOriginal;
+        *isLoading = NO;
+        
+        return [UIImage imageWithContentsOfFile:page.cachedImagePath];
     }
 }
 
@@ -346,26 +377,32 @@
 
 - (UIImage *)photoScrubberView:(NIPhotoScrubberView *)photoScrubberView thumbnailAtIndex:(NSInteger)thumbnailIndex
 {
-    // make an async request for the thumbnail then call didLoadThumbnail:atIndex:
+
+    Page *page = (Page *)self.score.orderedPages[thumbnailIndex];
     
-    // request the high resolution image
-    NSURL *pageUrl = ((Page *)self.score.orderedPages[thumbnailIndex]).thumbnailURL;
-    NSURLRequest *imageRequest = [NSURLRequest requestWithURL:pageUrl];
-    AFImageRequestOperation *imageRequestOperation;
-    
-    void (^successBlock)(UIImage *);
-    successBlock = ^(UIImage *image) {
-        dispatch_async(dispatch_get_main_queue(),
-                       ^{
-                           [self.scrubberView didLoadThumbnail:image atIndex:thumbnailIndex];
-                       });
-    };
-    
-    imageRequestOperation = [AFImageRequestOperation imageRequestOperationWithRequest:imageRequest
-                                                                              success:successBlock];
-    [self.imageDownloadQueue addOperation:imageRequestOperation];
-    
-    return nil;
+    // try the local cache first
+    if (![[NSFileManager defaultManager] fileExistsAtPath:page.cachedThumbnailImagePath]) {
+        // request the thumbnail
+        NSURL *pageUrl = page.thumbnailURL;
+        NSURLRequest *imageRequest = [NSURLRequest requestWithURL:pageUrl];
+        AFImageRequestOperation *imageRequestOperation;
+        
+        void (^successBlock)(UIImage *);
+        successBlock = ^(UIImage *image) {
+            dispatch_async(dispatch_get_main_queue(),
+                           ^{
+                               [self.scrubberView didLoadThumbnail:image atIndex:thumbnailIndex];
+                           });
+        };
+        
+        imageRequestOperation = [AFImageRequestOperation imageRequestOperationWithRequest:imageRequest
+                                                                                  success:successBlock];
+        [self.imageDownloadQueue addOperation:imageRequestOperation];
+        
+        return nil;
+    } else {
+        return [UIImage imageWithContentsOfFile:page.cachedThumbnailImagePath];
+    }
 }
 
 

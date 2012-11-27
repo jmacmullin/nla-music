@@ -25,8 +25,11 @@
 
 #import "MUSDataController.h"
 #import <CoreData/CoreData.h>
+#import "Page.h"
+#import "AFNetworking.h"
 
 static NSString * kFavouritesKey = @"favourite-scores";
+static int kMaximumNumberOfPagesToCache = 10;
 
 @interface MUSDataController()
 
@@ -42,6 +45,8 @@ static NSString * kFavouritesKey = @"favourite-scores";
 @property (nonatomic, strong) NSArray *cachedScoresByComposer;
 
 @property (nonatomic, strong) NSArray *favouriteScores;
+
+@property (nonatomic, strong) NSOperationQueue *imageDownloadQueue;
 
 - (NSArray *)fetchDecades;
 - (NSArray *)fetchIdentifiersOfFavourites;
@@ -381,6 +386,58 @@ static NSString * kFavouritesKey = @"favourite-scores";
         if ([self isScoreMarkedAsFavourite:score] == NO) {
             [modifiedFavourites addObject:score.identifier];
         }
+        
+        // download the first n pages of the score and save them
+        // in the cache directory
+        if (self.imageDownloadQueue == nil) {
+            NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+            [self setImageDownloadQueue:queue];
+            
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            NSError *error;
+            if (![fileManager fileExistsAtPath:score.cacheDirectory]) {
+                [fileManager createDirectoryAtPath:score.cacheDirectory withIntermediateDirectories:YES attributes:nil error:&error];
+            }
+        }
+        
+        int numberOfPagesToDownload = MIN(score.orderedPages.count, kMaximumNumberOfPagesToCache);
+        
+        for (int i=0; i<numberOfPagesToDownload; i++) {
+            Page *page = (Page *)score.orderedPages[i];
+            NSURL *pageImageURL = page.imageURL;
+            
+            NSURLRequest *request = [NSURLRequest requestWithURL:pageImageURL];
+            
+            void (^successBlock)(NSURLRequest *, NSHTTPURLResponse *, UIImage *);
+            successBlock = ^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
+                [imageData writeToFile:page.cachedImagePath atomically:YES];
+            };
+
+            AFImageRequestOperation *imageRequestOperation;
+            imageRequestOperation = [AFImageRequestOperation imageRequestOperationWithRequest:request
+                                                                         imageProcessingBlock:nil
+                                                                                      success:successBlock
+                                                                                      failure:nil];
+            [self.imageDownloadQueue addOperation:imageRequestOperation];
+            
+            NSURL *thumbnailImageURL = page.thumbnailURL;
+            NSURLRequest *thumbnailRequest = [NSURLRequest requestWithURL:thumbnailImageURL];
+            
+            void (^thumbnailSuccessBlock)(NSURLRequest *, NSHTTPURLResponse *, UIImage *);
+            thumbnailSuccessBlock = ^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
+                [imageData writeToFile:page.cachedThumbnailImagePath atomically:YES];
+            };
+            
+            AFImageRequestOperation *thumbnailRequestOperation;
+            thumbnailRequestOperation = [AFImageRequestOperation imageRequestOperationWithRequest:thumbnailRequest
+                                                                         imageProcessingBlock:nil
+                                                                                      success:thumbnailSuccessBlock
+                                                                                      failure:nil];
+            [self.imageDownloadQueue addOperation:thumbnailRequestOperation];
+        }
+        
     } else {
         // otherwise, we'll need to remove its identifier from the list
         if ([self isScoreMarkedAsFavourite:score] == YES) {
@@ -396,6 +453,25 @@ static NSString * kFavouritesKey = @"favourite-scores";
             if (identifierToRemove!=nil) {
                 [modifiedFavourites removeObject:identifierToRemove];
             }
+            
+            // delete any cached images
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            NSError *error;
+            for (Page *page in score.pages) {
+                if ([fileManager fileExistsAtPath:page.cachedImagePath]) {
+                    [fileManager removeItemAtPath:page.cachedImagePath error:&error];
+                }
+                
+                // and thumbnails                
+                if ([fileManager fileExistsAtPath:page.cachedThumbnailImagePath]) {
+                    [fileManager removeItemAtPath:page.cachedThumbnailImagePath error:&error];
+                }
+
+            }
+            if ([fileManager fileExistsAtPath:score.cacheDirectory]) {
+                [fileManager removeItemAtPath:score.cacheDirectory error:&error];
+            }
+            
         }
     }
     

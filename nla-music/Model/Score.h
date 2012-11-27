@@ -6,5 +6,6 @@
 @property (nonatomic, readonly) NSURL *thumbnailURL;
 @property (nonatomic, readonly) NSURL *coverURL;
 @property (nonatomic, readonly) NSURL *webURL;
+@property (nonatomic, readonly) NSString *cacheDirectory;
 
 @end

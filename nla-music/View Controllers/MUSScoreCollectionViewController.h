@@ -66,9 +66,17 @@
  */
 - (Score *)scoreAtIndexPathInCollection:(NSIndexPath *)indexPath;
 
+
+/**
+ Determines if the given segue is opening a score.
+ */
+- (BOOL)isOpenScoreSegue:(UIStoryboardSegue *)segue;
+
+
 /**
  Dismiss the index view.
  */
 - (IBAction)dismiss:(id)sender;
+
 
 @end

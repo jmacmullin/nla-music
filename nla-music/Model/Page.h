@@ -26,5 +26,7 @@
 
 @property (nonatomic, readonly) NSURL *thumbnailURL;
 @property (nonatomic, readonly) NSURL *imageURL;
+@property (nonatomic, readonly) NSString *cachedImagePath;
+@property (nonatomic, readonly) NSString *cachedThumbnailImagePath;
 
 @end

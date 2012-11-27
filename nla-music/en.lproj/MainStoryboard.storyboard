@@ -109,7 +109,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="79" y="-764"/>
+            <point key="canvasLocation" x="79" y="-1972"/>
         </scene>
         <!--Timeline View Controller - Timeline-->
         <scene sceneID="PIe-P1-nyF">
@@ -500,7 +500,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N3H-vq-O9G" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="79" y="-1992"/>
+            <point key="canvasLocation" x="79" y="-764"/>
         </scene>
         <!--Composers Table View Controller-->
         <scene sceneID="EvL-bl-RZ9">
@@ -651,7 +651,6 @@
         <class className="MUSDecadeScoreCollectionViewController" superclassName="MUSScoreCollectionViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MUSDecadeScoreCollectionViewController.h"/>
             <relationships>
-                <relationship kind="action" name="dismiss:"/>
                 <relationship kind="outlet" name="composersButtonItem" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="indexView" candidateClass="MUSAtoZIndexView"/>
             </relationships>
@@ -742,6 +741,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="q65-zi-qdO"/>
+        <segue reference="XQg-IY-7Oy"/>
     </inferredMetricsTieBreakers>
 </document>

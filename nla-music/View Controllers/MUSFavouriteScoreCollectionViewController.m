@@ -50,4 +50,26 @@
     [self.collectionView reloadData];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([self isOpenScoreSegue:segue] == YES) {
+        MUSScoreViewController *scoreController = (MUSScoreViewController *)segue.destinationViewController;
+        [scoreController setDelegate:self];
+        
+        NSString *lastOpenedPageNumberKey = [NSString stringWithFormat:@"%@-last-opened-page", self.selectedScore.identifier];
+        int lastOpenedPageNumber = [[NSUserDefaults standardUserDefaults] integerForKey:lastOpenedPageNumberKey];
+        [scoreController setInitialPageNumber:lastOpenedPageNumber];
+    }
+    
+    [super prepareForSegue:segue sender:sender];
+}
+
+#pragma mark - Score View Controller Delegate Methods
+
+- (void)scoreViewController:(MUSScoreViewController *)controller didDismissScore:(Score *)score atPageNumber:(int)pageNumber
+{
+    NSString *lastOpenedPageNumberKey = [NSString stringWithFormat:@"%@-last-opened-page", score.identifier];
+    [[NSUserDefaults standardUserDefaults] setInteger:pageNumber forKey:lastOpenedPageNumberKey];
+}
+
 @end

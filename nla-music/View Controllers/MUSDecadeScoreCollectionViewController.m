@@ -127,6 +127,11 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
         [composersTableViewController setSelectedSegmentIndex:self.composersSegmentIndex];
         [composersTableViewController setSelectedIndexPath:self.composersIndexPath];
     }
+    
+    if ([self isOpenScoreSegue:segue]) {
+        MUSScoreViewController *scoreController = (MUSScoreViewController *)segue.destinationViewController;
+        [scoreController setDelegate:nil];
+    }
 
 }
 

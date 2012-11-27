@@ -173,11 +173,17 @@ static float kThumbnailZoomDuration = 0.25;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:kOpenScoreSegueIdentifier]) {
+    if ([self isOpenScoreSegue:segue]) {
         MUSScoreViewController *scoreController = (MUSScoreViewController *)segue.destinationViewController;
         [scoreController setScore:self.selectedScore];
         [scoreController setInitialImage:self.selectedCoverImageView.image];
     }
+}
+
+
+- (BOOL)isOpenScoreSegue:(UIStoryboardSegue *)segue
+{
+    return [segue.identifier isEqualToString:kOpenScoreSegueIdentifier];
 }
 
 

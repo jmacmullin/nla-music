@@ -23,5 +23,13 @@
     return [NSURL URLWithString:webURLString];
 }
 
+- (NSString *)cacheDirectory {
+    BOOL expandTilde = YES;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, expandTilde);
+    NSString *cachePath = [paths objectAtIndex:0];
+    NSString *scorePath = [cachePath stringByAppendingPathComponent:self.identifier];
+    return scorePath;
+}
+
 
 @end

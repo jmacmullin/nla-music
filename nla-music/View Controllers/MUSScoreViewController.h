@@ -29,9 +29,20 @@
 #import "NIPhotoScrubberView.h"
 #import "Score.h"
 
+@class MUSScoreViewController;
+
+@protocol MUSScoreViewControllerDelegate <NSObject>
+
+- (void)scoreViewController:(MUSScoreViewController *)controller didDismissScore:(Score *)score atPageNumber:(int)pageNumber;
+
+@end
+
 @interface MUSScoreViewController : UIViewController <NIPhotoAlbumScrollViewDataSource, NIPhotoAlbumScrollViewDelegate, UIPopoverControllerDelegate, NIPhotoScrubberViewDataSource, NIPhotoScrubberViewDelegate, UIActionSheetDelegate>
 
+@property (nonatomic, weak) id<MUSScoreViewControllerDelegate> delegate;
 @property (nonatomic, strong) UIImage *initialImage;
+@property (nonatomic) int initialPageNumber;
+
 @property (nonatomic, strong) IBOutlet UIToolbar *toolBar;
 @property (nonatomic, strong) IBOutlet UIButton *darkInfoButton;
 @property (nonatomic, strong) IBOutlet UIButton *lightInfoButton;
@@ -55,6 +66,7 @@
 - (IBAction)share:(id)sender;
 - (IBAction)toggleFavourite:(id)sender;
 - (IBAction)viewOnTheWeb:(id)sender;
+
 /**
  Toggle the visibility of the chrome.
  */

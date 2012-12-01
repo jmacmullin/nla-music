@@ -27,6 +27,8 @@
 #import "MUSDecadeScoreCollectionViewController.h"
 #import "MUSDataController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "MUSDecadeControl.h"
+#import "MUSFavouritesControl.h"
 
 // the number of pages the timeline will fill
 static int kNumberOfPagesInScrollView = 4;
@@ -47,9 +49,10 @@ static NSString * kShowIndexSegueIdentifier = @"ShowIndex";
 @property (nonatomic, strong) MUSDataController *dataController;
 @property (nonatomic, strong) NSString *selectedDecade;
 @property (nonatomic, strong) UIScrollView *scrollview;
+@property (nonatomic, strong) MUSDecadeControl *selectedDecadeControl;
 
 - (void)createTimeline;
-- (void)selectDecade:(UIGestureRecognizer *)gesture;
+- (void)selectDecade:(id)sender;
 
 @end
 
@@ -67,8 +70,6 @@ static NSString * kShowIndexSegueIdentifier = @"ShowIndex";
 {
     [super viewDidLoad];
     [self setDataController:[MUSDataController sharedController]];
-    [self.favouritesSectionView setFrame:CGRectMake(0.0, 0.0, self.view.bounds.size.width, 0.0)];
-    [self.favouritesSectionView setAlpha:0.0];
     [self.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [self createTimeline];
 }
@@ -76,39 +77,6 @@ static NSString * kShowIndexSegueIdentifier = @"ShowIndex";
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    // expand or collapse the favourites section
-    // if there are any favourites, then display a favourites section
-    CGRect favouritesSectionFrame;
-    CGRect timelineFrame;
-    int numberOfFavourites = [self.dataController numberOfFavouriteScores];
-    
-    if (numberOfFavourites > 0 && self.favouritesSectionView.superview == nil) {
-        favouritesSectionFrame = CGRectMake(0.0, 0.0, self.view.frame.size.width, kFavouritesSectionHeight);
-        timelineFrame = CGRectMake(0.0, kFavouritesSectionHeight, self.view.frame.size.width, self.view.frame.size.height - kFavouritesSectionHeight);
-        [self.view addSubview:self.favouritesSectionView];
-        
-        [UIView animateWithDuration:0.25
-                         animations:^{
-                             [self.favouritesSectionView setFrame:favouritesSectionFrame];
-                             [self.timelineScrollview setFrame:timelineFrame];
-                             [self.favouritesSectionView setAlpha:1.0];
-                         }];
-        
-    } else if (numberOfFavourites == 0 && self.favouritesSectionView.superview != nil) {
-        favouritesSectionFrame = CGRectMake(0.0, 0.0, self.view.bounds.size.width, 0.0);
-        timelineFrame = self.view.bounds;
-        
-        [UIView animateWithDuration:0.25
-                         animations:^{
-                             [self.favouritesSectionView setFrame:favouritesSectionFrame];
-                             [self.timelineScrollview setFrame:timelineFrame];
-                             [self.favouritesSectionView setAlpha:0.0];
-                         }
-                         completion:^(BOOL finished) {
-                             [self.favouritesSectionView removeFromSuperview];
-                         }];
-    }
-
 }
 
 - (void)viewWillLayoutSubviews
@@ -121,7 +89,7 @@ static NSString * kShowIndexSegueIdentifier = @"ShowIndex";
     // draw a view for each decade whose height is relative to
     // the number of items published in that decade
     
-    float topMargin = 0.0;
+    float topMargin = kFavouritesSectionHeight;
     float leftMargin = 0.0;
     int totalNumber = 0;
     
@@ -129,6 +97,11 @@ static NSString * kShowIndexSegueIdentifier = @"ShowIndex";
     UIScrollView *scrollview = [[UIScrollView alloc] initWithFrame:timelineFrame];
     [self setScrollview:scrollview];
     [scrollview setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    
+    MUSFavouritesControl *favouritesItem = [[MUSFavouritesControl alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, kFavouritesSectionHeight)];
+    [favouritesItem setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    [favouritesItem addTarget:self action:@selector(showFavourites:) forControlEvents:UIControlEventTouchDown];
+    [self.scrollview addSubview:favouritesItem];
     
     NSArray *decades = [self.dataController decadesInWhichMusicWasPublished];
     for (NSDictionary *dict in decades) {
@@ -161,29 +134,17 @@ static NSString * kShowIndexSegueIdentifier = @"ShowIndex";
                 numberInDecade = kMinimumNumberOfScoresPerDecadeForDisplay;
             }
             
-            float height =  ( (float)numberInDecade / (float)totalNumber)
-                              * (self.view.bounds.size.height * kNumberOfPagesInScrollView);
+            float height =  ((float)numberInDecade / (float)totalNumber)
+                              * ((self.view.bounds.size.height * kNumberOfPagesInScrollView) - kFavouritesSectionHeight) ;
+            
             CGRect frame = CGRectMake(leftMargin, topMargin,  self.view.frame.size.width, height);
             
-            UIView *view = [[UIView alloc] initWithFrame:frame];
-            [view setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+            MUSDecadeControl *decadeControl = [[MUSDecadeControl alloc] initWithFrame:frame];
+            [decadeControl setItemLabel:decade];
+            [decadeControl addTarget:self action:@selector(selectDecade:) forControlEvents:UIControlEventTouchDown];
+            [decadeControl setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
             
-            UILabel *label = [[UILabel alloc] initWithFrame:view.bounds];
-            [label setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-            [label setTextAlignment:NSTextAlignmentCenter];
-            [label setTextColor:[UIColor whiteColor]];
-            [label setText:decade];
-            [label setBackgroundColor:[UIColor clearColor]];
-            [view addSubview:label];
-            [view setTag:decadeIndex]; // ARGHH, I hate using tags, but not sure this is worth a custom view
-            
-            UITapGestureRecognizer *tapRecogniser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectDecade:)];
-            [view addGestureRecognizer:tapRecogniser];
-            
-            CALayer *layer = view.layer;
-            [layer setBorderColor:[[UIColor blackColor] CGColor]];
-            [layer setBorderWidth:1.0];
-            [scrollview addSubview:view];
+            [scrollview addSubview:decadeControl];
             topMargin += height;
 
         }
@@ -207,11 +168,22 @@ static NSString * kShowIndexSegueIdentifier = @"ShowIndex";
     }
 }
 
-- (void)selectDecade:(UIGestureRecognizer *)gesture
+- (void)selectDecade:(id)sender
 {
-    int indexOfSelectedDecade = gesture.view.tag; // ARGHH, I hate using tags, but not sure this is worth a custom view
-    NSDictionary *decadeInfo = [self.dataController decadesInWhichMusicWasPublished][indexOfSelectedDecade];
-    [self setSelectedDecade:[decadeInfo valueForKey:@"date"]];
+    if (self.selectedDecadeControl == sender) {
+        return;
+    }
+    
+    if (self.selectedDecadeControl!=nil) {
+        [self.selectedDecadeControl setSelected:NO];
+    }
+    
+    MUSDecadeControl *decadeControl = (MUSDecadeControl *)sender;
+    [self setSelectedDecadeControl:decadeControl];
+    [decadeControl setSelected:YES];
+    
+    NSString *decade = decadeControl.itemLabel;
+    [self setSelectedDecade:decade];
     if (self.delegate!=nil && [self.delegate conformsToProtocol:@protocol(MUSTimelineViewControllerDelegate)]) {
         [self.delegate timelineController:self didSelectDecade:self.selectedDecade];
     }

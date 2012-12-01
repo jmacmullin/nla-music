@@ -25,6 +25,7 @@
 
 #import "MUSSplitViewController.h"
 #import "MUSFavouriteScoreCollectionViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface MUSSplitViewController ()
 
@@ -58,6 +59,14 @@
     [self addChildViewController:self.decadeScoreCollectionController];
     [self.decadeScoreCollectionController didMoveToParentViewController:self];
     [self.scoreCollectionPlaceholder addSubview:self.decadeScoreCollectionController.view];
+    
+    // round the corners
+    [self.timelinePlaceholder.layer setCornerRadius:5.0];
+    [self.timelinePlaceholder.layer setMasksToBounds:YES];
+
+    [self.scoreCollectionPlaceholder.layer setCornerRadius:5.0];
+// FUCK!    [self.scoreCollectionPlaceholder.layer setMasksToBounds:YES];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated

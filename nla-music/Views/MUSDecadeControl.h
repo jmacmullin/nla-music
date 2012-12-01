@@ -1,5 +1,5 @@
 //
-//  MUSTimelineViewController.h
+//  MUSDecadeControl.h
 //  nla-music
 //
 //  Copyright © 2012 Jake MacMullin
@@ -24,21 +24,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MUSTimelineItemControl.h"
 
-@class MUSTimelineViewController;
-
-@protocol MUSTimelineViewControllerDelegate <NSObject>
-
-- (void)timelineController:(MUSTimelineViewController *)controller didSelectDecade:(NSString *)decade;
-- (void)timelineControllerDidSelectFavourites:(MUSTimelineViewController *)controller;
-
-@end
-
-@interface MUSTimelineViewController : UIViewController
-
-@property (nonatomic, strong) UIView *timelineScrollview;
-@property (nonatomic, assign) id<MUSTimelineViewControllerDelegate> delegate;
-
-- (IBAction)showFavourites:(id)sender;
+@interface MUSDecadeControl : MUSTimelineItemControl
 
 @end

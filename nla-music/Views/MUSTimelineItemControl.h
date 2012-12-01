@@ -1,5 +1,5 @@
 //
-//  MUSTimelineViewController.h
+//  MUSTimelineItemControl.h
 //  nla-music
 //
 //  Copyright © 2012 Jake MacMullin
@@ -25,20 +25,16 @@
 
 #import <UIKit/UIKit.h>
 
-@class MUSTimelineViewController;
+@interface MUSTimelineItemControl : UIControl
 
-@protocol MUSTimelineViewControllerDelegate <NSObject>
+@property (nonatomic, strong) NSString *itemLabel;
 
-- (void)timelineController:(MUSTimelineViewController *)controller didSelectDecade:(NSString *)decade;
-- (void)timelineControllerDidSelectFavourites:(MUSTimelineViewController *)controller;
-
-@end
-
-@interface MUSTimelineViewController : UIViewController
-
-@property (nonatomic, strong) UIView *timelineScrollview;
-@property (nonatomic, assign) id<MUSTimelineViewControllerDelegate> delegate;
-
-- (IBAction)showFavourites:(id)sender;
+/**
+ Called when the item label has been updated and needs to be
+ displayed. The default implementation does nothing. Subclasses
+ should override this to do something sensible (like displaying
+ the label).
+ */
+- (void)itemLabelNeedsDisplay;
 
 @end

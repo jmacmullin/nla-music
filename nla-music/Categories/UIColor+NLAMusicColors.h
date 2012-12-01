@@ -1,5 +1,5 @@
 //
-//  MUSTimelineViewController.h
+//  UIColor+NLAMusicColors.h
 //  nla-music
 //
 //  Copyright © 2012 Jake MacMullin
@@ -25,20 +25,18 @@
 
 #import <UIKit/UIKit.h>
 
-@class MUSTimelineViewController;
+@interface UIColor (NLAMusicColors)
 
-@protocol MUSTimelineViewControllerDelegate <NSObject>
++ (UIColor *)nlaMusicHighlightColor;
 
-- (void)timelineController:(MUSTimelineViewController *)controller didSelectDecade:(NSString *)decade;
-- (void)timelineControllerDidSelectFavourites:(MUSTimelineViewController *)controller;
++ (UIColor *)nlaMusicLowlightColor;
 
-@end
++ (UIColor *)nlaMusicTimelineItemGradientStartColor;
 
-@interface MUSTimelineViewController : UIViewController
++ (UIColor *)nlaMusicTimelineItemGradientEndColor;
 
-@property (nonatomic, strong) UIView *timelineScrollview;
-@property (nonatomic, assign) id<MUSTimelineViewControllerDelegate> delegate;
++ (UIColor *)nlaMusicTimelineSelectedItemGradientStartColor;
 
-- (IBAction)showFavourites:(id)sender;
++ (UIColor *)nlaMusicTimelineSelectedItemGradientEndColor;
 
 @end

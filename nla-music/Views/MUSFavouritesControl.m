@@ -1,5 +1,5 @@
 //
-//  MUSTimelineViewController.h
+//  MUSFavouritesControl.m
 //  nla-music
 //
 //  Copyright © 2012 Jake MacMullin
@@ -23,22 +23,31 @@
 //  SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+#import "MUSFavouritesControl.h"
 
-@class MUSTimelineViewController;
+@interface MUSFavouritesControl()
 
-@protocol MUSTimelineViewControllerDelegate <NSObject>
-
-- (void)timelineController:(MUSTimelineViewController *)controller didSelectDecade:(NSString *)decade;
-- (void)timelineControllerDidSelectFavourites:(MUSTimelineViewController *)controller;
+@property (nonatomic, strong) UIImageView *starImageView;
 
 @end
 
-@interface MUSTimelineViewController : UIViewController
+@implementation MUSFavouritesControl
 
-@property (nonatomic, strong) UIView *timelineScrollview;
-@property (nonatomic, assign) id<MUSTimelineViewControllerDelegate> delegate;
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self!=nil) {
+        UIImageView *starImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"star.png"]];
+        [self addSubview:starImageView];
+        [self setStarImageView:starImageView];
+    }
+    return self;
+}
 
-- (IBAction)showFavourites:(id)sender;
+- (void)layoutSubviews
+{
+    [self.starImageView setCenter:self.center];
+}
+
 
 @end

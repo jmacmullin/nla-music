@@ -9,7 +9,7 @@
             <objects>
                 <viewController storyboardIdentifier="DecadeScoreCollection" id="2" customClass="MUSDecadeScoreCollectionViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5">
-                        <rect key="frame" x="0.0" y="20" width="668" height="1004"/>
+                        <rect key="frame" x="0.0" y="20" width="680" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eUc-aP-eeM">
@@ -66,34 +66,45 @@
                                     <outlet property="delegate" destination="2" id="CK4-8p-Ieb"/>
                                 </connections>
                             </collectionView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="Dsf-yH-BY7">
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="uNl-Zq-QOf"/>
-                                    <barButtonItem title="1920 - 1929 (4000 items)" style="plain" id="dN9-ly-uMy"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="t0n-22-c4L"/>
-                                    <barButtonItem title="Composers" id="LsK-Qr-qS4">
-                                        <connections>
-                                            <segue destination="DvS-8r-Mvf" kind="popover" identifier="ShowComposers" popoverAnchorBarButtonItem="LsK-Qr-qS4" id="GNd-0J-KyO">
-                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                            </segue>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QO5-hT-udt" customClass="MUSAtoZIndexView">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="alw-oV-Bbs">
+                                <subviews>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="Dsf-yH-BY7">
+                                        <items>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="uNl-Zq-QOf"/>
+                                            <barButtonItem title="1920 - 1929 (4000 items)" style="plain" id="dN9-ly-uMy"/>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="t0n-22-c4L"/>
+                                            <barButtonItem title="Composers" id="LsK-Qr-qS4">
+                                                <connections>
+                                                    <segue destination="DvS-8r-Mvf" kind="popover" identifier="ShowComposers" popoverAnchorBarButtonItem="LsK-Qr-qS4" id="GNd-0J-KyO">
+                                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                                    </segue>
+                                                </connections>
+                                            </barButtonItem>
+                                        </items>
+                                    </toolbar>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Dsf-yH-BY7" firstAttribute="trailing" secondItem="alw-oV-Bbs" secondAttribute="trailing" type="default" id="7CE-fW-gyw"/>
+                                    <constraint firstItem="Dsf-yH-BY7" firstAttribute="top" secondItem="alw-oV-Bbs" secondAttribute="top" type="default" id="Nm0-9k-Kkt"/>
+                                    <constraint firstItem="Dsf-yH-BY7" firstAttribute="leading" secondItem="alw-oV-Bbs" secondAttribute="leading" type="default" id="RPI-9u-Cwk"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="alw-oV-Bbs" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="default" id="AeY-14-n8E"/>
                             <constraint firstItem="eUc-aP-eeM" firstAttribute="top" secondItem="5" secondAttribute="top" type="default" id="BQI-bn-gH9"/>
                             <constraint firstItem="eUc-aP-eeM" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" type="default" id="DDe-Wa-i3A"/>
-                            <constraint firstItem="Dsf-yH-BY7" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="default" id="DJ1-Nh-fvz"/>
-                            <constraint firstItem="Dsf-yH-BY7" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" type="default" id="Egt-pb-5fE"/>
-                            <constraint firstAttribute="trailing" secondItem="QO5-hT-udt" secondAttribute="trailing" constant="10" id="NfS-lR-kFB"/>
-                            <constraint firstItem="Dsf-yH-BY7" firstAttribute="top" secondItem="5" secondAttribute="top" type="default" id="Nnt-yg-251"/>
                             <constraint firstAttribute="bottom" secondItem="QO5-hT-udt" secondAttribute="bottom" constant="10" id="UJ6-k4-LgV"/>
+                            <constraint firstItem="alw-oV-Bbs" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" type="default" id="ctY-gI-bVG"/>
+                            <constraint firstAttribute="trailing" secondItem="QO5-hT-udt" secondAttribute="trailing" constant="22" id="hfO-0d-NkS"/>
                             <constraint firstItem="QO5-hT-udt" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="624" id="hpi-G0-OcU"/>
+                            <constraint firstAttribute="bottom" secondItem="alw-oV-Bbs" secondAttribute="bottom" constant="949" id="klw-FA-gFs"/>
+                            <constraint firstItem="alw-oV-Bbs" firstAttribute="top" secondItem="5" secondAttribute="top" type="default" id="wLa-dw-MFk"/>
                             <constraint firstItem="eUc-aP-eeM" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="default" id="wbT-tb-vXX"/>
                             <constraint firstItem="QO5-hT-udt" firstAttribute="top" secondItem="5" secondAttribute="top" constant="54" id="zGy-a3-nVi"/>
                         </constraints>
@@ -104,6 +115,7 @@
                         <outlet property="composersButtonItem" destination="LsK-Qr-qS4" id="oK6-2l-7Uo"/>
                         <outlet property="indexView" destination="QO5-hT-udt" id="J21-RV-Tav"/>
                         <outlet property="titleItem" destination="dN9-ly-uMy" id="f7O-B1-V41"/>
+                        <outlet property="toolbarContainerView" destination="alw-oV-Bbs" id="Pcp-je-tbX"/>
                         <segue destination="ZP9-gQ-okS" kind="custom" identifier="OpenScoreSegue" customClass="MUSFadeInSegue" id="q65-zi-qdO"/>
                     </connections>
                 </viewController>
@@ -116,37 +128,13 @@
             <objects>
                 <viewController storyboardIdentifier="Timeline" title="Timeline" id="aNc-Qh-k0m" customClass="MUSTimelineViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="z0f-vk-CAl">
-                        <rect key="frame" x="0.0" y="20" width="100" height="1004"/>
+                        <rect key="frame" x="0.0" y="20" width="88" height="1004"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <outlet property="favouritesSectionView" destination="HIS-Qd-pVg" id="mew-4w-Fsa"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d2N-Gb-a1D" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="HIS-Qd-pVg">
-                    <rect key="frame" x="0.0" y="0.0" width="100" height="88"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Favourites" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Pg-bF-IJu">
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <gestureRecognizers/>
-                    <constraints>
-                        <constraint firstItem="1Pg-bF-IJu" firstAttribute="top" secondItem="HIS-Qd-pVg" secondAttribute="top" constant="33" id="4pW-hg-cP4"/>
-                        <constraint firstItem="1Pg-bF-IJu" firstAttribute="trailing" secondItem="HIS-Qd-pVg" secondAttribute="trailing" type="default" id="FhE-KS-Tlw"/>
-                        <constraint firstItem="1Pg-bF-IJu" firstAttribute="leading" secondItem="HIS-Qd-pVg" secondAttribute="leading" type="default" id="kcY-FC-f0F"/>
-                    </constraints>
-                    <connections>
-                        <outletCollection property="gestureRecognizers" destination="xvF-56-Gdu" appends="YES" id="hjm-qY-TDC"/>
-                    </connections>
-                </view>
                 <tapGestureRecognizer id="xvF-56-Gdu">
                     <connections>
                         <action selector="showFavourites:" destination="aNc-Qh-k0m" id="Ndc-P6-Q9r"/>
@@ -388,16 +376,16 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="suu-AF-hcK" firstAttribute="bottom" secondItem="S3l-vv-cAG" secondAttribute="bottom" type="default" id="3e4-Vm-Kdl"/>
+                            <constraint firstItem="EzD-va-ZJP" firstAttribute="trailing" secondItem="S3l-vv-cAG" secondAttribute="trailing" type="default" id="D0H-cS-c4U"/>
                             <constraint firstItem="suu-AF-hcK" firstAttribute="top" secondItem="S3l-vv-cAG" secondAttribute="top" type="default" id="MsZ-PS-RSY"/>
-                            <constraint firstItem="EzD-va-ZJP" firstAttribute="trailing" secondItem="S3l-vv-cAG" secondAttribute="trailing" type="default" id="OrL-dL-kwy"/>
+                            <constraint firstAttribute="trailing" secondItem="suu-AF-hcK" secondAttribute="trailing" constant="680" id="Sec-qw-Ynz"/>
                             <constraint firstItem="EzD-va-ZJP" firstAttribute="bottom" secondItem="S3l-vv-cAG" secondAttribute="bottom" type="default" id="XWD-fc-I4Z"/>
                             <constraint firstItem="EzD-va-ZJP" firstAttribute="top" secondItem="S3l-vv-cAG" secondAttribute="top" type="default" id="YDl-yg-wWW"/>
-                            <constraint firstAttribute="trailing" secondItem="suu-AF-hcK" secondAttribute="trailing" constant="668" id="Z2l-lq-lNq"/>
                             <constraint firstItem="suu-AF-hcK" firstAttribute="leading" secondItem="S3l-vv-cAG" secondAttribute="leading" type="default" id="lXy-nk-uk7"/>
-                            <constraint firstItem="EzD-va-ZJP" firstAttribute="leading" secondItem="S3l-vv-cAG" secondAttribute="leading" constant="100" id="sIZ-xY-48u"/>
+                            <constraint firstItem="EzD-va-ZJP" firstAttribute="leading" secondItem="S3l-vv-cAG" secondAttribute="leading" constant="88" id="xRV-CH-bXf"/>
                         </constraints>
                     </view>
                     <connections>
@@ -653,6 +641,7 @@
             <relationships>
                 <relationship kind="outlet" name="composersButtonItem" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="indexView" candidateClass="MUSAtoZIndexView"/>
+                <relationship kind="outlet" name="toolbarContainerView" candidateClass="UIView"/>
             </relationships>
         </class>
         <class className="MUSFavouriteScoreCollectionViewController" superclassName="MUSScoreCollectionViewController">
@@ -741,6 +730,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="XQg-IY-7Oy"/>
+        <segue reference="q65-zi-qdO"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -28,11 +28,13 @@
 #import "NINetworkImageView.h"
 #import "MUSScoreViewController.h"
 #import "MUSTimelineViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
 
 @interface MUSDecadeScoreCollectionViewController ()
 
+@property (nonatomic, strong) IBOutlet UIView *toolbarContainerView;
 @property (nonatomic, strong) UIPopoverController *composersPopover;
 @property (nonatomic) NSInteger composersSegmentIndex;
 @property (nonatomic, strong) NSIndexPath *composersIndexPath;
@@ -50,6 +52,10 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
 {
     [self addObserver:self forKeyPath:@"decade" options:NSKeyValueObservingOptionNew context:NULL];
     [self.indexView setDelegate:self];
+    
+    [self.toolbarContainerView.layer setCornerRadius:5.0f];
+    [self.toolbarContainerView.layer setMasksToBounds:YES];
+    
     [super viewDidLoad];
 }
 

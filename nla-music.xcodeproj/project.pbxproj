@@ -86,6 +86,14 @@
 		23E175D5162674A300B5E7A3 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 23E175D3162674A300B5E7A3 /* Model.xcdatamodeld */; };
 		23F837631627B0BB0002126E /* MUSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F837621627B0BB0002126E /* MUSAppDelegate.m */; };
 		23F837691627B1C40002126E /* MUSScoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F837681627B1C40002126E /* MUSScoreCell.m */; };
+		23FAD2C7166861A9004DC2CF /* noise.png in Resources */ = {isa = PBXBuildFile; fileRef = 23FAD2C5166861A9004DC2CF /* noise.png */; };
+		23FAD2C8166861A9004DC2CF /* noise@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23FAD2C6166861A9004DC2CF /* noise@2x.png */; };
+		23FAD2CC16686627004DC2CF /* MUSDecadeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 23FAD2CB16686627004DC2CF /* MUSDecadeControl.m */; };
+		23FAD2D016686B87004DC2CF /* UIColor+NLAMusicColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 23FAD2CF16686B87004DC2CF /* UIColor+NLAMusicColors.m */; };
+		23FAD2D31668B79D004DC2CF /* MUSTimelineItemControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 23FAD2D21668B79D004DC2CF /* MUSTimelineItemControl.m */; };
+		23FAD2D61668C4F6004DC2CF /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 23FAD2D41668C4F6004DC2CF /* star.png */; };
+		23FAD2D71668C4F6004DC2CF /* star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23FAD2D51668C4F6004DC2CF /* star@2x.png */; };
+		23FAD2DA1668C518004DC2CF /* MUSFavouritesControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 23FAD2D91668C518004DC2CF /* MUSFavouritesControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -258,6 +266,18 @@
 		23F837621627B0BB0002126E /* MUSAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUSAppDelegate.m; sourceTree = "<group>"; };
 		23F837671627B1C40002126E /* MUSScoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUSScoreCell.h; path = Views/MUSScoreCell.h; sourceTree = "<group>"; };
 		23F837681627B1C40002126E /* MUSScoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUSScoreCell.m; path = Views/MUSScoreCell.m; sourceTree = "<group>"; };
+		23FAD2C5166861A9004DC2CF /* noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noise.png; sourceTree = "<group>"; };
+		23FAD2C6166861A9004DC2CF /* noise@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noise@2x.png"; sourceTree = "<group>"; };
+		23FAD2CA16686627004DC2CF /* MUSDecadeControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUSDecadeControl.h; path = Views/MUSDecadeControl.h; sourceTree = "<group>"; };
+		23FAD2CB16686627004DC2CF /* MUSDecadeControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUSDecadeControl.m; path = Views/MUSDecadeControl.m; sourceTree = "<group>"; };
+		23FAD2CE16686B87004DC2CF /* UIColor+NLAMusicColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+NLAMusicColors.h"; path = "nla-music/Categories/UIColor+NLAMusicColors.h"; sourceTree = "<group>"; };
+		23FAD2CF16686B87004DC2CF /* UIColor+NLAMusicColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+NLAMusicColors.m"; path = "nla-music/Categories/UIColor+NLAMusicColors.m"; sourceTree = "<group>"; };
+		23FAD2D11668B79D004DC2CF /* MUSTimelineItemControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUSTimelineItemControl.h; path = Views/MUSTimelineItemControl.h; sourceTree = "<group>"; };
+		23FAD2D21668B79D004DC2CF /* MUSTimelineItemControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUSTimelineItemControl.m; path = Views/MUSTimelineItemControl.m; sourceTree = "<group>"; };
+		23FAD2D41668C4F6004DC2CF /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		23FAD2D51668C4F6004DC2CF /* star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star@2x.png"; sourceTree = "<group>"; };
+		23FAD2D81668C518004DC2CF /* MUSFavouritesControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUSFavouritesControl.h; path = Views/MUSFavouritesControl.h; sourceTree = "<group>"; };
+		23FAD2D91668C518004DC2CF /* MUSFavouritesControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUSFavouritesControl.m; path = Views/MUSFavouritesControl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -518,6 +538,12 @@
 				2380F796163DFBEB001286EC /* MUSComposerCell.m */,
 				230F3EA2165F41F500D5BBD3 /* MUSAtoZIndexView.h */,
 				230F3EA3165F41F500D5BBD3 /* MUSAtoZIndexView.m */,
+				23FAD2D11668B79D004DC2CF /* MUSTimelineItemControl.h */,
+				23FAD2D21668B79D004DC2CF /* MUSTimelineItemControl.m */,
+				23FAD2CA16686627004DC2CF /* MUSDecadeControl.h */,
+				23FAD2CB16686627004DC2CF /* MUSDecadeControl.m */,
+				23FAD2D81668C518004DC2CF /* MUSFavouritesControl.h */,
+				23FAD2D91668C518004DC2CF /* MUSFavouritesControl.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -535,6 +561,10 @@
 				23041566162D5FDC001CC73B /* fav_icon_selected@2x.png */,
 				23041567162D5FDC001CC73B /* fav_icon.png */,
 				23041568162D5FDC001CC73B /* fav_icon@2x.png */,
+				23FAD2C5166861A9004DC2CF /* noise.png */,
+				23FAD2C6166861A9004DC2CF /* noise@2x.png */,
+				23FAD2D41668C4F6004DC2CF /* star.png */,
+				23FAD2D51668C4F6004DC2CF /* star@2x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -582,6 +612,7 @@
 				239D058016279BAE0065BDEF /* Views */,
 				23E175C616266DC900B5E7A3 /* View Controllers */,
 				239D0450162690AA0065BDEF /* Other Controllers */,
+				23FAD2CD16686B56004DC2CF /* Categories */,
 				23E175A516265F1300B5E7A3 /* Supporting Files */,
 				239D046A162790F50065BDEF /* 3rd Party */,
 			);
@@ -644,6 +675,16 @@
 				23E175B616265F1300B5E7A3 /* MainStoryboard.storyboard */,
 			);
 			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		23FAD2CD16686B56004DC2CF /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				23FAD2CE16686B87004DC2CF /* UIColor+NLAMusicColors.h */,
+				23FAD2CF16686B87004DC2CF /* UIColor+NLAMusicColors.m */,
+			);
+			name = Categories;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -713,6 +754,10 @@
 				2304156A162D5FDC001CC73B /* fav_icon_selected@2x.png in Resources */,
 				2304156B162D5FDC001CC73B /* fav_icon.png in Resources */,
 				2304156C162D5FDC001CC73B /* fav_icon@2x.png in Resources */,
+				23FAD2C7166861A9004DC2CF /* noise.png in Resources */,
+				23FAD2C8166861A9004DC2CF /* noise@2x.png in Resources */,
+				23FAD2D61668C4F6004DC2CF /* star.png in Resources */,
+				23FAD2D71668C4F6004DC2CF /* star@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -780,6 +825,10 @@
 				2380F797163DFBEB001286EC /* MUSComposerCell.m in Sources */,
 				23788CE216437E3800519C8B /* MUSSplitViewController.m in Sources */,
 				230F3EA4165F41F500D5BBD3 /* MUSAtoZIndexView.m in Sources */,
+				23FAD2CC16686627004DC2CF /* MUSDecadeControl.m in Sources */,
+				23FAD2D016686B87004DC2CF /* UIColor+NLAMusicColors.m in Sources */,
+				23FAD2D31668B79D004DC2CF /* MUSTimelineItemControl.m in Sources */,
+				23FAD2DA1668C518004DC2CF /* MUSFavouritesControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -295,6 +295,15 @@
 {    
     Page *page = [[self.score orderedPages] objectAtIndex:photoIndex];
     NSURL *pageUrl = [page imageURL];
+    
+    // special case for aeroplane jelly
+    if ([self.score.identifier isEqualToString:@"nla.mus-an5892255"]) {
+        *photoSize = NIPhotoScrollViewPhotoSizeThumbnail;
+        *isLoading = NO;
+        
+        NSString *imageName = [NSString stringWithFormat:@"%@.jpg", page.identifier];
+        return [UIImage imageNamed:imageName];
+    }
         
     // try the local cache first
     if (![[NSFileManager defaultManager] fileExistsAtPath:page.cachedImagePath]) {

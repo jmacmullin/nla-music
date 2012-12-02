@@ -32,6 +32,7 @@
 @property (nonatomic, strong) Score *score;
 
 @property (nonatomic, strong) IBOutlet NINetworkImageView *imageView;
+@property (nonatomic, strong) IBOutlet UIImageView *noteImageView;
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 
 @end

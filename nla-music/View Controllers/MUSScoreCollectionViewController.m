@@ -29,6 +29,7 @@
 #import "NINetworkImageView.h"
 #import "MUSScoreCell.h"
 #import "MUSScoreViewController.h"
+#import "Reachability.h"
 
 static NSString * kScoreCellIdentifier = @"ScoreCell";
 static NSString * kOpenScoreSegueIdentifier = @"OpenScoreSegue";
@@ -152,7 +153,13 @@ static float kThumbnailZoomDuration = 0.25;
     // create a new image view to scale to fill the view
     CGRect thumbnailFrame = CGRectMake(convertedPoint.x, convertedPoint.y, kThumbnailWidth, kThumbnailHeight);
     NINetworkImageView *coverImageView = [[NINetworkImageView alloc] initWithFrame:thumbnailFrame];
-    [coverImageView setPathToNetworkImage:[self.selectedScore.thumbnailURL absoluteString]];
+    
+    Reachability *reachability = [Reachability reachabilityWithHostName:@"nla.gov.au"];
+    if (reachability.currentReachabilityStatus!=NotReachable) {
+        [coverImageView setPathToNetworkImage:[self.selectedScore.thumbnailURL absoluteString]];
+    } else {
+        [coverImageView setInitialImage:[UIImage imageNamed:@"score_placeholder.png"]];
+    }
     [self.view addSubview:coverImageView];
     [self setSelectedCoverImageView:coverImageView];
     

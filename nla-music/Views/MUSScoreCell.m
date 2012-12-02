@@ -24,6 +24,7 @@
 //
 
 #import "MUSScoreCell.h"
+#import "Reachability.h"
 
 @interface MUSScoreCell()
 - (void)initialise;
@@ -62,7 +63,13 @@
         [self.imageView setImage:[UIImage imageNamed:@"thumbnail_placeholder"]];
         
         // update the details of the score
-        [self.imageView setPathToNetworkImage:[self.score.thumbnailURL absoluteString]];
+        Reachability *reachability = [Reachability reachabilityWithHostName:@"nla.gov.au"];
+        if (reachability.currentReachabilityStatus != NotReachable) {
+            [self.noteImageView setHidden:YES];
+            [self.imageView setPathToNetworkImage:[self.score.thumbnailURL absoluteString]];
+        } else {
+            [self.noteImageView setHidden:NO];
+        }
         [self.titleLabel setText:self.score.title];
     }
 }

@@ -31,6 +31,7 @@
 #import "NLAOpenArchiveController.h"
 #import "NLAItemInformation.h"
 #import "NIImageProcessing.h"
+#import "Reachability.h"
 
 @interface MUSScoreViewController ()
 
@@ -294,45 +295,54 @@
 {    
     Page *page = [[self.score orderedPages] objectAtIndex:photoIndex];
     NSURL *pageUrl = [page imageURL];
-    
+        
     // try the local cache first
     if (![[NSFileManager defaultManager] fileExistsAtPath:page.cachedImagePath]) {
         
-        // request the high resolution image
-        NSURLRequest *imageRequest = [NSURLRequest requestWithURL:pageUrl];
-        AFImageRequestOperation *imageRequestOperation;
-        
-        void (^successBlock)(UIImage *);
-        successBlock = ^(UIImage *image) {
-            dispatch_async(dispatch_get_main_queue(),
-                           ^{
-                               [self.scorePageScrollView didLoadPhoto:image
-                                                              atIndex:photoIndex
-                                                            photoSize:NIPhotoScrollViewPhotoSizeOriginal];
-                               
-                               if (photoIndex == 0) {
-                                   [self setCoverImage:image];
-                               }
-                               
-                           });
-        };
-        
-        imageRequestOperation = [AFImageRequestOperation imageRequestOperationWithRequest:imageRequest
-                                                                                  success:successBlock];
-        
-        // If we're on a retina display iPad, then we're going to need to stretch the image
-        if ([UIScreen mainScreen].scale == 2.0) {
-            [imageRequestOperation setImageScale:0.5];
-        }
-        [self.imageDownloadQueue addOperation:imageRequestOperation];
-        
-        *photoSize = NIPhotoScrollViewPhotoSizeThumbnail;
-        *isLoading = YES;
-        
-        if (photoIndex == 0) {
-            return self.initialImage;
+        Reachability *reachability = [Reachability reachabilityWithHostName:@"nla.gov.au"];
+        if (reachability.currentReachabilityStatus!=NotReachable) {
+            // request the high resolution image
+            NSURLRequest *imageRequest = [NSURLRequest requestWithURL:pageUrl];
+            AFImageRequestOperation *imageRequestOperation;
+            
+            void (^successBlock)(UIImage *);
+            successBlock = ^(UIImage *image) {
+                dispatch_async(dispatch_get_main_queue(),
+                               ^{
+                                   [self.scorePageScrollView didLoadPhoto:image
+                                                                  atIndex:photoIndex
+                                                                photoSize:NIPhotoScrollViewPhotoSizeOriginal];
+                                   
+                                   if (photoIndex == 0) {
+                                       [self setCoverImage:image];
+                                   }
+                                   
+                               });
+            };
+            
+            imageRequestOperation = [AFImageRequestOperation imageRequestOperationWithRequest:imageRequest
+                                                                                      success:successBlock];
+            
+            // If we're on a retina display iPad, then we're going to need to stretch the image
+            if ([UIScreen mainScreen].scale == 2.0) {
+                [imageRequestOperation setImageScale:0.5];
+            }
+            [self.imageDownloadQueue addOperation:imageRequestOperation];
+            
+            *photoSize = NIPhotoScrollViewPhotoSizeThumbnail;
+            *isLoading = YES;
+            
+            if (photoIndex == 0) {
+                return self.initialImage;
+            } else {
+                return nil;
+            }
+
         } else {
-            return nil;
+            *photoSize = NIPhotoScrollViewPhotoSizeThumbnail;
+            *isLoading = NO;
+            
+            return [UIImage imageNamed:@"score_placeholder.png"];
         }
         
     } else {

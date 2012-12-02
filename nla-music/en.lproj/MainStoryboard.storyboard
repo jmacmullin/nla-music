@@ -33,30 +33,34 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dz4-Mv-saK" customClass="NINetworkImageView">
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="150" id="RhI-9T-Ebv"/>
                                                         <constraint firstAttribute="width" constant="121" id="fF2-HF-jZ4"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="The absent-minded beggar [music] : Kipling's stirring military song : with music / by A.H.P" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="159" translatesAutoresizingMaskIntoConstraints="NO" id="n5Y-Qn-6N8">
                                                     <constraints>
+                                                        <constraint firstAttribute="height" constant="72" id="YhU-Mh-mFo"/>
                                                         <constraint firstAttribute="width" constant="159" id="aSW-T9-wa7"/>
-                                                        <constraint firstAttribute="height" constant="72" id="p52-st-PM7"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.29999999999999999" contentMode="center" image="small_note.png" translatesAutoresizingMaskIntoConstraints="NO" id="h0X-FS-nEs"/>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="Dz4-Mv-saK" firstAttribute="centerX" secondItem="45E-Hz-tS2" secondAttribute="centerX" type="default" id="39o-bf-uf2"/>
+                                            <constraint firstItem="n5Y-Qn-6N8" firstAttribute="centerX" secondItem="45E-Hz-tS2" secondAttribute="centerX" type="default" id="Rdp-eY-xeq"/>
                                             <constraint firstItem="Dz4-Mv-saK" firstAttribute="centerX" secondItem="n5Y-Qn-6N8" secondAttribute="centerX" type="default" id="Rzy-J5-zAV"/>
                                             <constraint firstItem="n5Y-Qn-6N8" firstAttribute="top" secondItem="Dz4-Mv-saK" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="U4i-lE-G8f"/>
-                                            <constraint firstItem="Dz4-Mv-saK" firstAttribute="top" secondItem="45E-Hz-tS2" secondAttribute="top" constant="20" type="default" id="zWc-4H-aEq"/>
+                                            <constraint firstItem="h0X-FS-nEs" firstAttribute="top" secondItem="45E-Hz-tS2" secondAttribute="top" constant="42" id="a0p-Y8-b4p"/>
+                                            <constraint firstAttribute="bottom" secondItem="n5Y-Qn-6N8" secondAttribute="bottom" constant="20" type="default" id="d8w-dL-w7b"/>
+                                            <constraint firstItem="Dz4-Mv-saK" firstAttribute="top" secondItem="45E-Hz-tS2" secondAttribute="top" constant="20" type="default" id="hjW-P5-dxW"/>
+                                            <constraint firstItem="h0X-FS-nEs" firstAttribute="leading" secondItem="45E-Hz-tS2" secondAttribute="leading" constant="47" id="ofq-OE-fQW"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="Dz4-Mv-saK" id="etj-yq-N0U"/>
+                                            <outlet property="noteImageView" destination="h0X-FS-nEs" id="dol-YH-iIu"/>
                                             <outlet property="titleLabel" destination="n5Y-Qn-6N8" id="DsC-OF-Lhe"/>
                                         </connections>
                                     </collectionViewCell>
@@ -436,17 +440,21 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.29999999999999999" contentMode="center" image="small_note.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zy7-wI-zP0"/>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="bs9-nM-VMB" firstAttribute="top" secondItem="7yA-AO-fNX" secondAttribute="top" constant="20" type="default" id="CAu-BX-3sw"/>
                                             <constraint firstItem="Hcw-ai-h8o" firstAttribute="top" secondItem="bs9-nM-VMB" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="VC5-h8-iBV"/>
+                                            <constraint firstItem="Zy7-wI-zP0" firstAttribute="top" secondItem="7yA-AO-fNX" secondAttribute="top" constant="38" id="aSE-9s-8bA"/>
+                                            <constraint firstItem="bs9-nM-VMB" firstAttribute="centerX" secondItem="7yA-AO-fNX" secondAttribute="centerX" type="default" id="b1C-CZ-I9T"/>
                                             <constraint firstItem="Hcw-ai-h8o" firstAttribute="centerX" secondItem="bs9-nM-VMB" secondAttribute="centerX" type="default" id="fDg-6H-z8A"/>
-                                            <constraint firstItem="Hcw-ai-h8o" firstAttribute="centerX" secondItem="7yA-AO-fNX" secondAttribute="centerX" type="default" id="h3E-zP-j23"/>
+                                            <constraint firstItem="bs9-nM-VMB" firstAttribute="top" secondItem="7yA-AO-fNX" secondAttribute="top" constant="20" type="default" id="fyy-8V-tTo"/>
+                                            <constraint firstItem="Zy7-wI-zP0" firstAttribute="leading" secondItem="7yA-AO-fNX" secondAttribute="leading" constant="68" id="pzn-Zb-TyN"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="bs9-nM-VMB" id="u6u-qo-App"/>
+                                            <outlet property="noteImageView" destination="Zy7-wI-zP0" id="Dmg-VM-ebG"/>
                                             <outlet property="titleLabel" destination="Hcw-ai-h8o" id="0W6-3d-QpV"/>
                                         </connections>
                                     </collectionViewCell>
@@ -617,6 +625,7 @@
     <resources>
         <image name="fav_icon.png" width="23" height="23"/>
         <image name="share_icon.png" width="23" height="18"/>
+        <image name="small_note.png" width="75" height="88"/>
     </resources>
     <classes>
         <class className="MUSAtoZIndexView" superclassName="UIView">
@@ -651,6 +660,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MUSScoreCell.h"/>
             <relationships>
                 <relationship kind="outlet" name="imageView" candidateClass="NINetworkImageView"/>
+                <relationship kind="outlet" name="noteImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
@@ -696,7 +706,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MUSTimelineViewController.h"/>
             <relationships>
                 <relationship kind="action" name="showFavourites:"/>
-                <relationship kind="outlet" name="favouritesSectionView" candidateClass="UIView"/>
             </relationships>
         </class>
         <class className="NINetworkImageView" superclassName="UIImageView">

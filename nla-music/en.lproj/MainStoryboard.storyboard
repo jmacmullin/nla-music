@@ -78,7 +78,7 @@
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="Dsf-yH-BY7">
                                         <items>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="uNl-Zq-QOf"/>
-                                            <barButtonItem title="1920 - 1929 (4000 items)" style="plain" id="dN9-ly-uMy"/>
+                                            <barButtonItem title=" " style="plain" id="dN9-ly-uMy"/>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="t0n-22-c4L"/>
                                             <barButtonItem title="Composers" id="LsK-Qr-qS4">
                                                 <connections>
@@ -731,6 +731,9 @@
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

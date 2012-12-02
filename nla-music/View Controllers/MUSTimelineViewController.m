@@ -71,12 +71,16 @@ static NSString * kShowIndexSegueIdentifier = @"ShowIndex";
     [super viewDidLoad];
     [self setDataController:[MUSDataController sharedController]];
     [self.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-    [self createTimeline];
+    [self createTimeline];    
 }
 
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    if (self.selectedDecadeControl == nil) {
+        MUSTimelineItemControl *itemControl = (MUSTimelineItemControl *)self.scrollview.subviews[6];
+        [itemControl sendActionsForControlEvents:UIControlEventTouchDown];
+    }
 }
 
 - (void)viewWillLayoutSubviews

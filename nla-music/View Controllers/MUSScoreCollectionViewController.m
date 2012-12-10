@@ -135,6 +135,10 @@ static float kThumbnailZoomDuration = 0.25;
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    // disable touches until this transition is complete
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+    
     // take note of the selected score
     [self setSelectedScore:[self scoreAtIndexPathInCollection:indexPath]];
     [self setSelectedScoreIndex:indexPath];

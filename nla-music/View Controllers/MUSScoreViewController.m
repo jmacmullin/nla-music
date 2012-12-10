@@ -130,6 +130,9 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    // Resume responding to touches
+    [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+    
     if (self.initialPageNumber!=-1) {
         [self.scorePageScrollView moveToPageAtIndex:self.initialPageNumber animated:NO];
     }

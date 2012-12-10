@@ -37,7 +37,7 @@
 @interface MUSScoreCollectionViewController : UIViewController
 
 @property (nonatomic, strong) IBOutlet UICollectionView *collectionView;
-@property (nonatomic, strong) IBOutlet UIBarButtonItem *titleItem;
+@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) MUSDataController *dataController;
 @property (nonatomic, strong) NSIndexPath *selectedScoreIndex;
 @property (nonatomic, strong) Score *selectedScore;

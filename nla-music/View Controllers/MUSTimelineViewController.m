@@ -99,6 +99,7 @@ static NSString * kShowIndexSegueIdentifier = @"ShowIndex";
     
     CGRect timelineFrame = self.view.bounds;
     UIScrollView *scrollview = [[UIScrollView alloc] initWithFrame:timelineFrame];
+    [scrollview setScrollsToTop:NO];
     [self setScrollview:scrollview];
     [scrollview setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     

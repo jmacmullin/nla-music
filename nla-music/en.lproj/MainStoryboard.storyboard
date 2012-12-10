@@ -78,7 +78,29 @@
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="Dsf-yH-BY7">
                                         <items>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="uNl-Zq-QOf"/>
-                                            <barButtonItem title=" " style="plain" id="dN9-ly-uMy"/>
+                                            <barButtonItem style="plain" id="eLU-9B-yv5">
+                                                <view key="customView" contentMode="scaleToFill" id="VNJ-P9-wBI">
+                                                    <rect key="frame" x="127" y="6" width="425" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jpn-bz-M0f">
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="21" id="Xya-oU-nPR"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="Jpn-bz-M0f" firstAttribute="centerY" secondItem="VNJ-P9-wBI" secondAttribute="centerY" type="default" id="dZ6-4z-p4y"/>
+                                                        <constraint firstItem="Jpn-bz-M0f" firstAttribute="leading" secondItem="VNJ-P9-wBI" secondAttribute="leading" type="default" id="jLc-B4-mxS"/>
+                                                        <constraint firstItem="Jpn-bz-M0f" firstAttribute="trailing" secondItem="VNJ-P9-wBI" secondAttribute="trailing" type="default" id="jVD-Hr-tbq"/>
+                                                    </constraints>
+                                                </view>
+                                            </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="t0n-22-c4L"/>
                                             <barButtonItem title="Composers" id="LsK-Qr-qS4">
                                                 <connections>
@@ -118,7 +140,7 @@
                         <outlet property="collectionView" destination="eUc-aP-eeM" id="7co-q9-UGv"/>
                         <outlet property="composersButtonItem" destination="LsK-Qr-qS4" id="oK6-2l-7Uo"/>
                         <outlet property="indexView" destination="QO5-hT-udt" id="J21-RV-Tav"/>
-                        <outlet property="titleItem" destination="dN9-ly-uMy" id="f7O-B1-V41"/>
+                        <outlet property="titleLabel" destination="Jpn-bz-M0f" id="dEc-4e-dWY"/>
                         <outlet property="toolbarContainerView" destination="alw-oV-Bbs" id="Pcp-je-tbX"/>
                         <segue destination="ZP9-gQ-okS" kind="custom" identifier="OpenScoreSegue" customClass="MUSFadeInSegue" id="q65-zi-qdO"/>
                     </connections>
@@ -472,7 +494,29 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="6uW-Cn-3zP"/>
-                                    <barButtonItem title="1920 - 1929 (4000 items)" style="plain" id="okm-cM-WNW"/>
+                                    <barButtonItem style="plain" id="5uc-I3-3We">
+                                        <view key="customView" contentMode="scaleToFill" id="Upz-5m-w0B">
+                                            <rect key="frame" x="171" y="6" width="425" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PL9-nT-bZz">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="7FY-6b-U5v"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="PL9-nT-bZz" firstAttribute="trailing" secondItem="Upz-5m-w0B" secondAttribute="trailing" type="default" id="IKI-Ev-dMa"/>
+                                                <constraint firstItem="PL9-nT-bZz" firstAttribute="leading" secondItem="Upz-5m-w0B" secondAttribute="leading" type="default" id="hWI-g9-TVX"/>
+                                                <constraint firstItem="PL9-nT-bZz" firstAttribute="centerY" secondItem="Upz-5m-w0B" secondAttribute="centerY" type="default" id="pg7-UX-ySu"/>
+                                            </constraints>
+                                        </view>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="apG-Vo-UNG"/>
                                 </items>
                             </toolbar>
@@ -490,7 +534,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="ANk-s4-SHw" id="7Hi-bU-tBZ"/>
-                        <outlet property="titleItem" destination="okm-cM-WNW" id="X0r-np-KuZ"/>
+                        <outlet property="titleLabel" destination="PL9-nT-bZz" id="H0Y-Zp-3oD"/>
                         <segue destination="ZP9-gQ-okS" kind="custom" identifier="OpenScoreSegue" customClass="MUSFadeInSegue" id="XQg-IY-7Oy"/>
                     </connections>
                 </viewController>
@@ -669,7 +713,7 @@
             <relationships>
                 <relationship kind="action" name="dismiss:"/>
                 <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
-                <relationship kind="outlet" name="titleItem" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="MUSScoreViewController" superclassName="UIViewController">
@@ -732,9 +776,6 @@
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
         </class>
-        <class className="UICollectionViewLayout" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
-        </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
@@ -742,6 +783,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="q65-zi-qdO"/>
+        <segue reference="XQg-IY-7Oy"/>
     </inferredMetricsTieBreakers>
 </document>

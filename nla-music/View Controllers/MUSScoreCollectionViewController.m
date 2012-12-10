@@ -55,7 +55,7 @@ static float kThumbnailZoomDuration = 0.25;
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.titleItem setTitle:self.titleString];
+    [self.titleLabel setText:self.titleString];
 }
 
 - (void)viewDidAppear:(BOOL)animated

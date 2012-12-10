@@ -171,7 +171,7 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
 - (void)composersTableViewControllerDidSelectAllComposers:(MUSComposersTableViewController *)controller
 {
     [self setComposer:nil];
-    [self.titleItem setTitle:[self titleString]];
+    [self.titleLabel setText:self.titleString];
     [self.collectionView reloadData];
     
     // show the a - z index
@@ -181,7 +181,7 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
 - (void)composersTableViewController:(MUSComposersTableViewController *)controller didSelectComposerWithInfo:(NSDictionary *)composerInfo
 {
     [self setComposer:composerInfo[@"creator"]];
-    [self.titleItem setTitle:[self titleString]];
+    [self.titleLabel setText:self.titleString];
     [self.collectionView reloadData];
     
     // it doesn't make sense to have an A - Z index for a single composer, so hide it
@@ -210,7 +210,7 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
         [self setComposersIndexPath:nil];
         [self setComposersSegmentIndex:0];
 
-        [self.titleItem setTitle:self.titleString];
+        [self.titleLabel setText:self.titleString];
         [self.composersButtonItem setEnabled:YES];
         [self.collectionView reloadData];
         NSIndexPath *firstItemPath = [NSIndexPath indexPathForItem:0 inSection:0];

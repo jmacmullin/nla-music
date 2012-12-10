@@ -314,6 +314,25 @@
                                             <action selector="dismiss:" destination="ZP9-gQ-okS" id="MAH-Iy-7ek"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ZW8-hB-Dn1"/>
+                                    <barButtonItem style="plain" id="epa-3q-YNI">
+                                        <view key="customView" contentMode="scaleToFill" id="5TD-hj-LqE">
+                                            <rect key="frame" x="678" y="6" width="78" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1 of 999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIh-3g-OX4">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="nIh-3g-OX4" firstAttribute="centerY" secondItem="5TD-hj-LqE" secondAttribute="centerY" type="default" id="HC1-P4-AY8"/>
+                                                <constraint firstItem="nIh-3g-OX4" firstAttribute="centerX" secondItem="5TD-hj-LqE" secondAttribute="centerX" type="default" id="jwi-ha-KaN"/>
+                                            </constraints>
+                                        </view>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1h0-wv-m4y" userLabel="Light Info Button">
@@ -370,6 +389,7 @@
                         <outlet property="descriptionLabel" destination="7Wt-DZ-CwL" id="i96-gh-v2f"/>
                         <outlet property="favouriteButton" destination="hWx-v9-CaT" id="2Ke-jI-aR7"/>
                         <outlet property="lightInfoButton" destination="1h0-wv-m4y" id="RvH-y5-EJv"/>
+                        <outlet property="pageNumberLabel" destination="nIh-3g-OX4" id="qPb-14-q08"/>
                         <outlet property="publisherLabel" destination="vir-xR-tek" id="6cX-Py-y4U"/>
                         <outlet property="scorePageScrollView" destination="xiF-fe-9Cg" id="zy6-Xi-4BM"/>
                         <outlet property="scrubberView" destination="ZGy-8J-00j" id="BUn-aR-u8i"/>
@@ -731,6 +751,7 @@
                 <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="favouriteButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="lightInfoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="pageNumberLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="publisherLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="scorePageScrollView" candidateClass="NIPhotoAlbumScrollView"/>
                 <relationship kind="outlet" name="scrubberView" candidateClass="NIPhotoScrubberView"/>

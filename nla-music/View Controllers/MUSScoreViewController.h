@@ -44,6 +44,8 @@
 @property (nonatomic) int initialPageNumber;
 
 @property (nonatomic, strong) IBOutlet UIToolbar *toolBar;
+@property (nonatomic, strong) IBOutlet UILabel *pageNumberLabel;
+
 @property (nonatomic, strong) IBOutlet UIButton *darkInfoButton;
 @property (nonatomic, strong) IBOutlet UIButton *lightInfoButton;
 @property (nonatomic, strong) IBOutlet NIPhotoAlbumScrollView *scorePageScrollView;

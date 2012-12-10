@@ -47,6 +47,11 @@
  */
 - (void)showChrome;
 
+/**
+ Indicate which page is currently selected.
+ */
+- (void)setSelectedPage;
+
 @property (nonatomic, strong) NSOperationQueue *imageDownloadQueue;
 @property (nonatomic, strong) UIImage *coverImage;
 @property (nonatomic, strong) UIActionSheet *shareSizeSheet;
@@ -126,6 +131,11 @@
                                                                                  [self setItemInformation:itemInfo];
                                                                              }];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self setSelectedPage];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -367,8 +377,15 @@
 
 - (void)pagingScrollViewDidChangePages:(NIPagingScrollView *)pagingScrollView
 {
+    [self setSelectedPage];
+}
+
+- (void)setSelectedPage
+{
     int indexOfSelectedPage = self.scorePageScrollView.centerPageIndex;
     [self.scrubberView setSelectedPhotoIndex:indexOfSelectedPage];
+    NSString *pageNumberString = [NSString stringWithFormat:@"%i of %i", indexOfSelectedPage + 1, self.score.pages.count];
+    [self.pageNumberLabel setText:pageNumberString];
 }
 
 

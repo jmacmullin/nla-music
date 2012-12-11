@@ -368,7 +368,7 @@
         }
         
     } else {
-        *photoSize = NIPhotoScrollViewPhotoSizeOriginal;
+        *photoSize = NIPhotoScrollViewPhotoSizeThumbnail;
         *isLoading = NO;
         
         return [UIImage imageWithContentsOfFile:page.cachedImagePath];

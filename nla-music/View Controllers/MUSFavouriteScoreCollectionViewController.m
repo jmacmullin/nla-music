@@ -34,6 +34,11 @@
     return @"Favourites";
 }
 
+- (NSString *)trackedViewName
+{
+    return @"Favourites";
+}
+
 - (int)numberOfScoresInCollection
 {
     return [self.dataController numberOfFavouriteScores];

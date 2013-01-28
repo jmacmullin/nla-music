@@ -29,6 +29,7 @@
 #import "MUSScoreViewController.h"
 #import "MUSTimelineViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "GAI.h"
 
 static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
 
@@ -52,6 +53,7 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
 {
     [self addObserver:self forKeyPath:@"decade" options:NSKeyValueObservingOptionNew context:NULL];
     [self.indexView setDelegate:self];
+    [self.titleLabel setText:@""];
     
     [self.toolbarContainerView.layer setCornerRadius:5.0f];
     [self.toolbarContainerView.layer setMasksToBounds:YES];
@@ -82,6 +84,19 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
     } else {
         return @"";
     }
+}
+
+- (NSString *)trackedViewName
+{
+    NSString *viewName;
+    
+    if (self.titleString.length < 1) {
+        viewName = @"Decade View";
+    } else {
+        viewName = self.titleString;
+    }
+    
+    return viewName;
 }
 
 - (int)numberOfScoresInCollection
@@ -186,6 +201,13 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
     
     // it doesn't make sense to have an A - Z index for a single composer, so hide it
     [self.indexView setHidden:YES];
+    
+    // track this
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker sendEventWithCategory:@"uiAction"
+                        withAction:@"Select Composer in Decade"
+                         withLabel:[NSString stringWithFormat:@"%@ (%@)", self.composer, self.decade]
+                         withValue:nil];
 }
 
 
@@ -210,24 +232,54 @@ static NSString * kShowComposersSegueIdentifier = @"ShowComposers";
         [self setComposersIndexPath:nil];
         [self setComposersSegmentIndex:0];
 
+        [self.brandingImage setHidden:YES];
         [self.titleLabel setText:self.titleString];
         [self.composersButtonItem setEnabled:YES];
         [self.collectionView reloadData];
         NSIndexPath *firstItemPath = [NSIndexPath indexPathForItem:0 inSection:0];
         [self.collectionView scrollToItemAtIndexPath:firstItemPath atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
         [self.indexView setHidden:NO];
+        
+        // track this
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker sendEventWithCategory:@"uiAction"
+                            withAction:@"Select Decade"
+                             withLabel:self.decade
+                             withValue:nil];
     }
 }
 
 #pragma mark - A to Z Index View Delegate Methods
 
-- (void)indexViewDidSelectLetterInIndex:(NSString *)letter
+- (void)indexView:(MUSAtoZIndexView *)indexView didSelectLetterInIndex:(NSString *)letter
 {
     // scroll the collection view to the right place
-    NSIndexPath *indexPathOfFirstScoreWithLetter = [self.dataController indexOfFirstScoreWithLetter:letter inDecade:self.decade];
+    NSIndexPath *indexPathOfFirstScoreWithLetter = nil;
+    int indexOfLastLetterThatWasTried = [indexView.letters indexOfObject:letter];
+    
+    while (indexPathOfFirstScoreWithLetter==nil && indexOfLastLetterThatWasTried > 0) {
+        indexPathOfFirstScoreWithLetter = [self.dataController indexOfFirstScoreWithLetter:letter inDecade:self.decade];
+        indexOfLastLetterThatWasTried--;
+        letter = indexView.letters[indexOfLastLetterThatWasTried];
+    }
+    
+    if (indexPathOfFirstScoreWithLetter==nil) {
+        // we've tried all the letters and there are no scores starting with
+        // the given letter or any earlier letters, so just go to the
+        // first score
+        indexPathOfFirstScoreWithLetter = [NSIndexPath indexPathForItem:0 inSection:0];
+    }
+    
     [self.collectionView scrollToItemAtIndexPath:indexPathOfFirstScoreWithLetter
                                 atScrollPosition:UICollectionViewScrollPositionTop
                                         animated:NO];
+    
+    // track this
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker sendEventWithCategory:@"uiAction"
+                        withAction:@"Select Letter in Decade"
+                         withLabel:[NSString stringWithFormat:@"%@ (%@)", letter, self.decade]
+                         withValue:nil];
 }
 
 @end

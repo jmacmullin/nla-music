@@ -74,15 +74,6 @@ static NSString * kShowIndexSegueIdentifier = @"ShowIndex";
     [self createTimeline];    
 }
 
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    if (self.selectedDecadeControl == nil) {
-        MUSTimelineItemControl *itemControl = (MUSTimelineItemControl *)self.scrollview.subviews[6];
-        [itemControl sendActionsForControlEvents:UIControlEventTouchDown];
-    }
-}
-
 - (void)viewWillLayoutSubviews
 {
     [self.scrollview setContentSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height * kNumberOfPagesInScrollView)];

@@ -23,6 +23,7 @@
 		237428FE163A18CE005368CC /* MUSComposersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 237428FD163A18CE005368CC /* MUSComposersTableViewController.m */; };
 		23742902163BE7EE005368CC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23742900163BE7DF005368CC /* QuartzCore.framework */; };
 		23788CE216437E3800519C8B /* MUSSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23788CE116437E3800519C8B /* MUSSplitViewController.m */; };
+		237ACC6B169E42D700AAEDBC /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 237ACC6A169E42D700AAEDBC /* Settings.bundle */; };
 		2380F797163DFBEB001286EC /* MUSComposerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2380F796163DFBEB001286EC /* MUSComposerCell.m */; };
 		23828EF41632AD5D008D6166 /* NLAOpenArchiveController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23828EF31632AD5D008D6166 /* NLAOpenArchiveController.m */; };
 		23828EFB1632AF8F008D6166 /* NLAItemInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 23828EFA1632AF8F008D6166 /* NLAItemInformation.m */; };
@@ -46,6 +47,9 @@
 		2394E998162BBD8C00E5851E /* NIPagingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2394E98F162BBD8C00E5851E /* NIPagingScrollView.m */; };
 		2394E99D162BC05D00E5851E /* icon72.png in Resources */ = {isa = PBXBuildFile; fileRef = 2394E99B162BC05D00E5851E /* icon72.png */; };
 		2394E99E162BC05D00E5851E /* icon144.png in Resources */ = {isa = PBXBuildFile; fileRef = 2394E99C162BC05D00E5851E /* icon144.png */; };
+		2395AF0616B5E1FD009D3441 /* Branding.png in Resources */ = {isa = PBXBuildFile; fileRef = 2395AF0416B5E1FD009D3441 /* Branding.png */; };
+		2395AF0716B5E1FD009D3441 /* Branding@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2395AF0516B5E1FD009D3441 /* Branding@2x.png */; };
+		2395AF1016B5EE64009D3441 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2395AF0F16B5EE64009D3441 /* libGoogleAnalytics.a */; };
 		239B825A166A07E100C2F9FC /* small_note.png in Resources */ = {isa = PBXBuildFile; fileRef = 239B8258166A07E100C2F9FC /* small_note.png */; };
 		239B825B166A07E100C2F9FC /* small_note@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 239B8259166A07E100C2F9FC /* small_note@2x.png */; };
 		239B8260166A101600C2F9FC /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 239B825F166A101600C2F9FC /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -147,6 +151,7 @@
 		23742900163BE7DF005368CC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		23788CE016437E3800519C8B /* MUSSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUSSplitViewController.h; path = "View Controllers/MUSSplitViewController.h"; sourceTree = "<group>"; };
 		23788CE116437E3800519C8B /* MUSSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUSSplitViewController.m; path = "View Controllers/MUSSplitViewController.m"; sourceTree = "<group>"; };
+		237ACC6A169E42D700AAEDBC /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2380F795163DFBEB001286EC /* MUSComposerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUSComposerCell.h; path = Views/MUSComposerCell.h; sourceTree = "<group>"; };
 		2380F796163DFBEB001286EC /* MUSComposerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUSComposerCell.m; path = Views/MUSComposerCell.m; sourceTree = "<group>"; };
 		23828EF21632AD5D008D6166 /* NLAOpenArchiveController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NLAOpenArchiveController.h; path = "Other Controllers/NLAOpenArchiveController.h"; sourceTree = "<group>"; };
@@ -193,6 +198,14 @@
 		2394E992162BBD8C00E5851E /* NIPagingScrollViewPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIPagingScrollViewPage.h; sourceTree = "<group>"; };
 		2394E99B162BC05D00E5851E /* icon72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon72.png; sourceTree = "<group>"; };
 		2394E99C162BC05D00E5851E /* icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144.png; sourceTree = "<group>"; };
+		2395AF0416B5E1FD009D3441 /* Branding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Branding.png; sourceTree = "<group>"; };
+		2395AF0516B5E1FD009D3441 /* Branding@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Branding@2x.png"; sourceTree = "<group>"; };
+		2395AF0A16B5EE64009D3441 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		2395AF0B16B5EE64009D3441 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		2395AF0C16B5EE64009D3441 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		2395AF0D16B5EE64009D3441 /* GAITransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransaction.h; sourceTree = "<group>"; };
+		2395AF0E16B5EE64009D3441 /* GAITransactionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransactionItem.h; sourceTree = "<group>"; };
+		2395AF0F16B5EE64009D3441 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
 		239B8258166A07E100C2F9FC /* small_note.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = small_note.png; sourceTree = "<group>"; };
 		239B8259166A07E100C2F9FC /* small_note@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "small_note@2x.png"; sourceTree = "<group>"; };
 		239B825E166A101600C2F9FC /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = "3rd Party/reachability/Reachability.h"; sourceTree = "<group>"; };
@@ -282,7 +295,7 @@
 		239D057616279B790065BDEF /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		239D05851627A4240065BDEF /* thumbnail_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbnail_placeholder.png; sourceTree = "<group>"; };
 		239D05861627A4240065BDEF /* thumbnail_placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbnail_placeholder@2x.png"; sourceTree = "<group>"; };
-		23E1759A16265F1300B5E7A3 /* nla-music.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nla-music.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		23E1759A16265F1300B5E7A3 /* Forte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Forte.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23E1759E16265F1300B5E7A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		23E175A016265F1300B5E7A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		23E175A216265F1300B5E7A3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -324,6 +337,7 @@
 				23742902163BE7EE005368CC /* QuartzCore.framework in Frameworks */,
 				230F3E93165ED97800D5BBD3 /* MobileCoreServices.framework in Frameworks */,
 				230F3E94165ED97800D5BBD3 /* SystemConfiguration.framework in Frameworks */,
+				2395AF1016B5EE64009D3441 /* libGoogleAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +417,20 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		2395AF0916B5EE64009D3441 /* google */ = {
+			isa = PBXGroup;
+			children = (
+				2395AF0A16B5EE64009D3441 /* GAI.h */,
+				2395AF0B16B5EE64009D3441 /* GAITrackedViewController.h */,
+				2395AF0C16B5EE64009D3441 /* GAITracker.h */,
+				2395AF0D16B5EE64009D3441 /* GAITransaction.h */,
+				2395AF0E16B5EE64009D3441 /* GAITransactionItem.h */,
+				2395AF0F16B5EE64009D3441 /* libGoogleAnalytics.a */,
+			);
+			name = google;
+			path = "3rd Party/google";
+			sourceTree = "<group>";
+		};
 		239B825D166A0FE400C2F9FC /* reachability */ = {
 			isa = PBXGroup;
 			children = (
@@ -436,6 +464,7 @@
 		239D046A162790F50065BDEF /* 3rd Party */ = {
 			isa = PBXGroup;
 			children = (
+				2395AF0916B5EE64009D3441 /* google */,
 				239B825D166A0FE400C2F9FC /* reachability */,
 				239D046B162791060065BDEF /* nimbus */,
 			);
@@ -592,6 +621,8 @@
 		239D05841627A4240065BDEF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				2395AF0416B5E1FD009D3441 /* Branding.png */,
+				2395AF0516B5E1FD009D3441 /* Branding@2x.png */,
 				23925F6E166B546E00EDCF7F /* nla.mus-an5892255-s1.jpg */,
 				23925F6F166B546E00EDCF7F /* nla.mus-an5892255-s1@2x.jpg */,
 				23925F70166B546E00EDCF7F /* nla.mus-an5892255-s2.jpg */,
@@ -636,7 +667,7 @@
 		23E1759B16265F1300B5E7A3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				23E1759A16265F1300B5E7A3 /* nla-music.app */,
+				23E1759A16265F1300B5E7A3 /* Forte.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -683,6 +714,7 @@
 				23E175A716265F1300B5E7A3 /* InfoPlist.strings */,
 				23E175AA16265F1300B5E7A3 /* main.m */,
 				23E175AC16265F1300B5E7A3 /* nla-music-Prefix.pch */,
+				237ACC6A169E42D700AAEDBC /* Settings.bundle */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -760,7 +792,7 @@
 			);
 			name = "nla-music";
 			productName = "nla-music";
-			productReference = 23E1759A16265F1300B5E7A3 /* nla-music.app */;
+			productReference = 23E1759A16265F1300B5E7A3 /* Forte.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -827,6 +859,9 @@
 				23925F7B166B546E00EDCF7F /* nla.mus-an5892255-s3@2x.jpg in Resources */,
 				23925F7C166B546E00EDCF7F /* nla.mus-an5892255-s4.jpg in Resources */,
 				23925F7D166B546E00EDCF7F /* nla.mus-an5892255-s4@2x.jpg in Resources */,
+				237ACC6B169E42D700AAEDBC /* Settings.bundle in Resources */,
+				2395AF0616B5E1FD009D3441 /* Branding.png in Resources */,
+				2395AF0716B5E1FD009D3441 /* Branding@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -943,7 +978,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E54924D5-F636-4459-A0F8-F11AD9EA568A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FA69C1E8-CB1E-40C8-BC07-AB8687F0BD17";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -956,7 +991,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "nla-music/nla-music-Prefix.pch";
 				INFOPLIST_FILE = "nla-music/nla-music-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/nla-music/3rd Party/google\"",
+				);
+				PRODUCT_NAME = Forte;
 				WRAPPER_EXTENSION = app;
 			};
 			name = "AdHoc Release";
@@ -1022,7 +1061,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "nla-music/nla-music-Prefix.pch";
 				INFOPLIST_FILE = "nla-music/nla-music-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/nla-music/3rd Party/google\"",
+				);
+				PRODUCT_NAME = Forte;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1033,7 +1076,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "nla-music/nla-music-Prefix.pch";
 				INFOPLIST_FILE = "nla-music/nla-music-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/nla-music/3rd Party/google\"",
+				);
+				PRODUCT_NAME = Forte;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

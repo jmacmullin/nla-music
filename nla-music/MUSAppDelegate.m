@@ -24,8 +24,11 @@
 //
 
 #import "MUSAppDelegate.h"
+#import "GAI.h"
 
 @interface MUSAppDelegate()
+
+- (void)initialiseAnalytics;
 
 @end
 
@@ -33,6 +36,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self initialiseAnalytics];
     return YES;
 }
 							
@@ -54,6 +58,16 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+}
+
+
+#pragma mark - Private Methods
+
+- (void)initialiseAnalytics
+{
+    GAI *googleAnalytics = [GAI sharedInstance];
+    [googleAnalytics setTrackUncaughtExceptions:YES];
+    [googleAnalytics trackerWithTrackingId:@"UA-807909-22"];
 }
 
 @end

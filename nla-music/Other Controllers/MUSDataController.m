@@ -67,15 +67,23 @@ static int kMaximumNumberOfPagesToCache = 10;
 
 - (NSIndexPath *)indexOfFirstScoreWithLetter:(NSString *)letter inDecade:(NSString *)decade
 {
+    BOOL found = NO;
     int i=0;
     for (Score *score in self.cachedScores) {
         if ([score.sortTitle.lowercaseString hasPrefix:letter.lowercaseString]) {
+            found = YES;
             break;
         }
         i++;
     }
     
-    return [NSIndexPath indexPathForItem:i-1 inSection:0];
+    NSIndexPath *indexPath = nil;
+    
+    if (found==YES) {
+        indexPath = [NSIndexPath indexPathForItem:i-1 inSection:0];
+    }
+    
+    return indexPath;
 }
 
 - (Score *)scoreAtIndex:(NSIndexPath *)indexPath inDecade:(NSString *)decade

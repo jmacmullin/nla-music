@@ -24,15 +24,15 @@
 //
 
 #import <UIKit/UIKit.h>
+@class MUSAtoZIndexView;
 
 @protocol MUSAtoZIndexDelegate <NSObject>
-
-- (void)indexViewDidSelectLetterInIndex:(NSString *)letter;
-
+- (void)indexView:(MUSAtoZIndexView *)indexView didSelectLetterInIndex:(NSString *)letter;
 @end
 
 @interface MUSAtoZIndexView : UIView
 
+@property (nonatomic, strong) NSArray *letters;
 @property (nonatomic, weak) id<MUSAtoZIndexDelegate> delegate;
 
 @end

@@ -119,13 +119,16 @@
                                     <constraint firstItem="Dsf-yH-BY7" firstAttribute="leading" secondItem="alw-oV-Bbs" secondAttribute="leading" type="default" id="RPI-9u-Cwk"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="scaleToFill" image="Branding.png" translatesAutoresizingMaskIntoConstraints="NO" id="oKR-v4-zwo"/>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="alw-oV-Bbs" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="default" id="AeY-14-n8E"/>
                             <constraint firstItem="eUc-aP-eeM" firstAttribute="top" secondItem="5" secondAttribute="top" type="default" id="BQI-bn-gH9"/>
                             <constraint firstItem="eUc-aP-eeM" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" type="default" id="DDe-Wa-i3A"/>
+                            <constraint firstItem="oKR-v4-zwo" firstAttribute="top" secondItem="5" secondAttribute="top" constant="290" id="NzG-bx-03z"/>
                             <constraint firstAttribute="bottom" secondItem="QO5-hT-udt" secondAttribute="bottom" constant="10" id="UJ6-k4-LgV"/>
+                            <constraint firstItem="oKR-v4-zwo" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="189" id="Zbt-Ny-t0c"/>
                             <constraint firstItem="alw-oV-Bbs" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" type="default" id="ctY-gI-bVG"/>
                             <constraint firstAttribute="trailing" secondItem="QO5-hT-udt" secondAttribute="trailing" constant="22" id="hfO-0d-NkS"/>
                             <constraint firstItem="QO5-hT-udt" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="624" id="hpi-G0-OcU"/>
@@ -137,6 +140,7 @@
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="brandingImage" destination="oKR-v4-zwo" id="dzu-UA-v18"/>
                         <outlet property="collectionView" destination="eUc-aP-eeM" id="7co-q9-UGv"/>
                         <outlet property="composersButtonItem" destination="LsK-Qr-qS4" id="oK6-2l-7Uo"/>
                         <outlet property="indexView" destination="QO5-hT-udt" id="J21-RV-Tav"/>
@@ -253,10 +257,10 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" text="view on the web" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J3H-ta-exE">
+                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" text="View on National Library of Australia's website" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J3H-ta-exE">
                                         <gestureRecognizers/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="152" id="FST-q0-th1"/>
+                                            <constraint firstAttribute="width" constant="320" id="1kV-oF-SWr"/>
                                             <constraint firstAttribute="height" constant="21" id="Slu-Zr-Jca"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
@@ -687,6 +691,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Branding.png" width="301" height="303"/>
         <image name="fav_icon.png" width="23" height="23"/>
         <image name="share_icon.png" width="23" height="18"/>
         <image name="small_note.png" width="75" height="88"/>
@@ -712,6 +717,8 @@
         <class className="MUSDecadeScoreCollectionViewController" superclassName="MUSScoreCollectionViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MUSDecadeScoreCollectionViewController.h"/>
             <relationships>
+                <relationship kind="action" name="dismiss:"/>
+                <relationship kind="outlet" name="brandingImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="composersButtonItem" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="indexView" candidateClass="MUSAtoZIndexView"/>
                 <relationship kind="outlet" name="toolbarContainerView" candidateClass="UIView"/>
@@ -804,6 +811,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="XQg-IY-7Oy"/>
+        <segue reference="q65-zi-qdO"/>
     </inferredMetricsTieBreakers>
 </document>

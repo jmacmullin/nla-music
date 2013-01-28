@@ -26,6 +26,7 @@
 #import <Foundation/Foundation.h>
 #import "MUSDataController.h"
 #import "NINetworkImageView.h"
+#import "GAI.h"
 
 /**
  A view controller that manages a collection of scores.
@@ -34,7 +35,7 @@
  MUSDecadeScoreCollectionViewController (which manages a collection of scores published
  in a given decade).
  */
-@interface MUSScoreCollectionViewController : UIViewController
+@interface MUSScoreCollectionViewController : GAITrackedViewController
 
 @property (nonatomic, strong) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;

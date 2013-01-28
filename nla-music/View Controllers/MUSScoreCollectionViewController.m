@@ -30,6 +30,8 @@
 #import "MUSScoreCell.h"
 #import "MUSScoreViewController.h"
 #import "Reachability.h"
+#import "GAI.h"
+
 
 static NSString * kScoreCellIdentifier = @"ScoreCell";
 static NSString * kOpenScoreSegueIdentifier = @"OpenScoreSegue";
@@ -135,7 +137,6 @@ static float kThumbnailZoomDuration = 0.25;
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     // disable touches until this transition is complete
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     
@@ -166,6 +167,13 @@ static float kThumbnailZoomDuration = 0.25;
     }
     [self.view addSubview:coverImageView];
     [self setSelectedCoverImageView:coverImageView];
+    
+    // track this
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker sendEventWithCategory:@"uiAction"
+                        withAction:@"Select Score"
+                         withLabel:self.selectedScore.title
+                         withValue:nil];
     
     // animate the image to fill the view
     [UIView animateWithDuration:kThumbnailZoomDuration

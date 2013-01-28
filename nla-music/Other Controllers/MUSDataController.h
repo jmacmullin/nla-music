@@ -38,7 +38,8 @@
 
 /**
  Returns the index path of the first score in the collection
- whose sort title starts with the given letter.
+ whose sort title starts with the given letter or nil of there
+ was no score whose sort title starts with the given letter.
  */
 - (NSIndexPath *)indexOfFirstScoreWithLetter:(NSString *)letter inDecade:(NSString *)decade;
 

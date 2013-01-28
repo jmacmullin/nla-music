@@ -28,6 +28,7 @@
 #import "NIPhotoAlbumScrollView.h"
 #import "NIPhotoScrubberView.h"
 #import "Score.h"
+#import "GAI.h"
 
 @class MUSScoreViewController;
 
@@ -37,7 +38,7 @@
 
 @end
 
-@interface MUSScoreViewController : UIViewController <NIPhotoAlbumScrollViewDataSource, NIPhotoAlbumScrollViewDelegate, UIPopoverControllerDelegate, NIPhotoScrubberViewDataSource, NIPhotoScrubberViewDelegate, UIActionSheetDelegate>
+@interface MUSScoreViewController : GAITrackedViewController <NIPhotoAlbumScrollViewDataSource, NIPhotoAlbumScrollViewDelegate, UIPopoverControllerDelegate, NIPhotoScrubberViewDataSource, NIPhotoScrubberViewDelegate, UIActionSheetDelegate>
 
 @property (nonatomic, weak) id<MUSScoreViewControllerDelegate> delegate;
 @property (nonatomic, strong) UIImage *initialImage;

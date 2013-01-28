@@ -87,6 +87,17 @@
     [self setInitialPageNumber:-1];
 }
 
+- (NSString *)trackedViewName
+{
+    NSString *viewName;
+    if (self.score!=nil) {
+        viewName = self.score.title;
+    } else {
+        viewName = @"Score View";
+    }
+    return viewName;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -190,6 +201,12 @@
     [self.favouriteButton setSelected:!self.favouriteButton.selected];
     if (self.favouriteButton.selected == YES) {
         [self.dataController markScore:self.score asFavourite:YES];
+        
+        id<GAITracker> tracker = [GAI sharedInstance].defaultTracker;
+        [tracker sendEventWithCategory:@"uiAction"
+                            withAction:@"Mark as Favourite"
+                             withLabel:self.score.title
+                             withValue:nil];
     } else {
         [self.dataController markScore:self.score asFavourite:NO];
     }
@@ -240,6 +257,16 @@
              UIActivityTypeMessage,
              UIActivityTypePrint,
              UIActivityTypePostToWeibo]];
+            
+            [activityController setCompletionHandler:^(NSString *activityType, BOOL completed) {
+                if (completed == YES) {
+                    id<GAITracker> tracker = [GAI sharedInstance].defaultTracker;
+                    [tracker sendEventWithCategory:@"uiAction"
+                                        withAction:@"Share"
+                                         withLabel:[NSString stringWithFormat:@"%@ via %@", self.score.title, activityType, nil]
+                                         withValue:nil];
+                }
+            }];
             
             UIPopoverController *activityPopover = [[UIPopoverController alloc] initWithContentViewController:activityController];
             [activityPopover setDelegate:self];

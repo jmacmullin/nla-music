@@ -30,9 +30,8 @@ static float kPadding = 22.0;
 
 @interface MUSAtoZIndexView()
 
-@property (nonatomic, strong) NSArray *letters;
 @property (nonatomic, strong) NSMutableArray *letterViews;
-@property (nonatomic) int indexOfLastLetter;
+@property (nonatomic, strong) NSString *lastLetter;
 
 - (void)initialise;
 - (void)notifyDelegateOfTouchedLetterWithTouches:(NSSet *)touches;
@@ -70,7 +69,7 @@ static float kPadding = 22.0;
     CALayer *layer = self.layer;
     [layer setCornerRadius:20.0];
     [self.layer setBackgroundColor:[[UIColor clearColor] CGColor]];
-    [self setIndexOfLastLetter:-1];
+    [self setLastLetter:nil];
 }
 
 - (void)layoutSubviews
@@ -121,13 +120,21 @@ static float kPadding = 22.0;
     touchHeight = fmin(touchHeight, self.frame.size.height);
     
     // get the closest letter
-    int letterIndex = (int)((touchHeight / self.frame.size.height) * 25.0);
+    NSString *letter = nil;
+    for (int i=0;i<self.letterViews.count;i++) {
+        UILabel *letterLabel = self.letterViews[i];
+        letter = letterLabel.text;
+        if (touchHeight > letterLabel.frame.origin.y && touchHeight < letterLabel.frame.origin.y + letterLabel.frame.size.height) {
+            break;
+        }
+    }
     
-    if (self.indexOfLastLetter != letterIndex) {
-        NSString *letter = self.letters[letterIndex];
-        [self setIndexOfLastLetter:letterIndex];
-        if (self.delegate!=nil && [self.delegate conformsToProtocol:@protocol(MUSAtoZIndexDelegate)]) {
-            [self.delegate indexViewDidSelectLetterInIndex:letter];
+    if (letter!=nil) {
+        if (self.lastLetter != letter) {
+            [self setLastLetter:letter];
+            if (self.delegate!=nil && [self.delegate conformsToProtocol:@protocol(MUSAtoZIndexDelegate)]) {
+                [self.delegate indexView:self didSelectLetterInIndex:letter];
+            }
         }
     }
 }

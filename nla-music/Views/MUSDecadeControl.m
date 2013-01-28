@@ -55,7 +55,7 @@
 
 - (void)itemLabelNeedsDisplay
 {
-    [self.label setText:self.itemLabel];
+    //[self.label setText:self.itemLabel];
 }
 
 - (void)setSelected:(BOOL)selected

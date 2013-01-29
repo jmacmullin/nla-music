@@ -37,16 +37,16 @@
 {
     self = [super initWithFrame:frame];
     if (self!=nil) {
-//        UIImageView *starImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"star.png"]];
-//        [self addSubview:starImageView];
-//        [self setStarImageView:starImageView];
+        UIImageView *starImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"star.png"]];
+        [self addSubview:starImageView];
+        [self setStarImageView:starImageView];
     }
     return self;
 }
 
 - (void)layoutSubviews
 {
-//    [self.starImageView setCenter:self.center];
+    [self.starImageView setCenter:self.center];
 }
 
 
